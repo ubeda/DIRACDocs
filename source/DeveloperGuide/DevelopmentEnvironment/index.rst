@@ -6,12 +6,19 @@ Setting up a development installation
 Before jumping into the code
 -----------------------------
 
-DIRAC source code is maintained in GIT. It is really recommended to be familiar with how to work with GIT. So before jumping into the code it is highly recommended to go though a GIT tutorial. The recommended ones are:
+DIRAC source code is maintained in GIT distributed code management system. It is highly recommended to be familiar with with GIT 
+before jumping into the code development. Please, go through a GIT tutorial. The recommended ones are:
 
- - For an GIT shallow overview the GIT community book at http://book.git-scm.com/ . Do not be alarmed by the word *book*. It's more a tutorial on the basics of GIT. 
+ - For an GIT shallow overview the GIT community book at http://book.git-scm.com/ . 
+   Do not be alarmed by the word *book*. It's more a tutorial on the basics of GIT. 
  - For really knowing what's going on read http://progit.org/book/ . It'll make using GIT a painless and nice experience.
  
-Once you're familiar with how GIT works. You're ready to clone the DIRAC source repository. DIRAC is release repository is hosted at https://github.com/DIRACGrid/DIRAC . From there you have two options:
+-------------------------------------
+Sharing your development
+------------------------------------- 
+ 
+Once you're familiar with how GIT works. You're ready to clone the DIRAC source repository. 
+DIRAC repository is hosted at https://github.com/DIRACGrid/DIRAC . From there you have two options:
 
  - Easy way: 
  
@@ -43,37 +50,66 @@ DIRAC developers tend to use eclipse for developing DIRAC. It is not mandatory b
 Checking out the source
 =========================
 
-First you need to check out all the sources you need to start working on DIRAC or on any extension. So go to a clean directory (from now on I'll call that directory *devRoot*) and:
+First you need to check out all the sources you need to start working on DIRAC or on any extension. Go to a clean directory 
+(from now on I'll call that directory *devRoot*) and:
  
  1. Go to your *devRoot* directory
- 2. Check out DIRAC source code. DIRAC source is hosted on *github.com*. But depending on which option you went for in the previous *Before jumping into code* section you need to proceed differenty:
+ 2. Check out DIRAC source code. DIRAC source is hosted on *github.com*. But depending on which option you went for in the 
+    previous *Before jumping into code* section you need to proceed differenty:
  
-  - If you went for the *easy way* just clone your DIRAC repo (remember you are in a clean directory where you will set up the development environment) ``git clone git@github.com/yourusername/DIRAC.git`` will create a *devRoot/DIRAC* for you.
-  - If you want for the *Do-it-yourself* way, clone your public repo with ``git clone yourgitpublicrepourl DIRAC``
-  - If you don't intend to develop DIRAC and just need it for developing extensions do ``git clone https://github.com/DIRACGrid/DIRAC.git``
+  - If you went for the *easy way* just clone your DIRAC repo (remember you are in a clean directory where you will set up 
+    the development environment)::
+      
+      git clone git@github.com/yourusername/DIRAC.git 
+     
+    will create a *devRoot/DIRAC* for you.
+  - If you want for the *Do-it-yourself* way, clone your public repo with::
+     
+      git clone yourgitpublicrepourl DIRAC
+      
+  - If you don't intend to develop DIRAC and just need it for developing extensions do::
+     
+      git clone https://github.com/DIRACGrid/DIRAC.git
   
  3. If you need DIRACWeb do the same with the repo at https://github.com/DIRACGrid/DIRACWeb
- 4. If you need to check out any extension do so in the *devRoot* directory. For instance ``svn co svn+ssh://svn.cern.ch/reps/lbdirac/LHCbDIRAC/trunk/LHCbDIRAC LHCbDIRAC``
- 5. Repeat step 4 for each extension you need
- 6. Deploy DIRAC scripts by running ``DIRAC/Core/scripts/dirac-deploy-scripts.py``
- 7. Get the DIRAC External binaries by running ``scripts/dirac-install -X -t server -i 26``. This may take a while if there aren't externals available for your platform and they have to be compiled.
- 8. Configure DIRAC by executing ``scripts/dirac-configure -S setupyouwanttorun -C configurationserverslist -n sitename -H``
+ 4. If you need to check out any extension do so in the *devRoot* directory. For instance::
  
-You're ready to hack DIRAC!
+       svn co svn+ssh://svn.cern.ch/reps/lbdirac/LHCbDIRAC/trunk/LHCbDIRAC LHCbDIRAC
+ 
+ 5. Repeat step 4 for each extension you need
+ 6. Deploy DIRAC scripts by running::
+ 
+       DIRAC/Core/scripts/dirac-deploy-scripts.py
 
-Configuring Eclipse
-=====================
+ 7. Get the DIRAC External binaries by running::
+ 
+       scripts/dirac-install -X -t server -i 26
+    
+    This may take a while if there aren't externals available for your platform and they have to be compiled.
+ 8. Configure DIRAC by executing::
+ 
+    scripts/dirac-configure -S setupyouwanttorun -C configurationserverslist -n sitename -H
+ 
+You're ready for DIRAC development !
 
-A couple extensions are required to be able to use eclipse for developing DIRAC. To install them go to *Help->Install new software->top right button "Add..." -> Insert name and URL* and then select the software to install in the list.
+Configuring *Eclipse*
+=======================
+
+Two extensions are required for developing DIRAC with *Eclipse*. To install them go to 
+*Help->Install new software->top right button "Add..." -> Insert name and URL* and then select the software to install in the list.
 
  - *pyDev* : Use http://pydev.org/updates as the URL to install from. For more info go to http://pydev.org/updates
- - *EGit* : Git team provider for eclipse. Use http://download.eclipse.org/egit/updates as the URL. For more info go to http://www.eclipse.org/egit/
+ - *EGit* : Git team provider for eclipse. Use http://download.eclipse.org/egit/updates as the URL. 
+   For more info go to http://www.eclipse.org/egit/
  
-Now you need to configure the pyDev plugin. Go to *Window->Preferences* (*Eclipse->preferences if you're in a MacOSX box). In the preferences pane go to *Pydev->Editor*, select 2 as the tab length and click "Replace tabs with spaces when typing". In *Pydev->Editor->Code Style->Code formatter* check all the boxes. 
+Now you need to configure the *pyDev* plugin. Go to *Window->Preferences* (*Eclipse->preferences* if you're in a MacOSX box). 
+In the preferences pane go to *Pydev->Editor*, select 2 as the tab length and click "Replace tabs with spaces when typing". 
+In *Pydev->Editor->Code Style->Code formatter* check all the boxes. 
  
-For Egit you simply need to configure your name and mail. Go to the preferences pane and then go to *Team->Git->Configuration* and add two entries: *user.name* with your name and *user.email* with your email.
+For *EGit* you simply need to configure your name and mail. Go to the preferences pane and then go to 
+*Team->Git->Configuration* and add two entries: *user.name* with your name and *user.email* with your email.
 
-That's it! Eclipse is configured now :)
+That's it! *Eclipse* is configured now :)
 
 
 Creating a development installation in Eclipse
