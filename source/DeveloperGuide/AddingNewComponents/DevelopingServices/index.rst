@@ -90,7 +90,7 @@ variable of the List type. Each element of the List is one or a list of possible
 of the method arguments in the same order as defined in the method definition. The types 
 are imported from the ''types'' standard python module.             
 
-The name of each method which will be accessible to the clients has export_ prefix. Note that
+The name of each method which will be accessible to the clients has *export_* prefix. Note that
 the clients will call the method without this prefix. Otherwise, it is an ordinary class method
 which takes the arguments provided by the client and returns the result to the client. The result
 must always be returned as an S_OK or S_ERROR structure.

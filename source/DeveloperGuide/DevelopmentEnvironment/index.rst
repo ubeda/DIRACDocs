@@ -60,7 +60,7 @@ First you need to check out all the sources you need to start working on DIRAC o
   - If you went for the *easy way* just clone your DIRAC repo (remember you are in a clean directory where you will set up 
     the development environment)::
       
-      git clone git@github.com/yourusername/DIRAC.git 
+      git clone git@github.com:yourusername/DIRAC.git 
      
     will create a *devRoot/DIRAC* for you.
   - If you want for the *Do-it-yourself* way, clone your public repo with::
@@ -89,6 +89,7 @@ First you need to check out all the sources you need to start working on DIRAC o
  8. Configure DIRAC by executing::
  
        scripts/dirac-configure -S setupyouwanttorun -C configurationserverslist -n sitename -H
+    
  
 You're ready for DIRAC development !
 
