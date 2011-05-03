@@ -2,7 +2,17 @@
 Administrator Command Reference
 ====================================
 
-In this subsection all the dirac-admin commands available are explained.
+In this subsection all the dirac-admin commands available are explained. You can 
+get up-to-date documentation by using the -h switch on any of them. The following command line 
+flags are common to all DIRAC scripts making use of the *parseCommandLine* method of the base *Script* class::
+
+      General options: 
+        -o:  --option=         : Option=value to add 
+        -s:  --section=        : Set base section for relative parsed options 
+        -c:  --cert=           : Use server certificate to connect to Core Services 
+        -d   --debug           : Set debug mode (-dd is extra debug) 
+        -h   --help            : Shows this help 
+
 
 .. toctree::
    :maxdepth: 2
