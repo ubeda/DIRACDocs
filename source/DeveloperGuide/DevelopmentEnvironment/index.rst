@@ -88,7 +88,7 @@ First you need to check out all the sources you need to start working on DIRAC o
     This may take a while if there aren't externals available for your platform and they have to be compiled.
  8. Configure DIRAC by executing::
  
-    scripts/dirac-configure -S setupyouwanttorun -C configurationserverslist -n sitename -H
+       scripts/dirac-configure -S setupyouwanttorun -C configurationserverslist -n sitename -H
  
 You're ready for DIRAC development !
 
