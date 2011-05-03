@@ -122,8 +122,17 @@ All that remains is to import these directories as projects in Eclipse. To impor
  3. In the "Import Projects from Git" click *Add*.
  4. In the "Add Git Repositories", click *Browse* and select the DIRAC source code folder you cloned into before. Then click *Search* and the *.git* directory in the DIRAC source code directory should appear. Select it and click *OK*.
  5. In the "Import Projects from Git" pane the DIRAC folder should now appear. Select it and click *Next*.
- 6. Select "Import as General Project" and click *Next*.
- 7. Write the name of the project and "Finish".
+ 6. Select "Use the New Project wizard" and click *Finish*.
+ 7. In the *New Project* wizard choose *Pydev -> Pydev project* and click *Next*.
+ 8. Choose the necessary settings for the project, in particular:
+ 
+    - Project name, e.g. DIRAC_dev
+    - The project working directory
+    - Use Python 2.6 grammar
+    - Choose the python interpreter ( you might need to set it up in a separate form )
+    - Uncheck creation of *src* directory
+    
+ 9. Click *Finish*.   
  
 If you want to add DIRACWeb to eclipse repeat the same steps with the Web source directory. For additional extensions, add them as projects to Eclipse. You'll have to look on how to do it depending on your team provider. For instance, if you are using subversion for your extension:
 
