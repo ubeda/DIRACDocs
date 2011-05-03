@@ -1,3 +1,5 @@
+.. _server_installation:
+
 ===================================
 DIRAC Server Installation
 ===================================
@@ -18,6 +20,8 @@ distributed among a number of servers installed using the procedure for addition
 
 For all DIRAC installations any number of client installations is possible.
 
+.. _server_requirements:
+
 Requirements
 -----------------------------------------------
 
@@ -28,11 +32,10 @@ Requirements
         configured by the DIRAC administrator);
       - For the server hosting the portal, ports 80 and 443 should be open and redirected to ports 
         8080 and 8443 respectively, i.e. setting iptables appropriately::
-        
+
          iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
          iptables -t nat -I PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 8443
-        
-        
+
       - Grid host certificates in pem format;
       - At least one of the servers of the installation must have updated CAs and CRLs files;
       - If gLite third party services are needed (for example, for the pilot job submission via WMS 
@@ -45,6 +48,8 @@ Requirements
         permissions.
       - User certificate loaded into the Web Browser (currently supported browsers are: Mozilla Firefox, Chrome 
         and Safari)
+
+.. _server_preparation:
 
 Server preparation
 ---------------------------------
@@ -81,6 +86,24 @@ the steps below. This procedure must be followed for the primary server and for 
       mkdir /home/dirac/DIRAC
       cd /home/dirac/DIRAC
       wget -np http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/install_site.sh
+
+Server Certificates
+---------------------
+
+Server certificates are used for validating the identity of the host a given client is connecting to. By default 
+grid host certificate include host/ in the CN (common name) field. This is not a problem for DIRAC components 
+since DISET only keeps the host name after the **/** if present. 
+
+However if the certificate is used for the Web Portal, the client validating the certificate is your browser. All browsers
+will rise a security alarm if the host name in the url does not match the CN field in the certificate presented by the server.
+In particular this means that *host/*, or other similar parts should nto be present, and that it is preferable to use 
+DNS aliases and request a certificate under this alias in order to be able to migrate the server to a new host without
+having to change your URLs. DIRAC will accept both real host names and any valid aliases without complains.
+
+Finally, you will have to instruct you users on the procedure to upload the public key of the CA signing the certificate 
+of the host where the Web Portal is running. This depends from CA to CA, but typically only means clicking on a certain 
+link on the web portal of the CA.
+
 
 .. _install_primary_server:
 
@@ -141,6 +164,8 @@ be taken:
         Setup = MyDIRAC-Production
         #  Default name of system instances 
         InstanceName = Production
+        #  Flag to skip download of CAs
+        SkipCADownload = yes
         #  Flag to use the server certificates
         UseServerCertificate = yes
         #  Configuration Server URL (This should point to the URL of at least one valid Configuration 
@@ -378,21 +403,21 @@ To install the DIRAC Client, follow the procedure described in the User Guide.
       MySQL root password:
       MySQL Dirac password:
 
-  - Install databases, for example:::
+  - Install databases, for example::
 
       install db ComponentMonitoringDB
 
-  - Install services and agents, for example:::
+  - Install services and agents, for example::
 
       install service WorkloadManagement JobMonitoring
       ...
       install agent Configuration CE2CSAgent
 
 Note that all the necessary commands above can be collected in a text file and the whole installation can be 
-accomplished with a single command:::
+accomplished with a single command::
 
       execfile <command_file> 
-      
+
 Component Configuration and Monitoring
 ---------------------------------------- 
 
@@ -402,6 +427,10 @@ To change the components configuration parameters
   - Login into web portal and choose dirac_admin group, you can change configuration file following these links::
 
       Systems -> Configuration -> Manage Configuration
+
+  - Use the comand line interface to the Configuration Service::
+
+    $ *dirac-configuration-cli*
 
   - In the server all the logs of the services and agents are stored and rotated in 
     files that can be checked using the following command::
