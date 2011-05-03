@@ -70,26 +70,46 @@ First you need to check out all the sources you need to start working on DIRAC o
   - If you don't intend to develop DIRAC and just need it for developing extensions do::
      
       git clone https://github.com/DIRACGrid/DIRAC.git
+ 
+ 3. That will create a *remote* in the git repository called *origin* that points to your source repository. In that repository
+    you will publish your code to be released. But all the releases will be done in the https://github.com/DIRACGrid/DIRAC repository. 
+    You need to define a remote for that repository to be able to pull newly released changes into your working repo. We will name that
+    repository *upstream*::
+
+     git remote add upstream https://github.com/DIRACGrid/DIRAC.git  
+     git fetch upstream                                          
   
- 3. If you need DIRACWeb do the same with the repo at https://github.com/DIRACGrid/DIRACWeb
- 4. If you need to check out any extension do so in the *devRoot* directory. For instance::
+ 4. If you need DIRACWeb do the same with the repo at https://github.com/DIRACGrid/DIRACWeb
+ 5. If you need to check out any extension do so in the *devRoot* directory. For instance::
  
        svn co svn+ssh://svn.cern.ch/reps/lbdirac/LHCbDIRAC/trunk/LHCbDIRAC LHCbDIRAC
  
- 5. Repeat step 4 for each extension you need
- 6. Deploy DIRAC scripts by running::
+ 6. Repeat step 4 for each extension you need
+ 7. Deploy DIRAC scripts by running::
  
        DIRAC/Core/scripts/dirac-deploy-scripts.py
 
- 7. Get the DIRAC External binaries by running::
+ 8. Get the DIRAC External binaries by running::
  
        scripts/dirac-install -X -t server -i 26
     
     This may take a while if there aren't externals available for your platform and they have to be compiled.
- 8. Configure DIRAC by executing::
+ 9. Configure DIRAC by executing::
  
        scripts/dirac-configure -S setupyouwanttorun -C configurationserverslist -n sitename -H
-    
+
+ 10. From now on, everytime you want to publish something to your public repository do::
+
+       git push origin localbranch:remotebranch  #If you want to push a new branch
+  
+     or::
+
+       git push origin #For an already pushed branch
+
+ 11. To bring changes from the release repository do::
+
+       git fetch upstream
+       git merge upstream/branchname
  
 You're ready for DIRAC development !
 
