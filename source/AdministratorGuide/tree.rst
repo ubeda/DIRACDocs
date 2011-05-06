@@ -6,11 +6,9 @@ Administrator Guide
    :maxdepth: 1
    
    SetupStructure/index
+   GettingStarted/tree
    InstallingDIRACService/index
    SystemAdministratorInterface/index
    Configuration/tree
    Systems/tree
-   DIRACSites/tree
    CommandReference/tree
-   
-   

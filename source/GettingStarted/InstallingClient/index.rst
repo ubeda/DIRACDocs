@@ -4,6 +4,8 @@ Installing DIRAC client
 
 The DIRAC client installation procedure consists of several steps.
 
+.. _dirac_install:
+
 Install script
 ---------------
 

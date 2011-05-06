@@ -153,7 +153,7 @@ Managing DIRAC services and agents
 
 Using SAC the installation of DIRAC components (DBs, Services, Agents) and MySQL Server can be done.
 
-Usage:::
+Usage::
 
     install mysql
     install db <database>
@@ -183,7 +183,7 @@ Addition of new agents::
     mardirac1.in2p3.fr >install agent Configuration CE2CSAgent
     agent Configuration_CE2CSAgent is installed, runit status: Run
 
-Start services or agents or database server::
+The SAC can also be used to start services or agents or database server.
 
 Usage::
 
@@ -200,17 +200,15 @@ For example, start a service::
 
 Restart services or agents or database server::
 
-Usage::
-
     restart <system|*> <service|agent|*>
     restart mysql
 
-Restarting all the services::
+Restarting all the services and agents::
 
    mardirac1.in2p3.fr >restart *
    All systems are restarted, connection to SystemAdministrator is lost
 
-Restarting a specific service::
+Restarting a specific service or agent::
 
    mardirac1.in2p3.fr >restart WorkloadManagement MPIService
 
@@ -220,12 +218,10 @@ Restarting a specific service::
 
 Stop services or agents or database server::
 
-Usage::
-
     stop <system|*> <service|agent|*>
     stop mysql
 
-Stop all the services::
+Stop all the services and agents::
 
    mardirac1.in2p3.fr >stop *
 
@@ -236,7 +232,6 @@ Stop a specific service or agent::
    WorkloadManagement_MPIService stopped successfully, runit status:
 
    WorkloadManagement_MPIService : Down
-
 
 
 
