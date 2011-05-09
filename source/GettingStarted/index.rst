@@ -7,5 +7,5 @@ Getting Started
    
    InstallingClient/index
    GettingUserIdentity/index
-   UserJobs/tree
+   UserJobs/index
    BasicDataManipulation/index

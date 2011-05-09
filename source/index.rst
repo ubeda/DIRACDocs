@@ -20,31 +20,31 @@ Organizations such as LHC experiments. In more details the DIRAC WMS with Pilot 
 .. toctree::
    :hidden:
    
-   Overview/tree
-   GettingStarted/tree
-   UserGuide/tree 
-   AdministratorGuide/tree
-   DeveloperGuide/tree
-   CodeDocumentation/tree 
+   Overview/index
+   GettingStarted/index
+   UserGuide/index 
+   AdministratorGuide/index
+   DeveloperGuide/index
+   CodeDocumentation/index 
 
 Documentation sources
 =====================
 
 +-----------------------------------------+----------------------------------------------------+
 |                                         |                                                    |
-| :doc:`Overview/tree`                    | :doc:`AdministratorGuide/tree`                     |
+| :doc:`Overview/index`                   | :doc:`AdministratorGuide/index`                    |
 |                                         |                                                    |
 | What is it all about ?                  | Administration of the DIRAC services               |
 |                                         |                                                    |
 +-----------------------------------------+----------------------------------------------------+
 |                                         |                                                    |
-| :doc:`GettingStarted/tree`              | :doc:`DeveloperGuide/tree`                         |
+| :doc:`GettingStarted/index`             | :doc:`DeveloperGuide/index`                        |
 |                                         |                                                    |
 | Quick start for impatient users         | Adding new functionality to DIRAC                  |
 |                                         |                                                    |
 +-----------------------------------------+----------------------------------------------------+
 |                                         |                                                    |
-| :doc:`UserGuide/tree`                   | :doc:`CodeDocumentation/tree`                      |
+| :doc:`UserGuide/index`                  | :doc:`CodeDocumentation/index`                     |
 |                                         |                                                    |
 | Everything users need to know           | Code reference                                     |
 |                                         |                                                    |

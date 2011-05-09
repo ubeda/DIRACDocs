@@ -10,5 +10,5 @@ User Guide
    :maxdepth: 2
 
    InstallingDIRACClient/index
-   WebPortalReference/tree
-   CommandReference/tree
+   WebPortalReference/index
+   CommandReference/index

@@ -12,10 +12,10 @@ The procedure to add new configuration data and to update the existing settings 
    
    ConfigurationStructure/index
    GeneralSetup/index
-   SystemsConfiguration/tree
-   ResourcesConfiguration/tree
-   OperationsConfiguration/tree
-   Registry/tree
+   SystemsConfiguration/index
+   ResourcesConfiguration/index
+   OperationsConfiguration/index
+   Registry/index
    WebConfiguration/index
-   ManagingConfiguration/tree
+   ManagingConfiguration/index
    
