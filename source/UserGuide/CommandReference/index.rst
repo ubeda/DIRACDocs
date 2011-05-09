@@ -7,5 +7,5 @@ Commands Reference
 .. toctree::
    :maxdepth: 1
 
-   DataManagement/tree
-   WorkloadManagement/tree
+   DataManagement/index
+   WorkloadManagement/index
