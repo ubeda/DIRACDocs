@@ -8,5 +8,5 @@ Following the Steps in this chapter should allow you to better understand how it
 .. toctree::
    :maxdepth: 2
    
-   Step 1/tree
-   Step 2/tree
+   Step 1/index
+   Step 2/index
