@@ -175,7 +175,7 @@ Reference of a project's *default.cfg* schema
  LinkToProject = projectName
  
  #(Everything in here is optional) Default values for dirac-install
- Defaults
+ LocalInstallation
  {
    #Install the requested project instead of this one
    # Useful for setting defaults for VOs by defining them as projects and
@@ -220,9 +220,9 @@ Global defaults is the file that *dirac-install* will try to load to discover wh
    #This project is a link to another project
    LinkToProject = OtherProject
    #Default values for dirac-install
-   Defaults
+   LocalInstallation
    {
-     #This section can contain the same as the Defaults section in each project's defaults.cfg
+     #This section can contain the same as the LocalInstallation section in each project's defaults.cfg
    }
  }
  #And repeat for each project
