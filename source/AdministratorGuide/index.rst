@@ -6,7 +6,7 @@ Administrator Guide
    :maxdepth: 1
    
    SetupStructure/index
-   GettingStarted/tree
+   GettingStarted/index
    InstallingDIRACService/index
    SystemAdministratorInterface/index
    Configuration/index
