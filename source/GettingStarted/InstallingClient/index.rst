@@ -48,6 +48,7 @@ assuming the name of the Virtial Organization *dirac*::
   chmod +x dirac-install
   dirac-install -V dirac
   source bashrc
+  dirac-proxy-init
   dirac-configure dirac_defaults.cfg
    
 The *dirac_defaults.cfg* file contains the Virtual Organization default settings. It is downloaded as part of
