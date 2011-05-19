@@ -55,7 +55,7 @@ Hence if the developer is going to prepare her own unit tests, she should pay at
 suite, checking for every spot of possible failure (i.e. interactions with other components) and not trusting that someone else's code is 
 always returning proper type and/or values. 
 
-Testing the code can be done in four well defined staps:
+Testing the code, and so proper code developing cycle, can be done in four well defined steps:
 
 Step 1. **Preparation**
 
@@ -160,6 +160,42 @@ Once the code is tested and all tests are passed, the developer can start thinki
 performance issues, cleaning up the code from repetitions, new features, patching, removing obsolete or not used methods. 
 So from this point the whole developing cycle can start again and again and again...
 
+Test doubles
+------------
+
+To isolate the code being tested from dependend-on components it is convinient and sometimes necessary to use *test doubles*: 
+simplified objects or procedures, that behaves and looks like the their real-intended counterparts, but are actually simplified versions 
+that reduce the complexity and facilitate testing [#]_. Those fake objects meet the interface requirements of, and stand in for, more complex real ones,  
+allowing programmers to write and unit-test functionality in one area without actually calling complex underlying or collaborating classes.
+The isolation itself help developers to focus their tests on the behavior of their classes without worrying about its dependencies, b also may be 
+required under many different circumnstance, i.e.:
+
+- if depended-on component may return values or throw exceptions that affect the behavior of code being tested, but it is impossbile or 
+  difficult for such cases to occure, 
+- if results or states from depended-on component are unpredictable (like date, weather conditions, absence of certain records in database etc.),
+- if communication with internal states of depended-on component is impossible,
+- if call to depended-on component has unacceptable side effects ,
+- if interactions with depended-on component is resource consuming operation (i.e. database connections and queries),
+- if depended-on component is not available or even not existing in the test environment (i.e. the component's implementation hasn't stared yet, 
+  but its API is well defined). 
+
+It is clear that in such cases the developer should try to instrument the test suite with a set fake objects. Those come is several flavours.
+
+Dummy
+   A :dfn:`dummy object` is an object that is used when method being tested has required object of some type as a parameter, but apart of 
+   that neither test suite not code being tested care about it.
+
+Stub 
+   A :dfn:`test stub` is a piece of code that doesn't actually do anything other than declare itself and the parameters it accepts 
+   and returns something that is usually the values expected in one of the scenarios for the caller. This is probably the most popular double
+   used in a test-driven development.
+
+Mock
+   A :dfn:`mock object` is a piece of code, that is used to verify the correct behaviour of code that undergo tests, paying more attention 
+   on how it was called and executed inside the test suite. Typically it also includes the functionality of a test stub in that it must return 
+   values to the test suite, but the difference is it should also validate if actions that cannot be observed through the public API of code being 
+   tested are performed in a correct order.     
+
 
 Conventions:
 ------------
@@ -199,6 +235,8 @@ Footnotes
 ---------
 
 .. [#] Or even better software requirements document, if any of such exists. Otherwise this is a great opportunity to prepare one.
+.. [#] To better understand this term, think about a movie industry: if a scene movie makers are going to film is potentially dangerous and unsafe 
+       for the leading actor, his place is taken over by a stunt double.
 
 
 .. _Python: http://www.python.org/
