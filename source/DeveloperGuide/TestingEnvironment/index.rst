@@ -77,7 +77,7 @@ Once the set of use cases is well defined, the developer should prepare and impl
 - runtime configuration, 
 - set of input values, associated objects and their internal states,
 - correct behaviour, 
-- set of output results if any. 
+- set of output results. 
 
 Each test case should be instrumented with a special method: *setUp*,  which is preparing the testing enviroment. This is the correct place 
 for constructing input and output data stubs, mock objects that the production code is using from the outside world and initial state of object
@@ -179,23 +179,22 @@ required under many different circumnstance, i.e.:
 - if depended-on component is not available or even not existing in the test environment (i.e. the component's implementation hasn't stared yet, 
   but its API is well defined). 
 
-It is clear that in such cases the developer should try to instrument the test suite with a set fake objects. Those come is several flavours.
+It is clear that in such cases the developer should try to instrument the test suite with a set doubles, which come is several flavours:
 
-Dummy
+- Dummy
    A :dfn:`dummy object` is an object that is used when method being tested has required object of some type as a parameter, but apart of 
-   that neither test suite not code being tested care about it.
+   that neither test suite nor code being tested care about it.
 
-Stub 
+- Stub 
    A :dfn:`test stub` is a piece of code that doesn't actually do anything other than declare itself and the parameters it accepts 
    and returns something that is usually the values expected in one of the scenarios for the caller. This is probably the most popular double
    used in a test-driven development.
 
-Mock
+- Mock
    A :dfn:`mock object` is a piece of code, that is used to verify the correct behaviour of code that undergo tests, paying more attention 
    on how it was called and executed inside the test suite. Typically it also includes the functionality of a test stub in that it must return 
    values to the test suite, but the difference is it should also validate if actions that cannot be observed through the public API of code being 
    tested are performed in a correct order.     
-
 
 Conventions:
 ------------
@@ -237,7 +236,6 @@ Footnotes
 .. [#] Or even better software requirements document, if any of such exists. Otherwise this is a great opportunity to prepare one.
 .. [#] To better understand this term, think about a movie industry: if a scene movie makers are going to film is potentially dangerous and unsafe 
        for the leading actor, his place is taken over by a stunt double.
-
 
 .. _Python: http://www.python.org/
 .. _unittest: http://docs.python.org/library/unittest.html
