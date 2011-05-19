@@ -14,23 +14,23 @@ and now is being used by several different communities, the main question is not
 efficient way?*
 
 The topic of software testing is very complicated by its own nature, but depending on the testing method employed, the testing process itself
-can be implemented at any time in the development phase and idealy should cover many different levels of the system: 
+can be implemented at any time in the development phase and ideally should cover many different levels of the system: 
 
-- *unit tests*, in which the resposible person for one source file is proving that his code is written in a right way,
+- *unit tests*, in which the responsible person for one source file is proving that his code is written in a right way,
 - *integration tests* that should cover whole group of modules combined together to accomplish one well defined task, 
-- *regression tests* that seek for errors in existing functinality after patches, functionality enhancements and/or configuration 
+- *regression tests* that seek for errors in existing functionality after patches, functionality enhancements and/or configuration 
   changes have been made to the software,  
 - *certification tests* (or *system tests*), which are run against the integrated and compiled system, treating it as a black box and trying 
   to evaluate the system's compliance with its specified requirements. 
 
-In DIRAC project unit tests should be prepared for the developer herself, intergration tests could be developed in groups of code resposible persons,
+In DIRAC project unit tests should be prepared for the developer herself, integration tests could be developed in groups of code responsible persons,
 for regression tests the responsible person should be a complete subsystem (i.e. WMS, DMS, SMS etc.) manager, while certification tests should be 
-prepared and prefomed by release managers.  
+prepared and performed by release managers.  
 
 This document will try to formulate the basic requirements for the lowest level of testing: unit tests, on top of which any complicated 
 and fully featured testing framework could be defined. 
 
-Tools and metodology
+Tools and methodology
 --------------------
 
 In DIRAC unit tests should be prepared for the developer herself. As the main implementation language is Python, the developers should 
@@ -38,7 +38,7 @@ use its default tool for unit testing, which is already a part of any Python dis
 
 This module provides a rich set of tools for constructing and running tests, supporting some very important concepts, like:
 
-- *fixtures*: initialisation needed for setting up a group of tests together with apropriate cleanup after the execution
+- *fixtures*: initialisation needed for setting up a group of tests together with appropriate clean-up after the execution
 - *cases*: the smallest unit of testing for one use case scenario
 - *suites*: collection of test cases for aggregation of test that should be executed together
 - *runners*: classes for executing tests, checking all the spotted asserts and providing output results to the user.
@@ -55,7 +55,7 @@ Hence if the developer is going to prepare her own unit tests, she should pay at
 suite, checking for every spot of possible failure (i.e. interactions with other components) and not trusting that someone else's code is 
 always returning proper type and/or values. 
 
-Testing the code can be done in four well defined staps:
+Testing the code, and so proper code developing cycle, can be done in four well defined steps:
 
 Step 1. **Preparation**
 
@@ -77,13 +77,13 @@ Once the set of use cases is well defined, the developer should prepare and impl
 - runtime configuration, 
 - set of input values, associated objects and their internal states,
 - correct behaviour, 
-- set of output results if any. 
+- set of output results. 
 
-Each test case should be instrumented with a special method: *setUp*,  which is preparing the testing enviroment. This is the correct place 
+Each test case should be instrumented with a special method: *setUp*,  which is preparing the testing environment. This is the correct place 
 for constructing input and output data stubs, mock objects that the production code is using from the outside world and initial state of object
 being tested.
       
-It is a good practice to implemenmt also second special method: *tearDown*, which is doing a clean up after the tests execution, destroying all
+It is a good practice to implement also second special method: *tearDown*, which is doing a clean up after the tests execution, destroying all
 objects created inside *setUp* and particular tests methods::  
 
   import unittest
@@ -134,7 +134,7 @@ objects created inside *setUp* and particular tests methods::
 Step 3. **Test execution** 
 
 Every developer is encouraged to execute her test suites by herself. Execution code of test suite should be put into unit test module 
-in a varous ways, i.e.::
+in a various ways, i.e.::
 
   import unittest
   from DIRAC.CheesShopSystem.Clients.CheesClient import CheesClient  
@@ -160,6 +160,41 @@ Once the code is tested and all tests are passed, the developer can start thinki
 performance issues, cleaning up the code from repetitions, new features, patching, removing obsolete or not used methods. 
 So from this point the whole developing cycle can start again and again and again...
 
+Test doubles
+------------
+
+To isolate the code being tested from depended-on components it is convenient and sometimes necessary to use *test doubles*: 
+simplified objects or procedures, that behaves and looks like the their real-intended counterparts, but are actually simplified versions 
+that reduce the complexity and facilitate testing [#]_. Those fake objects meet the interface requirements of, and stand in for, more complex real ones,  
+allowing programmers to write and unit-test functionality in one area without actually calling complex underlying or collaborating classes.
+The isolation itself help developers to focus their tests on the behaviour of their classes without worrying about its dependencies, b also may be 
+required under many different circumstance, i.e.:
+
+- if depended-on component may return values or throw exceptions that affect the behaviour of code being tested, but it is impossible or 
+  difficult for such cases to occur, 
+- if results or states from depended-on component are unpredictable (like date, weather conditions, absence of certain records in database etc.),
+- if communication with internal states of depended-on component is impossible,
+- if call to depended-on component has unacceptable side effects ,
+- if interactions with depended-on component is resource consuming operation (i.e. database connections and queries),
+- if depended-on component is not available or even not existing in the test environment (i.e. the component's implementation hasn't stared yet, 
+  but its API is well defined). 
+
+It is clear that in such cases the developer should try to instrument the test suite with a set doubles, which come is several flavours:
+
+- Dummy
+   A :dfn:`dummy object` is an object that is used when method being tested has required object of some type as a parameter, but apart of 
+   that neither test suite nor code being tested care about it.
+
+- Stub 
+   A :dfn:`test stub` is a piece of code that doesn't actually do anything other than declare itself and the parameters it accepts 
+   and returns something that is usually the values expected in one of the scenarios for the caller. This is probably the most popular double
+   used in a test-driven development.
+
+- Mock
+   A :dfn:`mock object` is a piece of code, that is used to verify the correct behaviour of code that undergo tests, paying more attention 
+   on how it was called and executed inside the test suite. Typically it also includes the functionality of a test stub in that it must return 
+   values to the test suite, but the difference is it should also validate if actions that cannot be observed through the public API of code being 
+   tested are performed in a correct order.     
 
 Conventions:
 ------------
@@ -167,7 +202,7 @@ Conventions:
 All test modules should follow those conventions:
 
 **T1**
-  Test enviroment should be shielded from the production one and the same time should mimic it as far as possible. 
+  Test environment should be shielded from the production one and the same time should mimic it as far as possible. 
 
 **T2**
   All possible interactions with someone else's code or system components should be dummy and artificial. This could be obtained by proper use of 
@@ -185,10 +220,10 @@ All test modules should follow those conventions:
   *CheesClientMainSuccessScenario*, *CheesClientWrongInputScenario* and so on. 
 
 **T6**
-  Each unit test module should hold at least one TestCase_ derived class, idealy a set ot test cases or test suites.
+  Each unit test module should hold at least one TestCase_ derived class, ideally a set of test cases or test suites.
 
 **T7**
-  The test modules should be kept as close as possible to the modules they are testing, prefereably in a *test* subdirectory on DIRAC subsystem
+  The test modules should be kept as close as possible to the modules they are testing, preferably in a *test* subdirectory on DIRAC subsystem
   package directory, i.e: all tests modules for WMS should be kept in *DIRAC/WMS/tests* directory.
 
 
@@ -199,7 +234,8 @@ Footnotes
 ---------
 
 .. [#] Or even better software requirements document, if any of such exists. Otherwise this is a great opportunity to prepare one.
-
+.. [#] To better understand this term, think about a movie industry: if a scene movie makers are going to film is potentially dangerous and unsafe 
+       for the leading actor, his place is taken over by a stunt double.
 
 .. _Python: http://www.python.org/
 .. _unittest: http://docs.python.org/library/unittest.html
