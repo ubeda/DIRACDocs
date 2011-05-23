@@ -145,9 +145,9 @@ be taken:
         UseVersionsDir = yes
         #  The directory of the DIRAC software installation
         TargetPath = /opt/dirac
-        #  DIRAC extensions to be installed (Web is required if you are installing the Portal on 
+        #  DIRAC extra packages to be installed (Web is required if you are installing the Portal on 
         #  this server).
-        #  For each User Community their own extension might be necessary here: 
+        #  For each User Community their own extra package might be necessary here: 
         #   i.e. LHCb, LHCbWeb for LHCb
         ExtraPackages = Web
 
@@ -286,11 +286,11 @@ operation is the registration of the new host in the already functional Configur
         UseVersionsDir = yes
         #  The directory of the DIRAC software installation
         TargetPath = /opt/dirac
-        #  DIRAC extensions to be installed (Web is required if you are installing the Portal on 
+        #  DIRAC extra packages to be installed (Web is required if you are installing the Portal on 
         #  this server).
-        #  For each User Community their own extension might be necessary here: 
+        #  For each User Community their extra package might be necessary here: 
         #   i.e. LHCb, LHCbWeb for LHCb
-        Extensions = 
+        ExtraPackages = 
 
         #
         #   These are options for the configuration of the previously installed DIRAC software
