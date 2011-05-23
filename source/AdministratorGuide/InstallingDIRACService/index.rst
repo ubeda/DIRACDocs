@@ -145,11 +145,11 @@ be taken:
         UseVersionsDir = yes
         #  The directory of the DIRAC software installation
         TargetPath = /opt/dirac
-        #  DIRAC extra packages to be installed (Web is required if you are installing the Portal on 
+        #  DIRAC extra modules to be installed (Web is required if you are installing the Portal on 
         #  this server).
-        #  For each User Community their own extra package might be necessary here: 
+        #  Only modules not defined as default to install in their projects need to be defined here: 
         #   i.e. LHCb, LHCbWeb for LHCb
-        ExtraPackages = Web
+        ExtraModules = Web
 
         #
         #   These are options for the configuration of the installed DIRAC software
