@@ -149,7 +149,7 @@ be taken:
         #  this server).
         #  For each User Community their own extension might be necessary here: 
         #   i.e. LHCb, LHCbWeb for LHCb
-        Extensions = Web
+        ExtraPackages = Web
 
         #
         #   These are options for the configuration of the installed DIRAC software
