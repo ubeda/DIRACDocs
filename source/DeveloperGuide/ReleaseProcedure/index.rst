@@ -39,6 +39,7 @@ The *DefaultModules* option (outside any section) defines what modules will be i
 An example with more than one module follows::
 
  DefaultModules = MyExt
+ RequiredExtraModules = Web
  
  Sources
  {
@@ -61,6 +62,8 @@ An example with more than one module follows::
    }
  }
  
+If a project requires a module that is not installed by default from another project to be installed, it can be defined in the *RequiredExtraModules* option. For instance, DIRAC project contains *DIRAC* and *Web*. But by default DIRAC project only installs DIRAC module. If another project requires the DIRAC Web module to be installed it can be defined in this option. That way, when installing this other project, Web module will also be installed.
+
 The *Modules* option can define explicitly which modules (and their version) to install. This is useful if a given VO is managing more than one module. In that scenario a release can be a combination of modules that can evolve independently. By defining releases as groups of modules with their versions the VO can ensure that a release is consistent for its modules. DIRAC uses this mechanism to ensure that the DIRAC Web will always be installed with a DIRAC version that it works with.
 
 The *Sources* section defines where to extract the source code from for each module. *dirac-distribution* will assume that there's a tag in that source origin with the same name as the version of the module to be released. *dirac-distribution* knows how to handle several types of VCS. The ones supported are:
@@ -109,7 +112,7 @@ When installing, *dirac-install* requires a release version and optionally a pro
 1. Load DIRAC's default global locations. This file contains the default values and paths for each project that DIRAC knows of and it's maintained by DIRAC developers.
 2. Load the required project's *default.cfg*. DIRAC's default global locations has defined where this file is for each project. It can be in a URL that is maintained by the project's developers/maintainers.
 3. If an option called *InstallBaseURL* is defined in the project's *default.cfg* then use that as the base URL to download the releases and tarballs files for the projects.
-4. If an option called *<projectName>/InstallBaseURL* is defined in DIRAC's default global locations, use it.
+4. If an option called *<projectName>/LocalInstallation/BaseURL* is defined in DIRAC's default global locations, use it.
 5. If it's defined inside *dirac-install*, use it.
 6. If not found then the installation is aborted.
 
@@ -128,6 +131,8 @@ Reference of *releases.cfg*  schema
 
  #List of modules to be installed by default for the projec
  DefaultModules = MyExt
+ #Extra modules to be installed
+ RequiredExtraModules = Web
  
  #Section containing where to find the source code to generate releases
  Sources
@@ -170,9 +175,9 @@ Reference of a project's *default.cfg* schema
 
  #Where to download the release tarballs and definitions
  InstallBaseURL = http://myhost/somepath/
- #This project is just a link to the other one. Installing this one is the same
+ #This installation/project is just a link to the other one. Installing this one is the same
  # as installing the defined one
- LinkToProject = projectName
+ AliasTo = projectName
  
  #(Everything in here is optional) Default values for dirac-install
  LocalInstallation
@@ -208,25 +213,23 @@ Reference of global default's file
 
 Global defaults is the file that *dirac-install* will try to load to discover where the each project's ``defaults.cfg`` file is. The schema is as follows::
 
- #Project name
- ProjectName
+ #Project name or installation name
+ ObjectName
  {
    #Location of the defaults.cfg file for this project
    DefaultsLocation = http://somehost/somepath/defaultsProject.cfg
-   #Where to retrieve the release tarballs from
-   InstallBaseURL = http://somehost/someotherpath
-   #Skip loading the project's defaults.cfg
-   SkipDefaults = True
-   #This project is a link to another project
-   LinkToProject = OtherProject
+   #This object is a link to another object
+   AliasTo = OtherProject
    #Default values for dirac-install
    LocalInstallation
    {
+     #Where to retrieve the release tarballs from
+     BaseURL = http://somehost/someotherpath
      #This section can contain the same as the LocalInstallation section in each project's defaults.cfg
    }
  }
- #And repeat for each project
- OtherProject
+ #And repeat for each installation or project
+ OtherObject
  {
    ....
  }
