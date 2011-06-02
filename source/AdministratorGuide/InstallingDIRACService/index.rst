@@ -85,7 +85,7 @@ the steps below. This procedure must be followed for the primary server and for 
 
       mkdir /home/dirac/DIRAC
       cd /home/dirac/DIRAC
-      wget -np http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/install_site.sh
+      wget -np https://github.com/DIRACGrid/DIRAC/raw/master/Core/scripts/install_site.sh --no-check-certificate
 
 Server Certificates
 ---------------------
