@@ -231,8 +231,8 @@ be taken:
           #                       innodb_buffer_pool_size=200MB
           # MySQLLargeMem:        Configure a MySQL with high memory requirements for production purposes
           #                       innodb_buffer_pool_size=10000MB
-         }
-       }
+        }
+      }
 
   - Run install_site.sh giving the edited configuration file as the argument. The configuration file must have
     .cfg extension (CFG file)::
