@@ -85,7 +85,7 @@ the steps below. This procedure must be followed for the primary server and for 
 
       mkdir /home/dirac/DIRAC
       cd /home/dirac/DIRAC
-      wget -np  https://github.com/DIRACGrid/DIRAC/raw/master/Core/scripts/install_site.sh --no-check-certificate
+      wget -np http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/install_site.sh
 
 Server Certificates
 ---------------------
@@ -147,7 +147,7 @@ be taken:
         TargetPath = /opt/dirac
         #  DIRAC extra modules to be installed (Web is required if you are installing the Portal on 
         #  this server).
-        #  For each User Community their own extra modules might be necessary here: 
+        #  Only modules not defined as default to install in their projects need to be defined here: 
         #   i.e. LHCb, LHCbWeb for LHCb
         ExtraModules = Web
 
@@ -169,10 +169,8 @@ be taken:
         #  Flag to use the server certificates
         UseServerCertificate = yes
         #  Configuration Server URL (This should point to the URL of at least one valid Configuration 
-        #  Service in your installation, for the primary server it should not used)
+        #  Service in your installation, for the primary server it should not used )
         #  ConfigurationServer = dips://myprimaryserver.name:9135/Configuration/Server
-        #  Flag to set up the Configuration Server as Master (use only in the primary server)
-        ConfigurationMaster = yes
         #  Configuration Name
         ConfigurationName = MyConfiguration
 
@@ -231,8 +229,8 @@ be taken:
           #                       innodb_buffer_pool_size=200MB
           # MySQLLargeMem:        Configure a MySQL with high memory requirements for production purposes
           #                       innodb_buffer_pool_size=10000MB
-         }
-       }
+        }
+      }
 
   - Run install_site.sh giving the edited configuration file as the argument. The configuration file must have
     .cfg extension (CFG file)::
@@ -286,9 +284,9 @@ operation is the registration of the new host in the already functional Configur
         UseVersionsDir = yes
         #  The directory of the DIRAC software installation
         TargetPath = /opt/dirac
-        #  DIRAC extra modules to be installed (Web is required if you are installing the Portal on 
+        #  DIRAC extra packages to be installed (Web is required if you are installing the Portal on 
         #  this server).
-        #  For each User Community their extra modules might be necessary here: 
+        #  For each User Community their extra package might be necessary here: 
         #   i.e. LHCb, LHCbWeb for LHCb
         ExtraModules = 
 
