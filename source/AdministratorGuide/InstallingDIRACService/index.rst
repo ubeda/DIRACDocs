@@ -169,10 +169,8 @@ be taken:
         #  Flag to use the server certificates
         UseServerCertificate = yes
         #  Configuration Server URL (This should point to the URL of at least one valid Configuration 
-        #  Service in your installation, for the primary server it should not used)
+        #  Service in your installation, for the primary server it should not used )
         #  ConfigurationServer = dips://myprimaryserver.name:9135/Configuration/Server
-        #  Flag to set up the Configuration Server as Master (use only in the primary server)
-        ConfigurationMaster = yes
         #  Configuration Name
         ConfigurationName = MyConfiguration
 
