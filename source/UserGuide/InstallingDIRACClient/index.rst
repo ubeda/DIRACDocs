@@ -11,7 +11,7 @@ Install script
 
 Download the *dirac-install* script from `here <http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/dirac-install>`_::
 
-  wget -np http://cern.ch/lhcbproject/dist/Dirac_project/dirac-install
+  wget -np -O dirac-install https://github.com/DIRACGrid/DIRAC/raw/master/Core/scripts/dirac-install.py --no-check-certificate
   chmod +x dirac-install
   
 Choose the directory where you want to install the DIRAC software and run the dirac-install script from
@@ -44,7 +44,7 @@ other words, Virtual Organization. The managers of your Virtual Organization can
 be applied for the DIRAC client installation. In this case the installation procedure reduces to the following
 assuming the name of the Virtial Organization *dirac*::
 
-  wget -np http://cern.ch/lhcbproject/dist/Dirac_project/dirac-install
+  wget -np -O dirac-install https://github.com/DIRACGrid/DIRAC/raw/master/Core/scripts/dirac-install.py --no-check-certificate
   chmod +x dirac-install
   dirac-install -V dirac
   source bashrc

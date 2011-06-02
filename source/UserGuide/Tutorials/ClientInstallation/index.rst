@@ -13,23 +13,21 @@ Installing DIRAC client
 
 - Download dirac-install script from::
 
-        http://cern.ch/lhcbproject/dist/Dirac_project/dirac-install
+        https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/dirac-install.py
 
    By example::
 
-        $ wget -np http://cern.ch/lhcbproject/dist/Dirac_project/dirac-install
-        --2010-10-19 10:55:33--  http://cern.ch/lhcbproject/dist/Dirac_project/dirac-install
-        Resolving cern.ch... 137.138.144.169
-        Connecting to cern.ch|137.138.144.169|:80... connected.
-        HTTP request sent, awaiting response... 302 Found
-        Location: http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/dirac-install [following]
-        --2010-10-19 10:55:33--  http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/dirac-install
-        Resolving lhcbproject.web.cern.ch... 137.138.142.195
-        Connecting to lhcbproject.web.cern.ch|137.138.142.195|:80... connected.
+        $ wget -np -O dirac-install https://github.com/DIRACGrid/DIRAC/raw/master/Core/scripts/dirac-install.py --no-check-certificate
+        --2011-06-02 17:21:00--  https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/dirac-install.py
+        Resolving github.com... 207.97.227.239
+        Connecting to github.com|207.97.227.239|:443... connected.
         HTTP request sent, awaiting response... 200 OK
-        Length: 22627 (22K) [text/plain]
-        Saving to: `dirac-install'100%[===========================================================================================================================================================>] 22,627      --.-K/s   in 0.03s
-        2010-10-19 10:55:33 (772 KB/s) - `dirac-install' saved [22627/22627]
+        Length: 39678 (39K) [text/plain]
+        Saving to: `dirac-install.py'
+
+        100%[======================================>] 39,678      --.-K/s   in 0.1s    
+
+        2011-06-02 17:21:01 (260 KB/s) - `dirac-install' saved [39678/39678]
 
 - Add execution permission to dirac-install::
 
