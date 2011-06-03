@@ -10,7 +10,7 @@ Usage::
 
 Arguments::
 
-  Site: Name of the Site (ie: CERN-PROD) 
+  Site:     Name of the Site (ie: CERN-PROD) 
 
  
 

@@ -2,9 +2,11 @@
 dirac-wms-select-jobs
 ============================
 
+  Select DIRAC jobs matching the given conditions
+
 Usage::
 
-  dirac-wms-select-jobs.py (<options>|<cfgFile>)* 
+  dirac-wms-select-jobs [option|cfgfile] ... JobID ... 
 
  
 

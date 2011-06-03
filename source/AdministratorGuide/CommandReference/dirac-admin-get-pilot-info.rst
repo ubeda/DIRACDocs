@@ -2,9 +2,21 @@
 dirac-admin-get-pilot-info
 =================================
 
+  Retrieve available info about the given pilot
+
 Usage::
 
-  dirac-admin-get-pilot-info.py (<options>|<cfgFile>)* 
+  dirac-admin-get-pilot-info [option|cfgfile] ... PilotID ...
+
+Arguments::
+
+  PilotID:  Grid ID of the pilot 
+
+ 
+
+Options::
+
+  -e   --extended        : Get extended printout 
 
 Example::
 

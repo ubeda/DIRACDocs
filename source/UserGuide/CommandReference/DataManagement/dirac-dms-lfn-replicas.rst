@@ -2,9 +2,21 @@
 dirac-dms-lfn-replicas
 =============================
 
+  Obtain replica information from file catalogue client.
+
 Usage::
 
-  dirac-dms-lfn-replicas.py (<options>|<cfgFile>)* 
+  dirac-dms-lfn-replicas [option|cfgfile] ... LFN ...
+
+Arguments::
+
+  LFN:      Logical File Name  or file containing LFNs 
+
+ 
+
+Options::
+
+  -a   --All             :   Also show inactive replicas 
 
 Example::
 

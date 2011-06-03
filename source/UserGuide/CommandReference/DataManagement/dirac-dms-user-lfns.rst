@@ -2,15 +2,11 @@
 dirac-dms-user-lfns
 ==========================
 
-Get the list of all the user files. Optionally get also a list of all the
-
-empty directories.
+Get the list of all the user files.
 
 Usage::
 
-   dirac-dms-user-lfns [options]
-
- 
+  dirac-dms-user-lfns [option|cfgfile] ... 
 
  
 
