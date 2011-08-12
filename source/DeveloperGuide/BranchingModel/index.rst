@@ -128,7 +128,7 @@ In the latter case, it is impossible to see from the Git history which of the co
 Resolving merge conflicts
 -------------------------
 
-Let's say the release manager ask you to find and fix merge conflicts made by your pull request. Assuming you have a local clone of your DIRAC repository, you have to try merge it by hand to find and understand the source of conflicts. For that you should firts checkout your feature branch, add main DIRAC repository as remote one and try to rebase your branch to DIRAC/integration, i.e.:   
+Let's say the release manager ask you to find and fix merge conflicts made by your pull request. Assuming you have a local clone of your DIRAC repository, you have to try merge it by hand to find and understand the source of conflicts. For that you should firts checkout your feature branch, add main DIRAC repository as remote one and try to rebase your branch to DIRAC/integration, i.e.::   
 
   $ git checkout featurebranch
   Switched to branch 'featurebranch'
