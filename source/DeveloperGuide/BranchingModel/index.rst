@@ -133,6 +133,18 @@ Let's say the release manager ask you to find and fix merge conflicts made by yo
   $ git checkout featurebranch
   Switched to branch 'featurebranch'
   $ git remote add -f DIRACMAIN git://github.com/DIRACGrid/DIRAC.git
+  remote: Counting objects: 1366, done.
+  remote: Compressing objects: 100% (528/528), done.
+  remote: Total 1138 (delta 780), reused 952 (delta 605)
+  Receiving objects: 100% (1138/1138), 334.89 KiB, done.
+  Resolving deltas: 100% (780/780), completed with 104 local objects.
+  From git://github.com/DIRACGrid/DIRAC
+   * [new branch]      integration -> DIRAC/integration
+   * [new branch]      master     -> DIRAC/master
+   * [new tag]         v6r0-pre1  -> v6r0-pre1
+   * [new tag]         v6r0-pre2  -> v6r0-pre2
+  From git://github.com/DIRACGrid/DIRAC
+   * [new tag]         v6r0-pre3  -> v6r0-pre3
   $ git rebase DIRACMAIN/integration
   First, rewinding head to replay your work on top of it...
   Applying: added .metadata to .gitignore
