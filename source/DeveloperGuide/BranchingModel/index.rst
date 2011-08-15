@@ -159,7 +159,9 @@ Let's say the release manager ask you to find and fix merge conflicts made by yo
   If you would prefer to skip this patch, instead run "git rebase --skip".
   To restore the original branch and stop rebasing run "git rebase --abort".
 
-On this stage git will tell you which changes cannot be merged automatically, in above example there is only one in .gitignore file. Now you should open this file and find all conflict markers (">>>>>>>" and "<<<<<<<<"), edit it choosing which lines are valid, add and commit modified files and make another pull request.    
+On this stage git will tell you which changes cannot be merged automatically, in above example there is only one conflict in .gitignore file. Now you should open this file and find all conflict markers (">>>>>>>" and "<<<<<<<<"), edit it choosing which lines are valid, add make another commit and pull request.  
+
+   
 
 
  
