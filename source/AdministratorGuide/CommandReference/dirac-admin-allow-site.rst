@@ -18,7 +18,7 @@ Arguments::
 
 Options::
 
-  -    --email=          : Boolean True/False (True by default) 
+  -E:  --email=          : Boolean True/False (True by default) 
 
 Example::
   
