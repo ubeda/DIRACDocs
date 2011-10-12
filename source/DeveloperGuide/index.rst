@@ -15,6 +15,7 @@ The DIRAC Developer Guide is describing the procedures and rules for developing 
    Utilities/index
    CodingConvention/index
    CodeDocumenting/index  
+   TestingEnvironment/index
    ReleaseProcedure/index
    Internals/index
    

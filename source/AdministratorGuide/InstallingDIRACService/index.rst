@@ -359,7 +359,7 @@ In order to make the DIRAC components running we use the *runit* mechanism (http
 must run permanently (services and agents) there is a directory created under */opt/dirac/startup* that is 
 monitored by a *runsvdir* daemon. The installation procedures above will properly start this daemon. In order 
 to ensure starting the DIRAC components at boot you need to add a hook in your boot sequence. A possible solution
-is to add an entry in the */etc/initab*::
+is to add an entry in the */etc/inittab*::
 
       SV:123456:respawn:/opt/dirac/sbin/runsvdir-start
 
