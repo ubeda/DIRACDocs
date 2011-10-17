@@ -18,4 +18,5 @@ The procedure to add new configuration data and to update the existing settings 
    Registry/index
    WebConfiguration/index
    ManagingConfiguration/index
+   ConfigurationReference/index
    

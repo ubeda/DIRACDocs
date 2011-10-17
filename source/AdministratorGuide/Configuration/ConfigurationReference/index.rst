@@ -8,6 +8,7 @@ A similar tree with the description of all the attributes is tried to be represe
 
 .. toctree::
    :maxdepth: 2
+   
    DIRAC/index
    Operations/index
    Registry/index

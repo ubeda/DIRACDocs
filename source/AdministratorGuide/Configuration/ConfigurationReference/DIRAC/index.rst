@@ -24,6 +24,7 @@ Two subsections are part of DIRAC section:
 
 .. toctree::
    :maxdepth: 2
+   
    Configuration/index
    Setups/index
    Security/index

@@ -15,6 +15,7 @@ the configuration are defined.
 
 .. toctree::
    :maxdepth: 2
+   
    Groups/index
    Hosts/index
    Users/index

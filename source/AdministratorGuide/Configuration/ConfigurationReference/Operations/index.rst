@@ -16,6 +16,7 @@ In the short term, most of this schema will be moved into [vo]/[setup] dependent
 
 .. toctree::
    :maxdepth: 2
+   
    Email/index
    InputDataPolicy/index
    JobDescription/index
