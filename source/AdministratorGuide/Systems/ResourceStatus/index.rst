@@ -80,7 +80,7 @@ state changes for individuals.
 Let's take a closer look !
 
 .. image:: ../../../_static/Systems/RSS/dummyOntology.png  
-   :alt: dummy Ontology
+   :alt: dummy ontology
    :align: center    
 
 On the image above we have a dummy ontology, which represents a dummy environment.
@@ -122,11 +122,76 @@ will ensure that the color *purple* never reaches the individual, as only *red*,
 Grid ontology
 =============
 
-We must define how does our environment look like, **RSS** is smart but it has not
-crossed that line yet. This  
+The grid ontology taken by default, a slightly simplified version, looks like the
+one shown on the image below, showing the hierarchy of classes.  
+
+.. image:: ../../../_static/Systems/RSS/gridOntology.png  
+   :alt: grid ontology
+   :align: center   
+
+The image is self explanatory, but just in case: the grid is made of Sites, which 
+expose Services, which are abstractions of Resources ( nodes ) that may have Storage
+Elements.
+
+.. seealso:: 
+
+    You may have noticed that the relation between Resources and Storage Elements
+    is *aggregation* and not *composition*. It is a very specific detail of the 
+    implementation, which will not be explained here. The link you are looking 
+    for is this one.
+
+The relations between the classes are the following: site to many services, service 
+to resource, and resource to storage element if any.
+
+Last comment, but not less important. Services and Resources are defined by their 
+type. There is a set of predefined flavors for Services and for Resources, and which
+in practice has the following limitations:
+
+  - No more than one Service of the same flavor per Site.
+  - Resource flavor must be a ( badly called ) sub-type of the Service type.
+
+The image below is an example of this behavior. There is a Site with three Services
+out of the four drawn on the figure. As the Service is an aggregation of all Resources
+with a type matching the Service type, it is a waste to define the service of the
+same type twice. If higher granularity is needed, just define new flavors for the 
+Services. With respect to the Resources, please keep the database tidied unless you
+want infinite fun. It is easy, if Resource is of type A.*, do not mix it with Services
+of type C.  
+
+.. image:: ../../../_static/Systems/RSS/gridOntologyExample.png  
+   :alt: grid ontology example
+   :align: center  
 
 State Machine
 =============
+
+The default state machine has four states: *Active*, *Bad*, *Probing* and *Banned*,
+ordered by severity, but it can be extended to accommodate its states and transitions
+to the VO needs. The behavior it shows out of the box is depicted on the image below.
+
+.. image:: ../../../_static/Systems/RSS/stateMachine.png  
+   :alt: state machine
+   :align: center  
+
+We have four states and almost every possible transition allowed ( note that the
+transitions on the left side of the image are unidirectional ). But, let's understand
+what do the states actually mean.
+
+blah blah blah
+
+The following table summarizes the statuses.
+
++--------------+------------+----------------------------------+------------+
+| Status       | DIRACMask  | Description                      | Usage      |
++==============+============+==================================+============+
+| Active       | InMask     | no problems reported             | full       |
++--------------+------------+----------------------------------+------------+
+| Bad          | InMask     | some problems reported           | throttled  |
++--------------+------------+----------------------------------+------------+
+| Probing      | Banned     | testing or investigation ongoing | restricted |
++--------------+------------+----------------------------------+------------+
+| Banned       | Banned     | problems or maintenance reported | none       |
++--------------+------------+----------------------------------+------------+
 
 Policies
 ========
