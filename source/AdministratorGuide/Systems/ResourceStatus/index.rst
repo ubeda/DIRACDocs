@@ -177,30 +177,302 @@ We have four states and almost every possible transition allowed ( note that the
 transitions on the left side of the image are unidirectional ). But, let's understand
 what do the states actually mean.
 
-blah blah blah
+*Active* and *Banned* are almost self explanatory, the first one implies that the
+individual is on good shape and no single problem / quality degradation has been 
+reported. On the other hand, the second one implies the individual is, basically,
+out of order.
 
-The following table summarizes the statuses.
+*Bad* and *Probing* are slightly more complex states. *Bad* is a status that an individual
+gets when problems are observed but "not so important" to rush directly to ban.
+The individual in **DIRAC** is still *InMask*, which means it does not work at
+100%, but we can still get a reasonable performance out of it.
 
-+--------------+------------+----------------------------------+------------+
-| Status       | DIRACMask  | Description                      | Usage      |
-+==============+============+==================================+============+
-| Active       | InMask     | no problems reported             | full       |
-+--------------+------------+----------------------------------+------------+
-| Bad          | InMask     | some problems reported           | throttled  |
-+--------------+------------+----------------------------------+------------+
-| Probing      | Banned     | testing or investigation ongoing | restricted |
-+--------------+------------+----------------------------------+------------+
-| Banned       | Banned     | problems or maintenance reported | none       |
-+--------------+------------+----------------------------------+------------+
+Finally *Probing*, is a status where we knew there were problems with the resource
+serious enough to have it banned. The original reason went away but we want to test
+the individual before unbanning in real life. The individual in **DIRAC** is still
+*Banned*.
+
+.. note:: You may be wondering the following..
+  these guys said that "*Probing, is a status where we knew there were problems 
+  with the resource serious enough to have it banned*", but I see that the status
+  *Probing* can be reached as well from *Active* and *Bad*. You are right ! By design,
+  the state machine allows such transitions, but in real life we will never get
+  that unless our policies have been badly set up / corrupted.
+
+States are few and more or less clear, so they are not a big deal, but what kind 
+of event triggers a transition between them ? Let's explain it with an example:
+
++---------+---------+--------------------------------------------------------------------------------------------+
+| State 0 | State 1 | Reason                                                                                     |
++=========+=========+============================================================================================+
+| A       | A       | Individual was Ok, and is still Ok                                                         |
++---------+---------+--------------------------------------------------------------------------------------------+
+| A       | B       | Individual was Ok, but shows small degradation                                             |       
++---------+---------+--------------------------------------------------------------------------------------------+
+| A       | P       | Individual was Ok, now is out of order. Allowed on theory, not on practice.                |
++---------+---------+--------------------------------------------------------------------------------------------+
+| A       | X       | Individual was Ok, now is out of order.                                                    |
++---------+---------+--------------------------------------------------------------------------------------------+
+| B       | A       | Individual showed small degradation, is Ok now.                                            |
++---------+---------+--------------------------------------------------------------------------------------------+
+| B       | B       | Individual showed small degradation and still does.                                        |
++---------+---------+--------------------------------------------------------------------------------------------+
+| B       | P       | Individual showed small degradation, now out of order. Allowed on theory, not on practice. |
++---------+---------+--------------------------------------------------------------------------------------------+
+| B       | X       | Individual showed small degradation, now is out of order.                                  |
++---------+---------+--------------------------------------------------------------------------------------------+
+| P       | A       | Individual validation is Ok.                                                               |
++---------+---------+--------------------------------------------------------------------------------------------+
+| P       | B       | Individual validation shows small degradation.                                             |
++---------+---------+--------------------------------------------------------------------------------------------+
+| P       | P       | Individual validation outcome unclear.                                                     |
++---------+---------+--------------------------------------------------------------------------------------------+
+| P       | X       | Individual validation failed.                                                              |
++---------+---------+--------------------------------------------------------------------------------------------+
+| X       | A       | This transition is redirected to Probing.                                                  |
++---------+---------+--------------------------------------------------------------------------------------------+
+| X       | B       | This transition is redirected to Probing.                                                  |
++---------+---------+--------------------------------------------------------------------------------------------+
+| X       | P       | Individual not anymore out of order, but we did not verify it.                             |
++---------+---------+--------------------------------------------------------------------------------------------+
+| X       | X       | Individual is still out of order.                                                          |
++---------+---------+--------------------------------------------------------------------------------------------+
+
+Out of 16 transitions ( 2^4 ) we have 14 transitions allowed, being 12 used on practice.
+Transitions X->B and X->A will never happen, after being *Banned*, each individual
+is forced to go through a validation step, which in this case is *Probing*. The reasons
+why it was set as *Banned* are gone, but we do not trust it completely, so we validate
+it before setting it either to *Active* or *Bad*. 
+Transitions A->P and B->P will never happen if our policies are properly set up.
+If an individual is degraded enough to be set as *Probing*, is also degraded enough
+to be set as *Banned*.
+
+.. note:: Active (A), Bad (B), Probing (P), Banned (X).
+
+.. note:: Here is small summary of the RSS State Machine.
+
+  +--------------+------------+----------------------------------+------------+----------------+-----------------+
+  | Status       | DIRACMask  | Description                      | Usage      | In connections | Out connections |              
+  +==============+============+==================================+============+================+=================+
+  | Active       | InMask     | no problems reported             | full       | A,B,P,-        | A,B,P,X         |
+  +--------------+------------+----------------------------------+------------+----------------+-----------------+
+  | Bad          | InMask     | some problems reported           | throttled  | A,B,P,-        | A,B,P,X         |
+  +--------------+------------+----------------------------------+------------+----------------+-----------------+
+  | Probing      | Banned     | testing or investigation ongoing | restricted | A,B,P,X        | A,B,P,X         |
+  +--------------+------------+----------------------------------+------------+----------------+-----------------+
+  | Banned       | Banned     | problems or maintenance reported | none       | A,B,P,X        | -,-,P,X         |
+  +--------------+------------+----------------------------------+------------+----------------+-----------------+
+
+
 
 Policies
 ========
 
+Without any doubt, policies are the most important part of RSS. There are many
+components here and there to make it work, but the knowledge, the interpretation
+of the monitoring information spread round the different third party systems is
+done here. A good set up of every single policy is crucial for RSS. Basically, no policies,
+no RSS. 
+
+But, what is a policy ?
+
+A policy can be divided in two parts, meta-data and the policy itself. The policy
+itself is a set of rules, that given an input, return a status. You can see it 
+as a reactive policy given an input:
+
+::
+
+    if input > 50:
+      return 'Green'
+    else:
+      return 'Blue'  
+
+Typically, the input is the output of a command, which connects to a particular
+monitoring system and returns whatever is stored there. Moreover, a policy not 
+necessarily works with only a single command, they can use different commands if
+needed ( one at a time ). So, each policy, given an input, purposes a status for
+the given conditions.  
+
+But, how do we know which policies and which commands apply to a particular individual ?
+Meta-data is our friend, and the answer to this question ! On one hand, every individual
+has a set of attributes, going back to the dummy ontology, in the case of a triangle,
+position and color. But we know that that individual is a triangle, so on out policies meta-data
+we should specify which ones are applicable to triangles, or even more, which ones are
+applicable to blue triangles.
+
+.. seealso:: the configuration of policies meta-data is done on the CS 
+  ( *Operations/RSSConfiguration/Policies* ). But here is a link with much more
+  detailed information.
+
 Policy System
 =============
 
+The *Policy System* is in charge of given meta-data information: get all applicable
+policies, run them, evaluate all the purposed statuses by the policies and select
+the most reasonable one. Having taken a decision, last step is to take actions
+accordingly.
+
+Below there is depicted a simplified version of the *Policy System* components
+diagram.   
+
+.. image:: ../../../_static/Systems/RSS/simplifiedPolicySystem.png  
+   :alt: simplified policy system
+   :align: center  
+
+.. note:: Policy Enforcement Point ( **PEP**), Policy Decision Point ( **PDP**),
+  Policy Information Point ( **PIP** ) and Policy Caller ( **PC** ).
+  
+- *Policy Enforcement Point*: it is the visible part of the *Policy System*, and
+  gets as input the meta-data information considered to be checked. Also, once
+  it has an answer from the inner *Policy System* modules, it applies predefined
+  actions if applicable.  
+  
+- *Policy Decision Point*: it is the core of the *Policy System*. First of all,
+  finds matches between the meta-data given as input and the policies meta-data
+  stored on the CS. If there are positive matches, policies are evaluated, and
+  out of their results a decision taken. The decision is taken the "worst-first"
+  approach. Given the purposed statuses of three different policies, the PDP will
+  take the worst of them ( if we got *Active*, *Bad* and *Banned*, it will return
+  *Banned* ).    
+  
+- *Policy Information Point*: it is the module in charge of getting policies 
+  meta-data from the CS and returning the positive matches. The meta data
+  can be sometimes "wild" and heterogeneous. In order to prevent that, there is
+  a limited number of types that apply ( but easily extensible on the CS ! ).
+  It also returns per policy which actions must be applied in case of the policy
+  output is considered. Actions can vary from adding log messages, sending a sms,
+  changing the status of the individual or restarting the universe if needed.
+  
+- *Policy Caller*: is in charge or loading policies and their commands, running 
+  them and return their purposed statuses.    
+     
+The image is labeled with six numbers, which correspond with the casual flow:
+
+- 1: PEP calls PDP to take a decision with respect a given meta-data.
+- 2: PDP calls PIP to get applicable policies.
+- 3: PIP gets all policies meta-data from the CS and returns the matches.
+- 4: PDP calls PC with the chosen policies. It returns their outputs.
+- 5: PDP applies "worst first" and returns the decision.
+- 6: PEP applies actions once it knows the decision taken.
+
+Easy, isn't it ?
+
 Token Ownership
 ===============
+
+Token ownership is a small lock that every individual on the grid ontology has.
+By default, it is "**RS_SVC**" ( Resource Status system SerViCe ).
+
+This token locks / unlocks the access of the *Policy System* to the individuals, 
+or with other words, any individual with a token different than **RS_SVC** will never
+be evaluated by the PEP.
+
+Also, each token has an expiration value. After that, whatever value it had will
+be reverted to the default one.
+
+Tokens turn to be quite handy when operators need to keep an individual, or a set
+of them away from the "Policy System".
+
+--------------------
+State Storage ( DB )
+--------------------
+
+The *Resource Status System* has two databases, namely **ResourceStatusDB** and
+**ResourceManagementDB**.
+
+- *ResourceStatusDB*: it is the main database, and stores per class in the ontology
+  four tables. One with the definition of the individuals, the second one with
+  their status types and their values. A third one with the historical rows and
+  a last one, not in use yet, with the scheduled statuses.
+  
+- *ResourceManagementDB*: has the cached values, plus the summaries extracted from
+  the history tables of the *ResourceStatusDB*. It also stores information of the
+  tests performed to validate the individuals when they are at probing.
+  
+.. seealso:: If you want to know more, please take a look to the developers documentation.    
+
+Access to state storage 
+=======================
+
+The *Resource Status System* provides a well defined API per database. All the queries
+to the database MUST be done though the API, which will give you the best performance
+possible, in terms of latency. 
+
+The entry points of the API are:
+
+- *ResourceStatusClient*: front end for the *ResourceStatusDB*.
+- *ResourceManagementClient*: front end for the *ResourceManagementDB*.
+
+.. seealso:: The API is documented here.
+.. warning:: Consider this an advice from a friend. If you don't want to use the API and
+   connect directly to the DB or the Service, well, have fun if something goes bananas.
+
+------
+Agents
+------
+
+The *Resource Status System* has three main types of agents: *InspectorAgents*,
+*CacheAgents* and *CleanerAgents*.
+
+InspectorAgents
+===============
+
+InspectorAgents are the glue of the RSS, the point where all pieces are put together,
+and its magic done. There is an agent per class in the grid ontology, named <className>InspectorAgent.
+This means that by default we have four *InspectorAgents* ( *Site*, *Service*, *Resource* and
+*StorageElement* ).
+
+Each one of them queries the ResourceStatusDB with the API in order to get all individuals
+not checked recently
+
+.. note:: Recently checked ? Well, take a look to the developers documentation.
+
+Each agent sets a thread pool to process all individuals. In order to do that, instantiates
+a *PEP* object, and runs it. The *PEP*, as the front end of the *Policy System* will do
+all dirty work. Simple, isn't it ?
+
+CacheAgents
+===========
+
+CacheAgents are used to, as it name says, to cache information from the monitoring
+systems and keep a recent snapshot of it. In a early stage of *RSS* it turned out
+that under certain conditions it could almost kill some monitoring systems because
+a very high polling rate.
+
+CleanerAgents
+=============
+
+Every house needs to be tidied from time to time. The same applies to databases.
+It summarizes and removes old entries on the databases.
+
+A particular implementation of a *CleanerAgent* is the *TokenAgent*, which sets
+to default any token with expiration date in the past.
+
+---------------
+System overview
+---------------
+
+Now you have all we need to compose a mental picture of the RSS, without going into
+details. If you are not one of those who like mental pictures, the following image 
+may guide you.
+
+.. image:: ../../../_static/Systems/RSS/simplifiedRSS.png  
+   :alt: simplified resource status system
+   :align: center
+   
+As per reminder:
+
+  - 4 classes on the ontology: *Site*, *Service*, *Resource* and *StorageElement*.
+  - 4 allowed statuses on the Status Machine: *Active*, *Bad*, *Probing* and *Banned*.
+  - Policies metadata stored in CS.
+  - Policy System comprises: PEP, PDP, PIP and PC.
+  - Token ownership by default *RS_SVC*.
+  - Two databases, with their APIs: *ResourceStatusClient* and *ResourceManagementClient*.
+  - Four inspector agents, one per class in the ontology.
+  - Two cleaner agents.
+  - One cache feeder agent.   
+
+.. seealso:: If you are still hungry of information, you can also take a look to the developers guide.
 
 ------------
 
