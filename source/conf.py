@@ -17,6 +17,8 @@ sys.path.append(os.getcwd())
 
 import fakeEnv
 
+#sys.modules["DIRAC"] = fakeEnv
+
 sys.modules["DIRAC.Core.Base"] = fakeEnv
 sys.modules["DIRAC.Core.Base.Script"] = fakeEnv
 sys.modules["DIRAC.Core.Base.DB"] = fakeEnv
@@ -24,43 +26,56 @@ sys.modules["DIRAC.Core.Base.AgentModule"] = fakeEnv
 sys.modules["DIRAC.Core.Base.API"] = fakeEnv
 sys.modules["DIRAC.Core.Base.Client"] = fakeEnv
 sys.modules["DIRAC.Core.Base.AgentReactor"] = fakeEnv
+#sys.modules["DIRAC.ConfigurationSystem.Client.Config"] = fakeEnv
 
-sys.modules["DIRAC.DataManagementSystem.DB.RequestDB"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.BarGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.Graph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.GraphData"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.GraphUtilities"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.Legend"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.LineGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.Palette"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.PieGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.PlotBase"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.QualityMapGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.OracleDB"] = fakeEnv
-sys.modules["RequestDB"] = fakeEnv
-sys.modules["pytz"] = fakeEnv
-sys.modules["numpy"] = fakeEnv
-sys.modules["numpy.random"] = fakeEnv
-sys.modules["matplotlib"] = fakeEnv
-sys.modules["matplotlib.ticker"] = fakeEnv
-sys.modules["matplotlib.figure"] = fakeEnv
-sys.modules["matplotlib.dates"] = fakeEnv
-sys.modules["dateutil"] = fakeEnv
-sys.modules["dateutil.relativedelta"] = fakeEnv
-sys.modules["matplotlib.backends"] = fakeEnv
-sys.modules["matplotlib.backends.backend_agg"] = fakeEnv
-sys.modules["MySQLdb"] = fakeEnv
-sys.modules["DIRAC.FrameworkSystem.Service.PlotCache"] = fakeEnv
-sys.modules["DIRAC.FrameworkSystem.Service.PlottingHandler"] = fakeEnv
+################################################################################
+# Resource Status System Fake
+################################################################################
 
+sys.modules["DIRAC.ResourceStatusSystem.Utilities"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.Decorators"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.Exceptions"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.MySQLMonkey"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.ResourceStatusBooster"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.ResourceManagementBooster"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.Synchronizer"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.Utils"] = fakeEnv
+sys.modules["DIRAC.ResourceStatusSystem.Utilities.Validator"] = fakeEnv
 
+#sys.modules["DIRAC.DataManagementSystem.DB.RequestDB"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.BarGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.Graph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.GraphData"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.GraphUtilities"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.Legend"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.LineGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.Palette"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.PieGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.PlotBase"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.QualityMapGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.OracleDB"] = fakeEnv
+#sys.modules["RequestDB"] = fakeEnv
+#sys.modules["pytz"] = fakeEnv
+#sys.modules["numpy"] = fakeEnv
+#sys.modules["numpy.random"] = fakeEnv
+#sys.modules["matplotlib"] = fakeEnv
+#sys.modules["matplotlib.ticker"] = fakeEnv
+#sys.modules["matplotlib.figure"] = fakeEnv
+#sys.modules["matplotlib.dates"] = fakeEnv
+#sys.modules["dateutil"] = fakeEnv
+#sys.modules["dateutil.relativedelta"] = fakeEnv
+#sys.modules["matplotlib.backends"] = fakeEnv
+#sys.modules["matplotlib.backends.backend_agg"] = fakeEnv
+#sys.modules["MySQLdb"] = fakeEnv
+#sys.modules["DIRAC.FrameworkSystem.Service.PlotCache"] = fakeEnv
+#sys.modules["DIRAC.FrameworkSystem.Service.PlottingHandler"] = fakeEnv
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.append(os.path.abspath('.'))
-
+sys.path.append( '/scratch/ubeda/git/DIRAC')
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions

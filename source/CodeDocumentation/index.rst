@@ -2,12 +2,16 @@
 Code Documentation
 =============================
 
-   `Main APIs <API/index.html>`_
+.. topic:: blah blah blah
+ 
+   asd
 
-   `Clients, per packages <Client/index.html>`_
+.. toctree::
+   :maxdepth: 1
 
-   `Services calls exposed, per packages <Service/index.html>`_
-
-   `Some Utilities <Utilities/index.html>`_
-
-   `Available Scripts <scripts/index.html>`_
+   APIs/index
+   Clients/index
+   Scripts/index
+   Services/index  
+   Utilities/index
+   Systems/index

@@ -400,6 +400,11 @@ possible, in terms of latency.
 
 The entry points of the API are:
 
+- *ResourceStatusAPI*: front end for the *ResourceStatusDB*.
+- *ResourceManagementAPI*: front end for the *ResourceManagementDB*.
+
+or if you prefer, you can access the database functions directly though the clients:
+
 - *ResourceStatusClient*: front end for the *ResourceStatusDB*.
 - *ResourceManagementClient*: front end for the *ResourceManagementDB*.
 
