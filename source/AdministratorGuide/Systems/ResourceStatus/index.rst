@@ -99,8 +99,8 @@ suitable to model the environment fits on **RSS**.
 Four classes, one individual of class *circle*, two individuals of class *star*,
 two individuals of class *rectangle* and three of class *triangle*. Each one of them
 has at least one status type, which is the property of having a color, being the 
-color itself the status. The initial statuses on the environment are *green*, *blue*, 
-*yellow* and *red*. Moreover, if we look at the triangles, we will see they have another
+color itself the status. The initial statuses on the environment are *green*, *yellow*, 
+*orange* and *red*. Moreover, if we look at the triangles, we will see they have another
 status type, which is position. The values for this status type are *+90*, *+0* and *-90*
 for the individuals shown.
 
@@ -116,8 +116,8 @@ of the policy system, and collects per individual its status plus the outputs of
 relevant policies. In this case, we have three policies returning statuses *red*, *green* 
 and *purple*. The PEP makes it's magic, and a new status for the status type color is proposed.
 Finally, but not less important, the state machine integrated with the policy system
-will ensure that the color *purple* never reaches the individual, as only *red*, *yellow*,
-*blue* and *green* are allowed.
+will ensure that the color *purple* never reaches the individual, as only *red*, *orange*,
+*yellow* and *green* are allowed.
 
 Grid ontology
 =============
@@ -319,8 +319,8 @@ diagram.
    :alt: simplified policy system
    :align: center  
 
-.. note:: Policy Enforcement Point ( **PEP**), Policy Decision Point ( **PDP**),
-  Policy Information Point ( **PIP** ) and Policy Caller ( **PC** ).
+.. note:: Policy Enforcement Point ( **PEP**), Policy Decision Point ( **PDP**) 
+  and Policy Information Point ( **PIP** ).
   
 - *Policy Enforcement Point*: it is the visible part of the *Policy System*, and
   gets as input the meta-data information considered to be checked. Also, once
@@ -342,16 +342,14 @@ diagram.
   It also returns per policy which actions must be applied in case of the policy
   output is considered. Actions can vary from adding log messages, sending a sms,
   changing the status of the individual or restarting the universe if needed.
-  
-- *Policy Caller*: is in charge or loading policies and their commands, running 
-  them and return their purposed statuses.    
+   
      
 The image is labeled with six numbers, which correspond with the casual flow:
 
 - 1: PEP calls PDP to take a decision with respect a given meta-data.
 - 2: PDP calls PIP to get applicable policies.
 - 3: PIP gets all policies meta-data from the CS and returns the matches.
-- 4: PDP calls PC with the chosen policies. It returns their outputs.
+- 4: PDP calls the chosen policies.
 - 5: PDP applies "worst first" and returns the decision.
 - 6: PEP applies actions once it knows the decision taken.
 
@@ -470,7 +468,7 @@ As per reminder:
   - 4 classes on the ontology: *Site*, *Service*, *Resource* and *StorageElement*.
   - 4 allowed statuses on the Status Machine: *Active*, *Bad*, *Probing* and *Banned*.
   - Policies metadata stored in CS.
-  - Policy System comprises: PEP, PDP, PIP and PC.
+  - Policy System comprises: PEP, PDP and PIP.
   - Token ownership by default *RS_SVC*.
   - Two databases, with their APIs: *ResourceStatusClient* and *ResourceManagementClient*.
   - Four inspector agents, one per class in the ontology.
