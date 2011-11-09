@@ -6,9 +6,16 @@ In this chapter the description of DIRAC Systems is presented. For each System, 
 of all the constituent components are described together with their configuration parameters.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :numbered:
 
-   Framework/index
+   Accounting/index
    Configuration/index
-   WorkloadManagement/index
    DataManagement/index
+   Framework/index
+   RequestManagement/index
+   ResourceStatus/index
+   StorageManagement/index
+   Transformation/index
+   WorkloadManagement/index
+   
