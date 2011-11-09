@@ -12,7 +12,6 @@ Systems
   
   Each DIRAC system documents the following components:
    
-   * API
    * Client
    * Utilities
    * Service
