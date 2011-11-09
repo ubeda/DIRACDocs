@@ -51,17 +51,20 @@ class CS:
   class CSError:
     pass
 
-def DBDec(func):
+def CheckDBExecution(func):
   return func
 
-def HandlerDec2( func ):
+def ValidateDBTypes(func):
   return func
 
-def ClientDec3( func ):
+def HandlerDec3( func ):
   return func
 
-ClientDec5   = ClientDec3
-APIDecorator = ClientDec3
+def AdminRequired( func ):
+  return func
+
+def ClientFastDec( func ):
+  return func
 
 class InvalidRes:
   pass
@@ -70,12 +73,6 @@ class RSSException:
   pass
 
 class MySQLMonkey:
-  pass
-
-class ResourceStatusBooster:
-  pass
-
-class ResourceManagementBooster:
   pass
 
 class Synchronizer:
