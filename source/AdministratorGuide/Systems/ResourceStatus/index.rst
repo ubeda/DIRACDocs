@@ -392,22 +392,22 @@ The *Resource Status System* has two databases, namely **ResourceStatusDB** and
 Access to state storage 
 =======================
 
-The *Resource Status System* provides a well defined API per database. All the queries
-to the database MUST be done though the API, which will give you the best performance
-possible, in terms of latency. 
+The *Resource Status System* provides a well defined Client per database. All the queries
+to the database MUST be done though the Client, which will give you the best performance
+possible. 
 
-The entry points of the API are:
-
-- *ResourceStatusAPI*: front end for the *ResourceStatusDB*.
-- *ResourceManagementAPI*: front end for the *ResourceManagementDB*.
-
-or if you prefer, you can access the database functions directly though the clients:
+The entry points of the Client are:
 
 - *ResourceStatusClient*: front end for the *ResourceStatusDB*.
 - *ResourceManagementClient*: front end for the *ResourceManagementDB*.
 
+or if you prefer, you can access the database functions directly though the client gates:
+
+- *ResourceStatusClient.gate*: front end for the *ResourceStatusDB*.
+- *ResourceManagementClient.gate*: front end for the *ResourceManagementDB*.
+
 .. seealso:: The API is documented here.
-.. warning:: Consider this an advice from a friend. If you don't want to use the API and
+.. warning:: Consider this an advice from a friend. If you don't want to use the Client and
    connect directly to the DB or the Service, well, have fun if something goes bananas.
 
 ------
@@ -425,7 +425,7 @@ and its magic done. There is an agent per class in the grid ontology, named <cla
 This means that by default we have four *InspectorAgents* ( *Site*, *Service*, *Resource* and
 *StorageElement* ).
 
-Each one of them queries the ResourceStatusDB with the API in order to get all individuals
+Each one of them queries the ResourceStatusDB with the Client in order to get all individuals
 not checked recently
 
 .. note:: Recently checked ? Well, take a look to the developers documentation.
@@ -470,7 +470,7 @@ As per reminder:
   - Policies metadata stored in CS.
   - Policy System comprises: PEP, PDP and PIP.
   - Token ownership by default *RS_SVC*.
-  - Two databases, with their APIs: *ResourceStatusClient* and *ResourceManagementClient*.
+  - Two databases, with their Clients: *ResourceStatusClient* and *ResourceManagementClient*.
   - Four inspector agents, one per class in the ontology.
   - Two cleaner agents.
   - One cache feeder agent.   
