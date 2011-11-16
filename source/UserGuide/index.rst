@@ -7,9 +7,9 @@ User Guide
   A number of DIRAC tutorials is collected `here <http://mareela.in2p3.fr:9200/dirac/wiki/DIRAC/Tutorials>`_.   
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   InstallingDIRACClient/index
+   GettingStarted/index
    WebPortalReference/index
    CommandReference/index
    Tutorials/index

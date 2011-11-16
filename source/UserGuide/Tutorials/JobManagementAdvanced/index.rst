@@ -20,11 +20,11 @@ To define this parameter the attribute �Parameters� must be defined in the J
 A simple example is to define the list of parameters using a list of values, this list can contain integers or strings:::
 
    Executable = "testJob.sh";
-   JobName = "%s_parametric";
+   JobName = "%n_parametric";
    Arguments = "%s";
    Parameters = {"first","second","third","fourth","fifth"};
-   StdOutput = "StdOut";
-   StdError = "StdErr";
+   StdOutput = "StdOut_%s";
+   StdError = "StdErr_%s";
    InputSandbox = {"testJob.sh"};
    OutputSandbox = {"StdOut_%s","StdErr_%s"};
 
@@ -34,15 +34,15 @@ contain "%s" placeholder. For each generated job this placeholder will be replac
 In the next example, the JDL attribute values are used to create a list of 20 integers starting from 1 (ParameterStart) with a step 2 (ParameterStep):::
 
    Executable = "testParametricJob.sh";
-   JobName = "Parametric_%s";
+   JobName = "Parametric_%n";
    Arguments = "%s";  
    Parameters = 20;
    ParameterStart = 1;
    ParameterStep = 2;
-   StdOutput = "StdOut_%s";
-   StdError = "StdErr_%s";
-   InputSandbox = {"testJob.sh"};
-   OutputSandbox = {"StdOut_%s","StdErr_%s"};
+   StdOutput = "StdOut_%n";
+   StdError = "StdErr_%n";
+   InputSandbox = {"testParametericJob.sh"};
+   OutputSandbox = {"StdOut_%n","StdErr_%n"};
 
 Therefore, with this JDL job description will be submitted in at once. As in the previous example, the "%s" placeholder
 will be replaced by one of the parameter values.

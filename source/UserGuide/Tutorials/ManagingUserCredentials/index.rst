@@ -81,33 +81,40 @@ valid proxy using DIRAC commands are shown below.
 
 - After the environment is set up, you are able to create your proxy with the following command::
 
-        proxy-init --group dirac_user 
+        dirac-proxy-init --group dirac_user -U 
 
 
   For example, with the additional debug option the output must be like the following::
 
-        $ proxy-init --debug --group dirac_user
-        Enabling debug output
+        $ dirac-proxy-init --debug --group dirac_user -u
+        Generating proxy... 
         Enter Certificate password:
-        Proxy lifetime will be 24:00
-        User cert is /afs/in2p3.fr/home/h/hamar/.globus/usercert.pem
-        User key  is /afs/in2p3.fr/home/h/hamar/.globus/userkey.pem
-        Proxy will be written to /tmp/x509up_u40885
-        DIRAC Group will be set to dirac_user
-        Proxy strength will be 1024
-        Contacting CS...
-        Checking DN /O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Vanessa Hamar
-        Username is vhamar
-        Creating proxy for vhamar@dirac_user (/O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Vanessa Hamar)
-        Uploading user pilot proxy with group dirac_pilot...
-        Loading user proxy
-        Uploading proxy on-the-fly
-        Cert file /afs/in2p3.fr/home/h/hamar/.globus/usercert.pem
-        Key file  /afs/in2p3.fr/home/h/hamar/.globus/userkey.pem
-        Loading cert and key
-        User credentials loaded
-        Uploading...
-        done
+        Contacting CS... 
+        Checking DN /O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Andrei Tsaregorodtsev 
+        Username is atsareg 
+        Creating proxy for atsareg@dirac_user (/O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Andrei Tsaregorodtsev) 
+        Uploading proxy for dirac_user... 
+        Uploading dirac_user proxy to ProxyManager... 
+        Loading user proxy 
+        Uploading proxy on-the-fly 
+        Cert file /home/andrei/.globus/usercert.pem 
+        Key file  /home/andrei/.globus/userkey.pem 
+        Loading cert and key 
+        User credentials loaded 
+         Uploading... 
+        Proxy uploaded 
+        Proxy generated: 
+        subject      : /O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Andrei Tsaregorodtsev/CN=proxy
+        issuer       : /O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Andrei Tsaregorodtsev
+        identity     : /O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Andrei Tsaregorodtsev
+        timeleft     : 23:59:57
+        DIRAC group  : dirac_user
+        path         : /tmp/x509up_u501
+        username     : atsareg 
+        
+        Proxies uploaded: 
+         DN                                                      | Group      | Until (GMT) 
+         /O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Andrei Tsaregorodtsev | dirac_user | 2012/02/08 13:05
 
   As a result of this command, several operations are accomplished:
   

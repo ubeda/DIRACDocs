@@ -3,7 +3,7 @@ Getting Started
 ===============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
    RegisterAUser/index
    InstallingClient/index

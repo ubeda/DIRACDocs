@@ -1,17 +1,17 @@
-.. _installing_dirac_client:
-
 ==================================
 Installing DIRAC client 
 ==================================
 
 The DIRAC client installation procedure consists of several steps.
 
+.. _dirac_install:
+
 Install script
 ---------------
 
-Download the *dirac-install* script from `here <http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/dirac-install>`_::
+Download the *dirac-install* script from `here <https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/dirac-install.py>`_::
 
-  wget -np -O dirac-install https://github.com/DIRACGrid/DIRAC/raw/master/Core/scripts/dirac-install.py --no-check-certificate
+  wget -np -O dirac-install http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/dirac-install --no-check-certificate
   chmod +x dirac-install
   
 Choose the directory where you want to install the DIRAC software and run the dirac-install script from
@@ -42,13 +42,14 @@ Installing with VO defaults
 In most cases you are installing the DIRAC client to work as a member of some particular user community or, in 
 other words, Virtual Organization. The managers of your Virtual Organization can prepare default settings to
 be applied for the DIRAC client installation. In this case the installation procedure reduces to the following
-assuming the name of the Virtial Organization *dirac*::
+assuming the name of the Virtual Organization *dirac*::
 
-  wget -np -O dirac-install https://github.com/DIRACGrid/DIRAC/raw/master/Core/scripts/dirac-install.py --no-check-certificate
+  wget -np -O dirac-install http://lhcbproject.web.cern.ch/lhcbproject/dist/Dirac_project/dirac-install --no-check-certificate
   chmod +x dirac-install
-  dirac-install -V dirac
+  dirac-install -V formation
   source bashrc
-  dirac-configure dirac_defaults.cfg
+  dirac-proxy-init
+  dirac-configure defaults_formation.cfg
    
 The *dirac_defaults.cfg* file contains the Virtual Organization default settings. It is downloaded as part of
 the installation procedure. Check with your Virtual Organization managers if this mode of installation is 
