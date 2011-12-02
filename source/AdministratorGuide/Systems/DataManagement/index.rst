@@ -29,13 +29,11 @@ DIRAC provides an abstraction of a SE interface that allows to access different 
         SpaceToken = LHCb_USER
       }
     }
-  
-In order to configure and test support for FTS transfers in your DIRAC installation you should follow these steps:
 
 FTS transfers in DIRAC
 ----------------------
 
-DIRAC DMS can be configured to make use of FTS servers in order to schedule and monitor efficient transfer of large amounts of data between SEs. As of today, FTS servers are only able to handle transfers between SRM SEs. You will need to define at least 2 different SRM StorageElements in your Configuration. In the current implementation of the DIRAC FTS interface FTS transfers are always assigned to the FTS server associated to the Site local to the destination SE.
+DIRAC DMS can be configured to make use of FTS servers in order to schedule and monitor efficient transfer of large amounts of data between SEs. As of today, FTS servers are only able to handle transfers between SRM SEs. You will need to define at least two different SRM StorageElements in your Configuration and one FTS endpoint. In the current implementation of the DIRAC FTS interface FTS transfers are always assigned to the FTS server associated to the Site local to the destination SE. However you can associate the same FTS server to more than one site.
 
 In order to configure and test support for FTS transfers in your DIRAC installation you should follow these steps:
 
@@ -66,6 +64,7 @@ In order to configure and test support for FTS transfers in your DIRAC installat
  BSC-PIC
  LAPALMA-PIC
  PIC-NCG
+ STAR-PIC
  ...
  $ glite-transfer-channel-list -s https://fts.pic.es:8443/glite-data-transfer-fts/services/ChannelManagement STAR-PIC
  Channel: STAR-PIC
@@ -87,7 +86,7 @@ In order to configure and test support for FTS transfers in your DIRAC installat
 
 ::
 
-# This is an excample, use the name and URL corresponding to your case
+ # This is an example, use the name and URL corresponding to your case
  /Resources/FTSEndpoints/LCG.PIC.es =  https://fts.pic.es:8443/glite-data-transfer-fts/services/FileTransfer
 
 - Now you need to make sure that the DIRAC components that take care of FTS transfers are in place. You need to configure and startup a number of components. This can be done with the "dirac-setup-server" command and a the following FTS.cfg describing what you need:
@@ -96,7 +95,8 @@ In order to configure and test support for FTS transfers in your DIRAC installat
 
       LocalInstallation
       {
-        DataBases = TransferDB
+        Systems = DataManagement, RequestManagement
+        DataBases = RequestDB
         Services = DataManagement/TransferDBMonitoring
         Agents = DataManagement/FTSSubmitAgent, DataManagement/FTSMonitorAgent
       }
@@ -120,6 +120,34 @@ In order to configure and test support for FTS transfers in your DIRAC installat
      exit(-1)
 
    channelID = res['Value']
-   print 'Created FTS Channel %s', % channelID
+   print 'Created FTS Channel %s' % channelID
 
-- And finally some transfer can be attempted.
+- At this point some transfer can be attempted between the configured SEs. For that purpose you can use the command line script:
+
+::
+
+ $ dirac-dms-fts-submit -h 
+   Submit an FTS request, monitor the execution until it completes
+ Usage:
+   dirac-dms-fts-submit [option|cfgfile] ... LFN sourceSE targetSE
+ Arguments:
+   LFN:      Logical File Name or file containing LFNs
+   sourceSE: Valid DIRAC SE
+   targetSE: Valid DIRAC SE 
+ General options: 
+   -o:  --option=         : Option=value to add 
+   -s:  --section=        : Set base section for relative parsed options 
+   -c:  --cert=           : Use server certificate to connect to Core Services 
+   -d   --debug           : Set debug mode (-dd is extra debug) 
+   -h   --help            : Shows this help 
+
+::
+
+  $ dirac-dms-fts-submit /lhcb/user/r/rgracian/fts_test CNAF-USER PIC-USER 
+  Submitted b3c7c25a-1d14-11e1-abe9-dc229ac9908c @ https://fts.pic.es:8443/glite-data-transfer-fts/services/FileTransfer
+  |====================================================================================================>| 100.0% Finished           
+
+
+Using this script, the request to the FTS server will be formulated following the information configured in DIRAC, and will be submitted form your client to the selected FTS server with your local credential. Make sure you are using a proxy that is authorized at your FTS server (usually only some specific users in the VO are allowed, contact the administrators of the site offering you this server in case of doubts).
+
+**Important Note** At this point your DIRAC installation is ready to handle asynchronous Transfer Requests using FTS instead of using the third party transfer logic provided by the TransferAgent. The current version of the TransferAgent does not allow execute it at the same time than the ReplicationScheduler agent (in the same setup), both agents will try to execute all transfer requests submitted to the system. A temporary solution is to install a dedicate setup for FTS transfers with just the components above and the ReplicationScheduler.
