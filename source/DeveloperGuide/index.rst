@@ -16,5 +16,6 @@ The DIRAC Developer Guide is describing the procedures and rules for developing 
    CodingConvention/index
    CodeDocumenting/index  
    ReleaseProcedure/index
+   Internals/index
    
    

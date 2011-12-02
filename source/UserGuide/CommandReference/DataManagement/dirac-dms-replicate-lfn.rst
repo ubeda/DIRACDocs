@@ -2,9 +2,21 @@
 dirac-dms-replicate-lfn
 ==============================
 
+  Replicate an existing LFN to another Storage Element
+
 Usage::
 
-  dirac-dms-replicate-lfn.py (<options>|<cfgFile>)* 
+  dirac-dms-replicate-lfn [option|cfgfile] ... LFN Dest [Source [Cache]]
+
+Arguments::
+
+  LFN:      Logical File Name or file containing LFNs
+
+  Dest:     Valid DIRAC SE
+
+  Source:   Valid DIRAC SE
+
+  Cache:    Local directory to be used as cache 
 
 Example::
 

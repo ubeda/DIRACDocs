@@ -2,9 +2,11 @@
 dirac-admin-select-requests
 ==================================
 
+  Select requests from the request management system
+
 Usage::
 
-  dirac-admin-select-requests.py (<options>|<cfgFile>)* 
+  dirac-admin-select-requests [option|cfgfile] ... 
 
  
 

@@ -2,9 +2,17 @@
 dirac-dms-lfn-accessURL
 ==============================
 
+  Retrieve an access URL for an LFN replica given a valid DIRAC SE.
+
 Usage::
 
-  dirac-dms-lfn-accessURL.py (<options>|<cfgFile>)* 
+  dirac-dms-lfn-accessURL [option|cfgfile] ... LFN SE
+
+Arguments::
+
+  LFN:      Logical File Name or file containing LFNs
+
+  SE:       Valid DIRAC SE 
 
 Example::
 

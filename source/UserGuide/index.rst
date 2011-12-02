@@ -1,6 +1,6 @@
-==================================
+==========
 User Guide
-==================================
+==========
 
   This page is the work in progress. More material will come soon.
   
@@ -12,3 +12,4 @@ User Guide
    InstallingDIRACClient/index
    WebPortalReference/index
    CommandReference/index
+   Tutorials/Index

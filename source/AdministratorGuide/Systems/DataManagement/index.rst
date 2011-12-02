@@ -1,8 +1,12 @@
 .._data-management-system
 
-===================================
+=======
+======================
 Data Management System
-=================================== 
+======================
+
+.. contents:: Table of contents
+   :depth: 3
 
 The DIRAC Data Management System (DMS), together with the DIRAC Storage Management System (SMS) provides the necessary functionality to execute and control all activities related with your data. the DMS provides from the basic functionality to upload a local file in a StorageElement (SE) and register the corresponding replica in the FileCatalog (FC) to massive data replications using FTS or retrievals of data archived on Tape for it later processing.
 

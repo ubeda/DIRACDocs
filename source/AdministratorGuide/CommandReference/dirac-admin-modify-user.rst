@@ -2,9 +2,19 @@
 dirac-admin-modify-user
 ==============================
 
+  Modify a user in the CS.
+
 Usage::
 
-  dirac-admin-modify-user.py (<options>|<cfgFile>)* 
+  dirac-admin-modify-user [option|cfgfile] ... user DN group [group] ...
+
+Arguments::
+
+  user:     User name
+
+  DN:       DN of the User
+
+  group:    Add the user to the group 
 
  
 

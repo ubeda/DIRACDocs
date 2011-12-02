@@ -125,3 +125,43 @@ The --no-ff flag causes the merge to always create a new commit object, even if 
 
 In the latter case, it is impossible to see from the Git history which of the commit objects together have implemented a feature—you would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
 
+Resolving merge conflicts
+-------------------------
+
+Let's say the release manager ask you to find and fix merge conflicts made by your pull request. Assuming you have a local clone of your DIRAC repository, you have to try merge it by hand to find and understand the source of conflicts. For that you should firts checkout your feature branch, add main DIRAC repository as remote one and try to rebase your branch to DIRAC/integration, i.e.::   
+
+  $ git checkout featurebranch
+  Switched to branch 'featurebranch'
+  $ git remote add -f DIRACMAIN git://github.com/DIRACGrid/DIRAC.git
+  remote: Counting objects: 1366, done.
+  remote: Compressing objects: 100% (528/528), done.
+  remote: Total 1138 (delta 780), reused 952 (delta 605)
+  Receiving objects: 100% (1138/1138), 334.89 KiB, done.
+  Resolving deltas: 100% (780/780), completed with 104 local objects.
+  From git://github.com/DIRACGrid/DIRAC
+   * [new branch]      integration -> DIRAC/integration
+   * [new branch]      master     -> DIRAC/master
+   * [new tag]         v6r0-pre1  -> v6r0-pre1
+   * [new tag]         v6r0-pre2  -> v6r0-pre2
+  From git://github.com/DIRACGrid/DIRAC
+   * [new tag]         v6r0-pre3  -> v6r0-pre3
+  $ git rebase DIRACMAIN/integration
+  First, rewinding head to replay your work on top of it...
+  Applying: added .metadata to .gitignore
+  Using index info to reconstruct a base tree...
+  Falling back to patching base and 3-way merge...
+  Auto-merging .gitignore
+  CONFLICT (content): Merge conflict in .gitignore
+  Failed to merge in the changes.
+  Patch failed at 0001 added .metadata to .gitignore
+
+  When you have resolved this problem run "git rebase --continue".
+  If you would prefer to skip this patch, instead run "git rebase --skip".
+  To restore the original branch and stop rebasing run "git rebase --abort".
+
+On this stage git will tell you which changes cannot be merged automatically, in above example there is only one conflict in .gitignore file. Now you should open this file and find all conflict markers (">>>>>>>" and "<<<<<<<<"), edit it choosing which lines are valid, add make another commit and pull request.  
+
+   
+
+
+ 

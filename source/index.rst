@@ -1,8 +1,9 @@
-.. image:: _static/DIRAC_logo.png   
+.. image:: _static/DIRAC-logo-transp.png   
   :width: 300
+  :target: http://diracgrid.org
 
 =====================================
-DIRAC v5 Documentation
+DIRAC Documentation
 =====================================
 
 The DIRAC (Distributed Infrastructure with Remote Agent Control) project is a complete Grid solution for a community of users such as the LHCb Collaboration. DIRAC forms a layer between a particular community and various compute resources to allow optimized, transparent and reliable usage.

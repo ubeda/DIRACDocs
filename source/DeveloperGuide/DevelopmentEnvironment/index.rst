@@ -143,6 +143,14 @@ All that remains is to import these directories as projects in Eclipse. To impor
  3. In the "Import Projects from Git" click *Add*.
  4. In the "Add Git Repositories", click *Browse* and select the DIRAC source code folder you cloned into before. Then click *Search* and the *.git* directory in the DIRAC source code directory should appear. Select it and click *OK*.
  5. In the "Import Projects from Git" pane the DIRAC folder should now appear. Select it and click *Next*.
+
+Create as a general project
+
+ 6. Select "Import as General Project" and click *Next*.
+ 7. In the "Import Project from Git" write the project name of your Workspace and then click *Finish*.
+
+Create as a pydev project (may not work in all versions of eclipse/pydev)
+
  6. Select "Use the New Project wizard" and click *Finish*.
  7. In the *New Project* wizard choose *Pydev -> Pydev project* and click *Next*.
  8. Choose the necessary settings for the project, in particular:
