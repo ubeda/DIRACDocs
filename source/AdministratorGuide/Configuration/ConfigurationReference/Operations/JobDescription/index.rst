@@ -1,7 +1,7 @@
 Operations / JobDescription - Subsection
 ========================================
 
-JobDescription subsection, as the name says, describe user jobs options.
+JobDescription subsection describes allowed options in submitted payload (needs further documentation of supported fields).
 
 
 +-------------------+-------------------------------------------+-------------------------+
