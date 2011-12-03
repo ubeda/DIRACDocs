@@ -6,6 +6,8 @@ In this section each DIRAC site available for the users is described. The conven
 - Institution acronym in uppercase, for example: CPPM
 - Country: country where the site is located, expressed in lowercase, for example fr
 
+The three strings are concatenated with "." to produce the name of the sites.
+
 +---------------------------------+-----------------------------------------------+-----------------------------------+
 | **Name**                        | **Description**                               | **Example**                       |
 +---------------------------------+-----------------------------------------------+-----------------------------------+

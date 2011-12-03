@@ -1,7 +1,7 @@
 Resources / StorageElement - Subsections
 ========================================
 
-All the storages elements available for the users are described in this subsection.
+All the storages elements available for the users are described in this subsection. This information will be moved bellow the Sites section.
 
 +---------------------------------------------+--------------------------------------------------+-----------------------------+
 | **Name**                                    | **Description**                                  | **Example**                 |
