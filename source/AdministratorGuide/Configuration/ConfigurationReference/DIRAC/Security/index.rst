@@ -17,3 +17,5 @@ In this subsection security server configuration attributes are defined.
 +------------------------+------------------------------------------------+------------------------------------------------------+
 | *UseServerCertificate* | Use server certificate, expressed as boolean.  | UseServerCertificate = yes                           |
 +------------------------+------------------------------------------------+------------------------------------------------------+
+
+**This section should only appear in the local dirac.cfg file of each installation, never in the central configuration.**
