@@ -18,9 +18,9 @@ In this section global attributes are configured.
 
 Two subsections are part of DIRAC section:
 
-- Configuration: In this subsection DIRAC servers are configured.
+- Configuration: In this subsection, access to Configuration servers is kept.
 
-- Setups: Instances installed in the server are installed.
+- Setups: Define the instance to be used for each the systems of each Setup.
 
 .. toctree::
    :maxdepth: 2
