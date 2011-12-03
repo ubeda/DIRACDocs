@@ -12,13 +12,19 @@ This subsection is used to describe DIRAC groups registered in the server.
 |                           |                                                | Users += msapunov       |
 +---------------------------+------------------------------------------------+-------------------------+
 | *<GROUP_NAME>/Properties* | Properties of the group, this will change      | Properties = NormalUser |
-|                           | depending of group permissions.                | *                       |
+|                           | the permissions of the group.                | *                       |
 +---------------------------+------------------------------------------------+-------------------------+
 | *<GROUP_NAME>/VOMSRole*   | Role of the users in the VO                    | VOMSRole = /biomed      |
 +---------------------------+------------------------------------------------+-------------------------+
 | *<GROUP_NAME>/VOMSVO*     | Virtual organization associated with the group | VOMSVO = biomed         |
 +---------------------------+------------------------------------------------+-------------------------+
 | *JobShare*                | * Just for normal users                        | JobShare = 200          |
++---------------------------+------------------------------------------------+-------------------------+
+| *AutoUploadProxy*                | * Controls automatic Proxy upload by dirac-proxy-init | AutoUploadProxy = True          |
++---------------------------+------------------------------------------------+-------------------------+
+| *AutoUploadPilotProxy*                | * Controls automatic Proxy upload by dirac-proxy-init for Pilot groups                        | AutoUploadPilotProxy = True          |
++---------------------------+------------------------------------------------+-------------------------+
+| *AutoAddVOMS*                | * Controls automatic addition of VOMS extension by dirac-proxy-init                        | AutoAddVOMS = True          |
 +---------------------------+------------------------------------------------+-------------------------+
 
 
@@ -43,3 +49,4 @@ This subsection is used to describe DIRAC groups registered in the server.
   ** dirac_user
   
    - Properties = NormalUser
+ 
