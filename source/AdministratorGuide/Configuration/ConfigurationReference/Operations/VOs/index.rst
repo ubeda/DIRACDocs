@@ -15,3 +15,10 @@ Operations / VOs - Subsections
 | *<VO_NAME>/<SETUP_NAME>/Version/PilotVersion* | DIRAC version to be installed for the pilots | PilotVersion = v6r0-pre7  |
 |                                               | in the WNs                                   |                           |
 +-----------------------------------------------+----------------------------------------------+---------------------------+
+
+This section will progressively incorporate most of the other sections under /Operations in such a way that different values can be defined for each [VO]Ê(in multi-VO installations) and [Setup]. A helper class is provided to access to these new structure.
+
+::
+  from DIRAC.ConfigurationSystem.Client.Helpers.Operations import Operations
+  op = Operations()
+  op.getValue( 'VersionPilotVersion', '' )
