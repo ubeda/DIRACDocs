@@ -1,8 +1,7 @@
 Operations / Shifter - Subsection
 =================================
 
-In this subsection managers are described for some services. User credentials for the service than will be used
-during execution of some tasks for the services.
+In this subsection managers are described for some systems. User credentials for the agents than will be used during execution of some tasks.
 
 
 
