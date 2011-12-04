@@ -9,3 +9,4 @@ Commands Reference
 
    DataManagement/index
    WorkloadManagement/index
+   Others/index

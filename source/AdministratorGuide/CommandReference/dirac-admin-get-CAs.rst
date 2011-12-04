@@ -6,6 +6,14 @@ Usage::
 
   dirac-admin-get-CAs.py (<options>|<cfgFile>)* 
 
+Usage::
+
+  dirac-admin-get-CAs.py (<options>|<cfgFile>)* 
+
+Usage::
+
+  dirac-admin-get-CAs.py (<options>|<cfgFile>)* 
+
 Example::
 
   $ dirac-admin-externals-versions

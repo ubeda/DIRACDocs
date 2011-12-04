@@ -12,6 +12,26 @@ Options::
 
   -v:  --valid=          : Required HH:MM for the users 
 
+Usage::
+
+  dirac-admin-users-with-proxy.py (<options>|<cfgFile>)* 
+
+ 
+
+Options::
+
+  -v:  --valid=          : Required HH:MM for the users 
+
+Usage::
+
+  dirac-admin-users-with-proxy.py (<options>|<cfgFile>)* 
+
+ 
+
+Options::
+
+  -v:  --valid=          : Required HH:MM for the users 
+
 Example::
 
   $ dirac-admin-users-with-proxy

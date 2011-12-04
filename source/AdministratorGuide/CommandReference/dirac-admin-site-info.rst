@@ -12,6 +12,26 @@ Arguments::
 
   Site:     Name of the Site 
 
+  Print Configuration information for a given Site
+
+Usage::
+
+  dirac-admin-site-info [option|cfgfile] ... Site ...
+
+Arguments::
+
+  Site:     Name of the Site 
+
+  Print Configuration information for a given Site
+
+Usage::
+
+  dirac-admin-site-info [option|cfgfile] ... Site ...
+
+Arguments::
+
+  Site:     Name of the Site 
+
 Example::
 
   $ dirac-admin-site-info LCG.IN2P3.fr

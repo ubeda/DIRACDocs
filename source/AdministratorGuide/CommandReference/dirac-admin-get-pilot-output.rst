@@ -6,6 +6,14 @@ Usage::
 
   dirac-admin-get-pilot-output.py (<options>|<cfgFile>)* 
 
+Usage::
+
+  dirac-admin-get-pilot-output.py (<options>|<cfgFile>)* 
+
+Usage::
+
+  dirac-admin-get-pilot-output.py (<options>|<cfgFile>)* 
+
 Example::
 
   $ dirac-admin-get-pilot-output https://marlb.in2p3.fr:9000/26KCLKBFtxXKHF4_ZrQjkw
