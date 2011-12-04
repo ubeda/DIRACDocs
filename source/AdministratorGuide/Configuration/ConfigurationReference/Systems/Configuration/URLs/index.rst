@@ -1,4 +1,4 @@
-Systems / Configuration / <SETUP> / URLs - Sub-subsection
+Systems / Configuration / <INSTANCE> / URLs - Sub-subsection
 =========================================================
 
 Configuration Services URLs.

@@ -1,4 +1,4 @@
-Systems / AccountingManagement / <SETUP> / Service / DataStore - Sub-subsection
+Systems / AccountingManagement / <INSTANCE> / Service / DataStore - Sub-subsection
 ===============================================================================
 
 DataStore service is in charge of receiving Accounting data. 

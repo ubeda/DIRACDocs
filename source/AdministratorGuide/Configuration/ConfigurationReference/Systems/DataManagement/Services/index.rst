@@ -1,4 +1,4 @@
-Systems / DataManagement / <SETUP> / Service - Sub-subsection
+Systems / DataManagement / <INSTANCE> / Service - Sub-subsection
 =============================================================
 
 All the services have common options to be configured for each one. Those options are
@@ -35,3 +35,5 @@ DataManagement services are:
    FileCatalog/index
    StorageElement/index
    StorageElementProxy/index
+   TransferDBMonitoring/index
+ 

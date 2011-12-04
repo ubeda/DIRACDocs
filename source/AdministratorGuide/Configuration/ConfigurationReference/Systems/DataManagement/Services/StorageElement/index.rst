@@ -1,4 +1,4 @@
-Systems / DataManagement / <SETUP> / Service / StorageElement - Sub-subsection
+Systems / DataManagement / <INSTANCE> / Service / StorageElement - Sub-subsection
 ==============================================================================
 
 StorageElementHandler is the implementation of a simple StorageElement service in the DISET framework

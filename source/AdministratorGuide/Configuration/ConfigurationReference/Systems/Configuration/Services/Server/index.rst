@@ -1,4 +1,4 @@
-Systems / Configuration / <SETUP> / Service / Server - Sub-subsection
+Systems / Configuration / <INSTANCE> / Service / Server - Sub-subsection
 =====================================================================
 
 In this subsection the Server service is configured. The attributes are showed in the following table:

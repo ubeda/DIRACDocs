@@ -1,4 +1,4 @@
-Systems / Accounting / <SETUP> / Service - Sub-subsection
+Systems / Accounting / <INSTANCE> / Service - Sub-subsection
 =========================================================
 
 All the services have common options to be configured for each one. Those options are
