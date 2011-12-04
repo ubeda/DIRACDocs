@@ -1,11 +1,11 @@
-Systems / Framework / <SETUP> / Service / ProxyManager - Sub-subsection
+Systems / Framework / <INSTANCE> / Service / ProxyManager - Sub-subsection
 =======================================================================
 
 
-ProxyManager is the implementation of the ProxyManagement service in the DISET framework.
+ProxyManager is the implementation of the ProxyManagement service in the DISET framework. Using MyProxy server is not fully supported at the moment.
 
 +-----------------+------------------------------------------+----------------------------+
 | **Name**        | **Description**                          | **Example**                |
 +-----------------+------------------------------------------+----------------------------+
-| *PlotsLocation* | Path where data for monitoring is stored | PlotsLocation = data/plots |
+| *UseMyProxy* | Use myproxy server | UseMyProxy = False |
 +-----------------+------------------------------------------+----------------------------+

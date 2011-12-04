@@ -1,4 +1,4 @@
-Systems / Framework / <SETUP> / Service / Monitoring - Sub-subsection
+Systems / Framework / <INSTANCE> / Service / Monitoring - Sub-subsection
 =====================================================================
 
 Monitoring service is in charge of recollect the information necessary to create the plots.

@@ -1,4 +1,4 @@
-Systems / Framework / <SETUP> / Service / Notification - Sub-subsection
+Systems / Framework / <INSTANCE> / Service / Notification - Sub-subsection
 =======================================================================
 
 The Notification service provides a toolkit to contact people via email

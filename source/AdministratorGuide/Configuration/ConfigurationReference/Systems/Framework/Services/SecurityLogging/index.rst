@@ -1,6 +1,12 @@
-Systems / Framework / <SETUP> / Service / SecurityLogging - Sub-subsection
+Systems / Framework / <INSTANCE> / Service / SecurityLogging - Sub-subsection
 ==========================================================================
 
-SecurityLogging service is 
+SecurityLogging service is used by all server to log all connections.
 
-Extra options are not required to be configured.
++-----------------+------------------------------------------+----------------------------+
+| **Name**        | **Description**                          | **Example**                |
++-----------------+------------------------------------------+----------------------------+
+| *DataLocation* | Directory where log info is kept | DataLocation = data/securityLog |
++-----------------+------------------------------------------+----------------------------+
+
+

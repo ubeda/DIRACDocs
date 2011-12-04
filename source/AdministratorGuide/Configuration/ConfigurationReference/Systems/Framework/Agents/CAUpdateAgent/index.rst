@@ -1,14 +1,6 @@
-Systems / Framework / <SETUP> / Agents / CAUpdateAgent - Sub-subsection
+Systems / Framework / <INSTANCE> / Agents / CAUpdateAgent - Sub-subsection
 =======================================================================
 
-Proxy Renewal agent is the key element of the Proxy Repository which maintains the user proxies alive.
+CA Update agent uses the Framework/BundleDelivery service to get up-to-date CAs and CRLs for all agent and servers using the same dirac installation.
 
-
-The attributes of this agent are showed in the table below:
-
-+--------------+-------------------------------------------+-----------------+
-| **Name**     | **Description**                           | **Example**     |
-+--------------+-------------------------------------------+-----------------+
-| *RemoveDate* | Each many days the database must be clean | RemoveDate = 30 |
-|              | Expressed in days                         |                 |
-+--------------+-------------------------------------------+-----------------+
+This agent has no options.

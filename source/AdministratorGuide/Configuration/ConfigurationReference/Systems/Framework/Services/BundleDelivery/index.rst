@@ -1,6 +1,14 @@
-Systems / Framework / <SETUP> / Service / BundleDelivery - Sub-subsection
+Systems / Framework / <INSTANCE> / Service / BundleDelivery - Sub-subsection
 =========================================================================
 
-Bundle delivery services is used to transfer bundles to clients or other servers.
+Bundle delivery services is used to transfer Directories to clients by making tarballs.
 
-No extra options are required to configure this service, only the common to all the services.
++---------------------+---------------------------------------+------------------------------+
+| **Name**            | **Description**                       | **Example**                  |
++---------------------+---------------------------------------+------------------------------+
+| *CAs*          | Boolean, bundle CAs    |  CAs = True     |
++---------------------+---------------------------------------+------------------------------+
+| *CRLs*          | Boolean, bundle CRLs     |  CRLs = True     |
++---------------------+---------------------------------------+------------------------------+
+| *DirsToBundle*          | Section with Additional directories to serve     |  DirsToBundle/NameA = /opt/dirac/NameA     |
++---------------------+---------------------------------------+------------------------------+

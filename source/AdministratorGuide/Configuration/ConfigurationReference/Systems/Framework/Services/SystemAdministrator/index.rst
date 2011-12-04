@@ -1,4 +1,4 @@
-Systems / Framework / <SETUP> / Service / SystemAdministrator - Sub-subsection
+Systems / Framework / <INSTANCE> / Service / SystemAdministrator - Sub-subsection
 ==============================================================================
 
 SystemAdministrator service is a tool to control and monitor the DIRAC services and agents.

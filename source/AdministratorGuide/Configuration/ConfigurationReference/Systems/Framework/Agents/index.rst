@@ -1,4 +1,4 @@
-Systems / Framework / <SETUP> / Agents - Sub-subsection
+Systems / Framework / <INSTANCE> / Agents - Sub-subsection
 =======================================================
 
  In this subsection each agent is described.
@@ -38,5 +38,7 @@ Agents associated with Configuration System:
 .. toctree::
    :maxdepth: 2
    CAUpdateAgent/index
+   MyProxyRenewalAgent/index
    SystemLoggingDBCleaner/index
    TopErrorMessagesReporter/index
+   MyProxyRenewalAgent/index

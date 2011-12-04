@@ -1,4 +1,4 @@
-Systems / Framework / <SETUP> / Agents / TopErrorMessagesReportes - Sub-subsection
+Systems / Framework / <INSTANCE> / Agents / TopErrorMessagesReportes - Sub-subsection
 ==================================================================================
 
 TopErrorMessagesReporter produces a list with the most common errors injected in the SystemLoggingDB and sends a 

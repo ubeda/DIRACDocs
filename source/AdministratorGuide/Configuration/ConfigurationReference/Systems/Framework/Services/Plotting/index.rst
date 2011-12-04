@@ -1,4 +1,4 @@
-Systems / Framework / <SETUP> / Service / Plotting - Sub-subsection
+Systems / Framework / <INSTANCE> / Service / Plotting - Sub-subsection
 ===================================================================
 
 Plotting Service generates graphs according to the client specifications and data.
