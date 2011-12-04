@@ -1,4 +1,4 @@
-Systems / Configuration / <SETUP> / Agents - Sub-subsection
+Systems / Configuration / <INSTANCE> / Agents - Sub-subsection
 ===========================================================
 
  In this subsection each agent is described.
