@@ -1,7 +1,7 @@
 DIRAC / Configuration - Subsection
 ==================================
 
-This subsection is used to configure the Configuration Servers attributes.
+This subsection is used to configure the Configuration Servers attributes. It should not edited by hand since it is upated by the Master Configuration Server to reflect the current situation of the system.
 
 +-------------------+----------------------------------------------------+----------------------------------------------------------------------+
 | **Name**          | **Description**                                    | **Example**                                                          |

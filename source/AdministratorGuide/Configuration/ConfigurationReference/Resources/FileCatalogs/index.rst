@@ -1,8 +1,7 @@
 Resources / FileCatalogs - Subsections
 ======================================
 
-In this section each user is described using simple attributes. An subsection with the DIRAC user name must be created and inside of this the following attributes
-must be included:
+This subsection include the definition of the File Catalogs to be used in the installation. In case there is more than one File Catalog defined in this section, the first one in the section will be used as default by the ReplicaManager client.
 
 +--------------------------+-------------------------------------------------+-------------------------+
 | **Name**                 | **Description**                                 | **Example**             |
