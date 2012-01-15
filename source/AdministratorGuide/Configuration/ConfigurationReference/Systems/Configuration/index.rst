@@ -1,4 +1,4 @@
-Accounting System configuration
+Configuration System configuration
 ==================================
 
 In this subsection are described the databases, services and URLs related with Accounting framework for each setup.
@@ -6,6 +6,6 @@ In this subsection are described the databases, services and URLs related with A
 .. toctree::
    :maxdepth: 2
    
-   Databases/index
    Services/index
+   Agents/index
    URLs/index

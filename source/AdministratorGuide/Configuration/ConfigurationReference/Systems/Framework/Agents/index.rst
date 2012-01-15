@@ -37,6 +37,7 @@ Agents associated with Configuration System:
 
 .. toctree::
    :maxdepth: 2
+   
    CAUpdateAgent/index
    MyProxyRenewalAgent/index
    SystemLoggingDBCleaner/index

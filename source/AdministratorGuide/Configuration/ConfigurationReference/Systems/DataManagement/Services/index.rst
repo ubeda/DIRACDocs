@@ -30,8 +30,10 @@ presented in the following table:
 +-------------------------+----------------------------------------------+-----------------------------+
 
 DataManagement services are:
+
 .. toctree::
    :maxdepth: 2
+
    FileCatalog/index
    StorageElement/index
    StorageElementProxy/index

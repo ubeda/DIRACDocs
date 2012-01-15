@@ -21,8 +21,6 @@ Organizations such as LHC experiments. In more details the DIRAC WMS with Pilot 
 .. toctree::
    :hidden:
    
-   Overview/index
-   GettingStarted/index
    UserGuide/index 
    AdministratorGuide/index
    DeveloperGuide/index
@@ -33,21 +31,15 @@ Documentation sources
 
 +-----------------------------------------+----------------------------------------------------+
 |                                         |                                                    |
-| :doc:`Overview/index`                   | :doc:`AdministratorGuide/index`                    |
+| :doc:`UserGuide/index`                  | :doc:`DeveloperGuide/index`                        |
 |                                         |                                                    |
-| What is it all about ?                  | Administration of the DIRAC services               |
-|                                         |                                                    |
-+-----------------------------------------+----------------------------------------------------+
-|                                         |                                                    |
-| :doc:`GettingStarted/index`             | :doc:`DeveloperGuide/index`                        |
-|                                         |                                                    |
-| Quick start for impatient users         | Adding new functionality to DIRAC                  |
+| Everything users need to know           | Adding new functionality to DIRAC                  |
 |                                         |                                                    |
 +-----------------------------------------+----------------------------------------------------+
 |                                         |                                                    |
-| :doc:`UserGuide/index`                  | :doc:`CodeDocumentation/index`                     |
+| :doc:`AdministratorGuide/index`         | :doc:`CodeDocumentation/index`                     |
 |                                         |                                                    |
-| Everything users need to know           | Code reference                                     |
+| Administration of the DIRAC service     | Code reference                                     |
 |                                         |                                                    |
 +-----------------------------------------+----------------------------------------------------+
 

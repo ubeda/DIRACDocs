@@ -19,7 +19,6 @@ this directory giving the appropriate version of the DIRAC release::
 
   dirac-install -r v5r9
 
-Multiple other command line options are also available as described in :ref:`installing_dirac_client`.
 This installs the software and you should get the following directories and files created::
 
     drwxr-xr-x  8 atsareg lhcb  2048 Mar 25  2010 Linux_x86_64_glibc-2.5

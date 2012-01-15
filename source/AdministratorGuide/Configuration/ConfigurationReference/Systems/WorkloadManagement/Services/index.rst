@@ -28,3 +28,16 @@ presented in the following table:
 +-------------------------+----------------------------------------------+-----------------------------+
 | *Authorization/Default* | Define to who is required the authorization  | Default = all               |
 +-------------------------+----------------------------------------------+-----------------------------+
+
+WorkloadManagement services are:
+
+.. toctree::
+   :maxdepth: 2
+
+   JobManager/index
+   JobMonitoring/index
+   JobStateUpdate/index
+   Matcher/index
+   SandboxStore/index
+   WMSAdministrator/index
+   

@@ -30,7 +30,9 @@ presented in the following table:
 +-------------------------+----------------------------------------------+-----------------------------+
 
 Accounting system related services are:
+
 .. toctree::
    :maxdepth: 2
+
    DataStore/index
    ReportGenerator/index

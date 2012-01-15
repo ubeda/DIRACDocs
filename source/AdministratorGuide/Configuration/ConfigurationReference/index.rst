@@ -15,6 +15,7 @@ A similar tree with the description of all the attributes is tried to be represe
    Resources/index
    Systems/index
    WebSite/index
+   Tips/index
    
 
 Note: This configuration file can be edited by hand, but we strongly recommend you to configure using DIRAC Web Portal.
