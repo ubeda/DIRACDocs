@@ -13,6 +13,64 @@ In this section you will get more specific details about how RSS works internall
 After having read this page, you should know enough to tweak RSS and get the best 
 of it.
 
+---------
+DB Schema
+---------
+
+The RSS has a well defined onthology, which translated into SQL tables looks like
+this ( please, read the baptism part before getting a headache with this pseudo uml ! ).
+
+.. image:: ../../../_static/Systems/RSS/uml-schema.png
+   :alt: uml schema
+   :align: center 
+ 
+Due to the nature of the Grid, which is little bit heterogeneous, the UML relationships
+were slightly modified from the original path: Site -> Service -> Resource -> StorageElement.
+
+Let's see why the exotic relationships.
+
+We have LCG and DIRAC sites. The first ones are matched with GridSites, being possible to
+have more than one site belonging to a GridSite. On the other hand, DIRAC sites have
+no GridSite.
+
+A site has Services, one per ServiceType ( at most ). Now, comes the exotic part. 
+
+Resources belong to a service, well, to be exact, to a ServiceType. And also, they
+belong to either a GridSite or a Site. This is explained if we take into account the 
+StorageElements into this explanation. The Resources of type Storage are binded with
+GridSites, not with Sites ( a GridSite can point to more than one Site, so that would
+mean that there are a couple of sites that use the same Storage Resource ). For the
+rest of the Resources, they are binded with a site. Last comment is related with
+the way they are linked with the services. For the non Storage Resources it is fine,
+they are linked to the service <serviceType>@<siteName>. If <siteName> is None, then
+the service will be a list of services, one per site that belongs to the GridSite. 
+
+Finally, the StorageElements. If the Resource is of type Storage, then there is a
+StorageElement binded, which belongs to a GridSite, as said before. 
+
+After that *schema in a nutshell*, we have that each element follows a pretty similar
+structure, composed by four tables and a view. In fact, all tables are equal among the
+different elements, except the *Element* table, which stores the particularilites of the
+element.
+
+.. note ::
+
+  Elements are: Site, Service, Resource and StorageElement.
+  
+The most important table is ElementStatus, where all information related with the current
+status of the element is stored. Consequently, the ElementHistory table keeps the old
+ElementStatus entries ( updated automatically by the client when a new ElementStatus is added ).
+
+Finally the ElementPresent, which is a view of three of the tables, it speeds up some
+queries.
+
+For the time being, ElementScheduledStatus is not used. You can ignore it. 
+  
+
+.. image:: ../../../_static/Systems/RSS/elementSchema.png
+   :alt: element schema
+   :align: center
+
 ------------
 Architecture
 ------------
