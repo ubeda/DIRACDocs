@@ -118,7 +118,7 @@ For hadling sub-request one has to register their actions handlers using **Reque
 method. This method checks if handler is defined as a method of inherited class and then puts its
 definition into internal operation dispatcher dictionary with a key of sub-request's operation name.
 
-Each operation handler should have the signature::
+Each operation handler should follow the signature::
 
   def operationName( self, index, requestObj, subRequestAttrs, subRequestFiles )
 
@@ -197,7 +197,7 @@ Execution of ths FTS mode is following (see above diagram):
   
    * **TransferTask.checkReadyReplicas**: all files and their registered replicas are compared, if a particular file has been already replicated, its status is set to 'Done'
    * **TransferAgent.registerFiles**: failover registration machnism for files that have been already replicated (in *FTSSubmitAgent*) but not registred (error in registration in *FTSMonitorAgent*)
-   * **TransferAgent.scheduleFiles**: for all 'Waiting' files the replication tree is constructed using **StrategyHandler**, when it is ready, *TransferDB.FileToFTS*, *TransfeDB.FileToCat* and *TransferDB.ReplicationTree* records are pushed into *TransferDB* and file status is set to 'Scheduled', if for any reason *ReplicationTree* cannot be created, the request is put into task execution mode.  
+   * **TransferAgent.scheduleFiles**: for all 'Waiting' files the replication tree is constructed using **StrategyHandler**, when it is ready, *TransferDB.Channels*, *TransfeDB.FileToCat* and *TransferDB.ReplicationTree* records are pushed into *TransferDB* and file status is set to 'Scheduled', if for any reason *ReplicationTree* cannot be created, the request is put into task execution mode.  
  
  4. When all statuses of files are set to 'Done' in previous methods, sub-request status is  set to 'Done' and teh same check is repeated for all sub-requests and request itself. At this stage request is also finalised, if JobID attribute is different from 0.
   
@@ -205,16 +205,81 @@ The request is going to be executed many times, until all replicas are created, 
 during first execution, when there are still 'Waiting' files in sub-request. All following operations are only repeating 
 **TransferTask.checkReadyReplicas** and **TransferAgent.registerFiles** calls to update files statuses.   
 
-Installation
-------------
+Configuration and installation
+------------------------------
 
-CS options
-^^^^^^^^^^
+Options common to all agents
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Default configuration for agents::  
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| Option name             | Meaning                                           | Default value                                         |
++=========================+===================================================+=======================================================+
+| LogLevel                | Logging level                                     | LogLevel = INFO                                       |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| LogBackends             | Logging handlers                                  | LogBackends = stdout                                  |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| PollingTime             | Time period in seconds for agent's polling        | PollingTime = 60                                      |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| ControlDirectory        | Control directory location                        | ControlDirectory = control/DataManagement/<AgentName> |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| RequestsPerCycle        | Number of requests to process in one agent cycle  | RequestperCycle = 10                                  |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| MinProcess              | Minimal number of sub-processes running           | MinProcess = 1                                        |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| MaxProcess              | Maximal number of sub-processes running           | MaxProcess = 4                                        |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| ProcessPoolQueueSize    | Capacity of task queue in ProcessPool             | ProcessPoolQueueSize = 10                             |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| shifterProxy            | Default proxy used to process request             | shifterProxy = DataManager                            |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| RequestType             | Request type:                                     | RequestType = <requestType>                           |
+|                         |  * register for RegistrationAgent                 |                                                       |
+|                         |  * removal for RemovalAgent                       |                                                       |
+|                         |  * transfer for TransferAgent                     |                                                       |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| **<TaskName> subsection** (<TaskName> = RegistrationTask, RemovalTask, TransferTask)                                                |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| LogLevel                | Logging level                                     | LogLevel = INFO                                       |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| LogBackends             | Logging handlers                                  | LogBackends = stdout                                  |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+
+TransferAgent specific options
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| Option name             | Meaning                                           | Default value                                         |
++=========================+===================================================+=======================================================+
+| TaskMode                | Flag to disable/enable tasks for processing       | TaskMode = True                                       |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| FTSMode                 | Flag to disable/enable FTS scheduling             | FTSMode = True                                        |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| ThroughputTimescale     | Time period used to monitor FTS transfer history  | ThroughptuTimescale = 3600                            |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| **StrategyHandler subsection**                                                                                                      |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| HopSigma                | Acceptable time shift to start of FTS transfer    | HopSigma = 0.0                                        |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| SchedulingType          | Transfer speed calculation:                       | SchedulingType = Files                                |
+|                         |  * number of files per hour (Files)               |                                                       |
+|                         |  * amount of data per hour (Througput)            |                                                       |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| ActiveStrategies        | List of active startegies to use:                 | ActiveStrategies = MinimiseTotalWait                  | 
+|                         | DynamicThroughput, MinimiseTotalWait, Simple,     |                                                       |
+|                         | Swarm                                             |                                                       |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+| AcceptableFailureRate   | Percentage limit of success rate in monitored FTS | AcceptableFailureRate = 75                            |
+|                         | transfers to accept/reject FTS channel from       |                                                       | 
+|                         | scheduling.                                       |                                                       |
++-------------------------+---------------------------------------------------+-------------------------------------------------------+
+
+Default options
+^^^^^^^^^^^^^^^
+
+Default configuration for all agents::  
 
   TransferAgent {
-      LogLevel = DEBUG
+      LogLevel = INFO
       LogBackends = stdout
       PollingTime = 60
       ControlDirectory = control/DataManagement/TransferAgent
@@ -228,7 +293,7 @@ Default configuration for agents::
       FTSMode = True
       ThroughputTimescale = 3600
       StrategyHandler {
-        LogLevel = DEBUG
+        LogLevel = INFO
         LogBackends = stdout
         HopSigma = 0.0
         SchedulingType = File
@@ -236,13 +301,13 @@ Default configuration for agents::
         AcceptableFailureRate = 75
       }
       TransferTask {
-        LogLevel = DEBUG
+        LogLevel = INFO
         LogBackends = stdout
       }
    }
 
   RegistrationAgent {
-    LogLevel = DEBUG
+    LogLevel = INFO
     LogBackends = stdout
     PollingTime = 60
     ControlDirectory = control/DataManagement/RegistrationAgent
@@ -253,13 +318,13 @@ Default configuration for agents::
     RequestType = register
     shifterProxy = DataManager
     RegistrationTask {
-      LogLevel = DEBUG
+      LogLevel = INFO
       LogBackends = stdout
     }
   }
 
   RemovalAgent {
-    LogLevel = DEBUG
+    LogLevel = INFO
     LogBackends = stdout
     PollingTime = 60
     ControlDirectory = control/DataManagement/RemovalAgent
@@ -270,26 +335,28 @@ Default configuration for agents::
     RequestType = removal
     shifterProxy = DataManager
     RemovalTask {
-      LogLevel = DEBUG
+      LogLevel = INFO
       LogBackends = stdout
     }
   }
 
 
+Installation procedure
+^^^^^^^^^^^^^^^^^^^^^^
 
+1. **RegistrationAgent** and **RemovalAgent**
 
-All agents
-^^^^^^^^^^
+  Follow the normal installation procedure, but make sure the new configuration sections is in place and updated.
 
-Follow the normal installation procedure, but make sure the new configuration sections is in place and updated.
+2. **TransferAgent** in mixed mode (*FTSMode* and *TaskMode*)
 
-TransferAgent mixed mode (LHCb offline)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  This is the default configuration that can be used i.e. in LHCb DIRAC prod system.
 
-Make sure FTS agents and databases are installed and properly configured (*TransferDB*, *FTSMonitorAgent* and *FTSSubmitAgent*). 
-Install **TransferAgent**. 
+  Make sure FTS agents and databases are installed and properly configured (*TransferDB*, *FTSMonitorAgent* and *FTSSubmitAgent*). 
+  Install **TransferAgent**. 
 
-TransferAgent in TaskMode (LHCb online only)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3. **TransferAgent** in *TaskMode* only
 
-Install **TransferAgent**, disable FTSMode in its configuration section. 
+  This mode should be used in LHCb online version of DIRAC or for VOs without FTS service available.
+
+  Install **TransferAgent**, disable *FTSMode* in its configuration section. 
