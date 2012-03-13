@@ -8,3 +8,4 @@ Here are described some useful utilities that can be used for coding DIRAC compo
    :maxdepth: 2
 
    ThreadPool/index
+   ProcessPool/index
