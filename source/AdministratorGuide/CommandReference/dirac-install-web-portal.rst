@@ -10,5 +10,3 @@ Usage::
 
   dirac-install-web-portal [option|cfgfile] ...
 
-Arguments::
-

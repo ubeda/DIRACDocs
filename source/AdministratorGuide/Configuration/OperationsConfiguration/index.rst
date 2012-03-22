@@ -10,6 +10,6 @@ The following list contains what can be configured under */Operations*:
 
 .. toctree::
    :maxdepth: 1
-      
+
    JobScheduling/index
 
