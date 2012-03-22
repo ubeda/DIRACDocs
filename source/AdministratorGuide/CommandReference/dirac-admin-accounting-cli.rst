@@ -10,13 +10,3 @@ Usage::
 
   Command line administrative interface to DIRAC Accounting DataStore Service
 
-Usage::
-
-  dirac-admin-accounting-cli [option|cfgfile] ... 
-
-  Command line administrative interface to DIRAC Accounting DataStore Service
-
-Usage::
-
-  dirac-admin-accounting-cli [option|cfgfile] ... 
-

@@ -1,5 +1,5 @@
-Registry
-==========
+Resources - Section
+===================
 
 In this section all the physical resources than can be used by DIRAC users are described.
 
