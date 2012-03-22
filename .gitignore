@@ -5,3 +5,7 @@
 *.py[co]
 build
 
+
+#vim crap
+*~
+*.swp
