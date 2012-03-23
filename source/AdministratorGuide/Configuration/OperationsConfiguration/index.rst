@@ -12,4 +12,5 @@ The following list contains what can be configured under */Operations*:
    :maxdepth: 1
 
    JobScheduling/index
+   Pilots/index
 
