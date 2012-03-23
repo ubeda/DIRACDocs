@@ -1,3 +1,5 @@
+.. _csoperationsinfo:
+
 Operations - Section
 ====================
 

@@ -1,4 +1,4 @@
-.. _dirac-operations-cs:
+.. _csoperationsinfo:
 
 =========================================
 Configuration of Operational Parameters
