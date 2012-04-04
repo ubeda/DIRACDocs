@@ -5,7 +5,7 @@ Developer Guide
 The DIRAC Developer Guide is describing the procedures and rules for developing new DIRAC components.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    TestingEnvironment/index
    DevelopmentEnvironment/index
