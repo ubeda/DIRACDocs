@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Service / RequestManager - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Service / RequestManager - Sub-subsection
 ==================================================================================
 
 RequestManager is the implementation of the RequestDB service in the DISET framework.
