@@ -1,4 +1,4 @@
-Systems / RequestManagement / <SETUP> / URLs - Sub-subsection
+Systems / RequestManagement / <INSTANCE> / URLs - Sub-subsection
 =============================================================
 
 RequestManagement Services URLs.
