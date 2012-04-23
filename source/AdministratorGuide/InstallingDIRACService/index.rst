@@ -37,7 +37,9 @@ Requirements
          iptables -t nat -I PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 8443
 
       - Grid host certificates in pem format;
-      - At least one of the servers of the installation must have updated CAs and CRLs files;
+      - At least one of the servers of the installation must have updated CAs and CRLs files; if you want to install
+         the standard Grid CAs you can follow the instructions at https://wiki.egi.eu/wiki/EGI_IGTF_Release. They 
+         are usally installed /etc/grid-security/certificates 
       - If gLite third party services are needed (for example, for the pilot job submission via WMS 
         or for data transfer using FTS) gLite User Interface must be installed and the environment set up 
         by "sourcing" the corresponding script, e.g. /etc/profile.d/grid-env.sh.
@@ -132,14 +134,14 @@ be taken:
         #
         #  DIRAC release version (this is an example, you should find out the current 
         #  production release)
-        Release = v5r13
-        #  Python version os the installation
+        Release = v6r3p7
+        #  Python version of the installation
         PythonVersion = 26
         #  To install the Server version of DIRAC (the default is client)
         InstallType = server
         #  LCG python bindings for SEs and LFC. Specify this option only if your installation
         #  uses those services
-        # LcgVer = 2010-11-20
+        # LcgVer = 2012-02-20
         #  If this flag is set to yes, each DIRAC update will be installed
         #  in a separate directory, not overriding the previous ones
         UseVersionsDir = yes
@@ -164,7 +166,8 @@ be taken:
         Setup = MyDIRAC-Production
         #  Default name of system instances 
         InstanceName = Production
-        #  Flag to skip download of CAs
+        #  Flag to skip download of CAs, on the first Server of your installation you need to get CAs
+        #Ê installed by some external means
         SkipCADownload = yes
         #  Flag to use the server certificates
         UseServerCertificate = yes
@@ -204,6 +207,7 @@ be taken:
         #
         #  Name of the installation host (default: the current host )
         #  Used to build the URLs the services will publish
+        #  For a test installation you can use 127.0.0.1
         # Host = dirac.cern.ch
         Host = 
         #  List of Services to be installed
@@ -252,6 +256,20 @@ not available yet).
 
 It is also possible to include any number of additional systems, services, agents and databases to be installed by "install_site.sh".
 
+**Important Notice:** after executing install_site.sh (or dirac-setup-site) a runsvdir process is kept running. This 
+is a watchdog process that takes care to keep DIRAC component running on your server. If you want to remove your 
+installation (for instance if you are testing your install .cfg) you should first remove links from startup directory, kill the runsvdir, the runsv processes::
+
+      #!/bin/bash
+      source /opt/dirac/bashrc
+      RUNSVCTRL=`which runsvctrl`
+      chpst -u dirac $RUNSVCTRL d /opt/dirac/startup/*
+      killall runsv svlogd
+      killall runsvdir
+      # If you did also installed a MySQL server uncomment the next line
+      dirac-stop-mysql
+
+
 .. _install_additional_server:
 
 Additional server installation
@@ -273,12 +291,12 @@ operation is the registration of the new host in the already functional Configur
         #
         #  DIRAC release version (this is an example, you should find out the current 
         #  production release)
-        Release = v5r13
+        Release = v6r3p7
         #  To install the Server version of DIRAC (the default is client)
         InstallType = server
         #  LCG python bindings for SEs and LFC. Specify this option only if your installation
         #  uses those services
-        # LcgVer = 2010-11-20
+        # LcgVer = 2012-02-20
         #  If this flag is set to yes, each DIRAC update will be installed
         #  in a separate directory, not overriding the previous ones
         UseVersionsDir = yes
@@ -352,7 +370,7 @@ Together with a script like (it assumes that in your server DIRAC is using *dira
       RUNSVCTRL=`which runsvctrl`
       chpst -u dirac $RUNSVCTRL d /opt/dirac/startup/*
       killall runsv svlogd
-      killall runsvctrl
+      killall runsvdir
       /opt/dirac/pro/mysql/share/mysql/mysql.server stop  --user=dirac
       sleep 10
       /opt/dirac/pro/mysql/share/mysql/mysql.server start --user=dirac
