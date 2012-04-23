@@ -12,6 +12,26 @@ Arguments::
 
   Site:     Name of the Site 
 
+  Retrieves site mask logging information.
+
+Usage::
+
+  dirac-admin-site-mask-logging [option|cfgfile] ... Site ...
+
+Arguments::
+
+  Site:     Name of the Site 
+
+  Retrieves site mask logging information.
+
+Usage::
+
+  dirac-admin-site-mask-logging [option|cfgfile] ... Site ...
+
+Arguments::
+
+  Site:     Name of the Site 
+
 Example::
 
   $ dirac-admin-site-mask-logging LCG.IN2P3.fr

@@ -1,17 +1,20 @@
 .._data-management-system
 
 =======
+
 ======================
 Data Management System
 ======================
 
 .. contents:: Table of contents
-   :depth: 3
+   :depth: 4
+  
 
 The DIRAC Data Management System (DMS), together with the DIRAC Storage Management System (SMS) provides the necessary functionality to execute and control all activities related with your data. the DMS provides from the basic functionality to upload a local file in a StorageElement (SE) and register the corresponding replica in the FileCatalog (FC) to massive data replications using FTS or retrievals of data archived on Tape for it later processing.
 
 To achieve this functionality the DMS and SMS require a proper description of the involved external servers (SE, FTS, etc.) as well as a number of Agents and associated Servers that animate them. In the following sections the different aspects of each functional component are explained in some detail.
 
+---------------
 StorageElements
 ---------------
 
@@ -34,6 +37,7 @@ DIRAC provides an abstraction of a SE interface that allows to access different 
       }
     }
 
+----------------------
 FTS transfers in DIRAC
 ----------------------
 
@@ -155,3 +159,6 @@ In order to configure and test support for FTS transfers in your DIRAC installat
 Using this script, the request to the FTS server will be formulated following the information configured in DIRAC, and will be submitted form your client to the selected FTS server with your local credential. Make sure you are using a proxy that is authorized at your FTS server (usually only some specific users in the VO are allowed, contact the administrators of the site offering you this server in case of doubts).
 
 **Important Note** At this point your DIRAC installation is ready to handle asynchronous Transfer Requests using FTS instead of using the third party transfer logic provided by the TransferAgent. The current version of the TransferAgent does not allow execute it at the same time than the ReplicationScheduler agent (in the same setup), both agents will try to execute all transfer requests submitted to the system. A temporary solution is to install a dedicate setup for FTS transfers with just the components above and the ReplicationScheduler.
+
+
+.. include:: agents.rst 

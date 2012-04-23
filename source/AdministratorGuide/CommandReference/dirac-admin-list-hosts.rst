@@ -12,6 +12,26 @@ Options::
 
   -e   --extended        : Show extended info 
 
+Usage::
+
+  dirac-admin-list-hosts.py (<options>|<cfgFile>)* 
+
+ 
+
+Options::
+
+  -e   --extended        : Show extended info 
+
+Usage::
+
+  dirac-admin-list-hosts.py (<options>|<cfgFile>)* 
+
+ 
+
+Options::
+
+  -e   --extended        : Show extended info 
+
 Example::
 
   $  dirac-admin-list-hosts

@@ -22,8 +22,6 @@ Selectors
 
   **Status**
 
-
-
   **GridType**
 
   **MaskStatus**

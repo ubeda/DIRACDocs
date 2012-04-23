@@ -186,4 +186,8 @@ Readability and maintainability
 **R27**
   Method invocations should have arguments separated, at least by one space. In case there 
   are long or many arguments, put them each on a different line.
+
+**R28**
+  When doing lookup in dictionaries, don't use ```dict.has_key(x)``` - it is depreciated and much slower than ```x in dict``` 
+
   

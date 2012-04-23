@@ -15,7 +15,7 @@ flags are common to all DIRAC scripts making use of the *parseCommandLine* metho
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    dirac-admin-accounting-cli
    dirac-admin-add-group
@@ -51,6 +51,7 @@ flags are common to all DIRAC scripts making use of the *parseCommandLine* metho
    dirac-admin-list-users
    dirac-admin-modify-user
    dirac-admin-pilot-summary
+   dirac-admin-proxy-upload
    dirac-admin-reoptimize-jobs
    dirac-admin-request-summary
    dirac-admin-reset-job
@@ -66,3 +67,49 @@ flags are common to all DIRAC scripts making use of the *parseCommandLine* metho
    dirac-admin-upload-proxy
    dirac-admin-user-quota
    dirac-admin-users-with-proxy
+   dirac-configuration-cli
+   dirac-configuration-dump-local-cache
+   dirac-configuration-shell
+   dirac-configure
+   dirac-create-distribution-tarball
+   dirac-create-svn-branch
+   dirac-create-svn-tag
+   dirac-deploy-scripts
+   dirac-distribution
+   dirac-externals-requirements.err
+   dirac-externals-requirements.out
+   dirac-externals-requirements
+   dirac-fix-ld-library-path
+   dirac-framework-ping-service
+   dirac-install-agent
+   dirac-install-db
+   dirac-install-service
+   dirac-install-web-portal
+   dirac-install
+   dirac-jobexec
+   dirac-monitoring-get-components-status
+   dirac-platform
+   dirac-repo-monitor
+   dirac-restart-component
+   dirac-restart-mysql
+   dirac-rss-reassign-token
+   dirac-rss-renew-token
+   dirac-service
+   dirac-setup-site
+   dirac-stager-monitor-request
+   dirac-stager-stage-files
+   dirac-start-component
+   dirac-start-mysql
+   dirac-status-component
+   dirac-stop-component
+   dirac-stop-mysql
+   dirac-transformation-archive
+   dirac-transformation-clean
+   dirac-transformation-cli
+   dirac-transformation-remove-output
+   dirac-transformation-resolve-problematics
+   dirac-transformation-verify-outputdata
+   install_bashrc.sh.rst
+   install_minimal.cfg.rst
+   install_site.sh.rst
+

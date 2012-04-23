@@ -1,3 +1,5 @@
+.. _jobpriorities:
+
 ========================
 Job Priority Handling
 ========================
@@ -34,7 +36,7 @@ On top of that users can specify a "UserPriority" to their jobs. To reflect that
 Dynamic share corrections
 ===========================
 
-DIRAC includes a priority correction mechanism. The idea behind it is to look at the past history and alter the priorities assigned based on it. It can have multiple plugins but currently it only has one. All correctors have a CS section to configure themselves under /Operations/Scheduling/<setup>/ShareCorrections. The option Operations/Scheduling/<setup>/ShareCorrections/ShareCorrectorsToStart defines witch correctors will be used in each iteration.
+DIRAC includes a priority correction mechanism. The idea behind it is to look at the past history and alter the priorities assigned based on it. It can have multiple plugins but currently it only has one. All correctors have a CS section to configure themselves under /Operations/<vo>/<setup>/JobScheduling/ShareCorrections. The option /Operations/<vo>/<setup>/JobScheduling/ShareCorrections/ShareCorrectorsToStart defines witch correctors will be used in each iteration.
 
 WMSHistory corrector
 ------------------------

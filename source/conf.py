@@ -107,7 +107,8 @@ today_fmt = '%H:%M %d/%m/%Y %Z'
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
-exclude_trees = []
+#ADRI: Ignore old stuff that is not included in the compilation
+exclude_trees = [ 'AdministratorGuide/Configuration/ConfigurationReference' ]
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -140,7 +141,7 @@ html_theme = 'default'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #html_theme_options = {
-#  'sidebarbgcolor':'#D5E2F2'                      
+#  'sidebarbgcolor':'#D5E2F2'
 #}
 
 # Add any paths that contain custom themes here, relative to this directory.

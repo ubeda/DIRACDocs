@@ -6,6 +6,14 @@ Usage::
 
   dirac-admin-request-summary.py (<options>|<cfgFile>)* 
 
+Usage::
+
+  dirac-admin-request-summary.py (<options>|<cfgFile>)* 
+
+Usage::
+
+  dirac-admin-request-summary.py (<options>|<cfgFile>)* 
+
 Example::
 
   $ dirac-admin-request-summary.py (<options>|<cfgFile>)*

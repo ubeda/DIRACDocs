@@ -6,6 +6,14 @@ Usage::
 
   dirac-admin-get-banned-sites.py (<options>|<cfgFile>)* 
 
+Usage::
+
+  dirac-admin-get-banned-sites.py (<options>|<cfgFile>)* 
+
+Usage::
+
+  dirac-admin-get-banned-sites.py (<options>|<cfgFile>)* 
+
 Example::
 
   $dirac-admin-get-banned-sites.py

@@ -12,4 +12,4 @@ User Guide
    InstallingDIRACClient/index
    WebPortalReference/index
    CommandReference/index
-   Tutorials/Index
+   Tutorials/index

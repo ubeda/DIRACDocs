@@ -6,6 +6,14 @@ Usage::
 
   dirac-admin-pilot-summary.py (<options>|<cfgFile>)* 
 
+Usage::
+
+  dirac-admin-pilot-summary.py (<options>|<cfgFile>)* 
+
+Usage::
+
+  dirac-admin-pilot-summary.py (<options>|<cfgFile>)* 
+
 Example::
 
   $ dirac-admin-pilot-summary

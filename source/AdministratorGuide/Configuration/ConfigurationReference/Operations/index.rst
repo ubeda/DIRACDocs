@@ -1,8 +1,12 @@
+.. _csoperationsinfo:
+
 Operations - Section
 ====================
 
 This section allows to configure options concerning to:
 
+- Scheduling
+- Pilots
 - InputDataPolicy
 - Job description
 - Service Shifters
@@ -15,5 +19,6 @@ In the short term, most of this schema will be moved into [vo]/[setup] dependent
    Email/index
    InputDataPolicy/index
    JobDescription/index
+   Scheduling/index
    Shifter/index
    VOs/index

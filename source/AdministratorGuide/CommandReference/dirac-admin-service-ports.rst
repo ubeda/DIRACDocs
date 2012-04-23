@@ -12,6 +12,26 @@ Arguments::
 
   Setup:    Name of the setup 
 
+  Print the service ports for the specified setup
+
+Usage::
+
+  dirac-admin-service-ports [option|cfgfile] ... [Setup]
+
+Arguments::
+
+  Setup:    Name of the setup 
+
+  Print the service ports for the specified setup
+
+Usage::
+
+  dirac-admin-service-ports [option|cfgfile] ... [Setup]
+
+Arguments::
+
+  Setup:    Name of the setup 
+
 Example::
 
   $ dirac-admin-service-ports

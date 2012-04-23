@@ -6,6 +6,14 @@ Usage::
 
   dirac-admin-show-task-queues.py (<options>|<cfgFile>)* 
 
+Usage::
+
+  dirac-admin-show-task-queues.py (<options>|<cfgFile>)* 
+
+Usage::
+
+  dirac-admin-show-task-queues.py (<options>|<cfgFile>)* 
+
 Example::
 
   $ dirac-admin-show-task-queues

@@ -12,6 +12,26 @@ Options::
 
   -H:  --host=           :    Target host 
 
+Usage::
+
+  dirac-admin-sysadmin-cli.py (<options>|<cfgFile>)* 
+
+ 
+
+Options::
+
+  -H:  --host=           :    Target host 
+
+Usage::
+
+  dirac-admin-sysadmin-cli.py (<options>|<cfgFile>)* 
+
+ 
+
+Options::
+
+  -H:  --host=           :    Target host 
+
 Example::
 
   $ dirac-admin-sysadmin-cli --host dirac.in2p3.fr
