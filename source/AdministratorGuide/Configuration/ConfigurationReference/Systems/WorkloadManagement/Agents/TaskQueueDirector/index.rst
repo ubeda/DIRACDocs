@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / TaskQueueDirector - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / TaskQueueDirector - Sub-subsection
 ====================================================================================
 
 The TaskQueue Director Agent controls the submission of pilots via the PilotDirectors. 

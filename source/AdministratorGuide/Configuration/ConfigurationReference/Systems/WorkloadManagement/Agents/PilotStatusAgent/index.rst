@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / PilotStatusAgent - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / PilotStatusAgent - Sub-subsection
 ===================================================================================
 
 The Pilot Status Agent updates the status of the pilot jobs if the PilotAgents database.

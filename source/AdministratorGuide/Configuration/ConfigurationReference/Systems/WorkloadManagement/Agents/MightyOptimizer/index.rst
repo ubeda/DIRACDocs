@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / MigthyOptimizer - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / MigthyOptimizer - Sub-subsection
 ==================================================================================
 
 SuperOptimizer

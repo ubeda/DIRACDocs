@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / TaskQueueDirector / DIRAC - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / TaskQueueDirector / DIRAC - Sub-subsection
 ============================================================================================
 
 Options available to configure DIRAC pool submission are showed in a table below:

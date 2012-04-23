@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / StatesAccountingAgent - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / StatesAccountingAgent - Sub-subsection
 ========================================================================================
 
 StatesAccountingAgent sends periodically numbers of jobs in various states for various sites to the 

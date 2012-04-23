@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / SiteDirector - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / SiteDirector - Sub-subsection
 ===============================================================================
 
 Site director is in charge of submit pilot jobs to special Computing Elements.

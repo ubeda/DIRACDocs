@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents - Sub-subsection
 ================================================================
 
  In this subsection each agent is described.

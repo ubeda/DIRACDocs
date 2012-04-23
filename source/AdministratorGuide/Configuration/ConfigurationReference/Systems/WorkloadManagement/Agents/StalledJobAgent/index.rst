@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / StalledJobAgent - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / StalledJobAgent - Sub-subsection
 ==================================================================================
 
 The StalledJobAgent hunts for stalled jobs in the Job database. Jobs in "running"state not receiving a 

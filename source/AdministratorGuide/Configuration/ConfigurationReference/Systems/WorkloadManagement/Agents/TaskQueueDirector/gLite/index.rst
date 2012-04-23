@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / TaskQueueDirector / gLite - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / TaskQueueDirector / gLite - Sub-subsection
 ============================================================================================
 
 Options available to configure gLite pool submission are showed in a table below:

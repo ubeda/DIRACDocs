@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Agents / InputDataAgent - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Agents / InputDataAgent - Sub-subsection
 =================================================================================
 
 The Input Data Agent queries the file catalog for specified job input data and adds the relevant information to the 
