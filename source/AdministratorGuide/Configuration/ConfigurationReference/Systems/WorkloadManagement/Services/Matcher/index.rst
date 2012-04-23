@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Service / Matcher - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Service / Matcher - Sub-subsection
 ===========================================================================
 
 Matcher class. It matches Agent Site capabilities to job requirements.

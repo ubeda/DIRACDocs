@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / JobWrapper - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / JobWrapper - Sub-subsection
 ====================================================================
 
 The Job Wrapper Class is instantiated with arguments tailored for running

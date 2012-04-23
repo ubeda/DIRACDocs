@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Services - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Services - Sub-subsection
 ==================================================================
 
 All the services have common options to be configured for each one. Those options are

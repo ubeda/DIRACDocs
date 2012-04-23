@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / Service / WMSAdministrator - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / Service / WMSAdministrator - Sub-subsection
 ====================================================================================
 
 This is a DIRAC WMS administrator interface.

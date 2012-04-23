@@ -1,4 +1,4 @@
-Systems / WorkloadManagement / <SETUP> / URLs - Sub-subsection
+Systems / WorkloadManagement / <INSTANCE> / URLs - Sub-subsection
 ==============================================================
 
 WorkloadManagement Services URLs.
