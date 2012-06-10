@@ -14,3 +14,5 @@ The procedure to add new configuration data and to update the existing settings 
 
    ConfigurationReference/index
    
+   OperationsConfiguration/index
+   Registry/index
