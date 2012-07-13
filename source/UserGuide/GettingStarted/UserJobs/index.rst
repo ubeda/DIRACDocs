@@ -10,3 +10,4 @@ Here is a brief description of how to submit and follow simple user jobs in DIRA
    CommandLine/index
    WebJobSubmission/index
    DiracAPI/index
+   JDLReference/index
