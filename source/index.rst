@@ -1,5 +1,5 @@
 .. image:: _static/DIRAC-logo.png
-  :width: 300
+  :width: 300pt
   :target: http://diracgrid.org
 
 =====================================
