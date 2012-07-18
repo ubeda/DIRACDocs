@@ -3,8 +3,8 @@ ProcessPool
 -----------
 
 :author:  Krzysztof Daniel Ciba <Krzysztof.Ciba@NOSPAMgmail.com>
-:date:    Tue, 13th Mar 2012
-:version: first and final
+:date:    Tue, 8th Jul 2012
+:version: second and final
 
 The **ProcessPool** creates a pool of worker sub-processes to handle a queue of tasks
 much like the producers/consumers paradigm. Users just need to fill the queue
