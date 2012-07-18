@@ -348,19 +348,30 @@ Default configuration for all agents::
 Installation procedure
 ^^^^^^^^^^^^^^^^^^^^^^
 
-1. **RegistrationAgent** and **RemovalAgent**
+1. On a fresh DIRAC installation procedure is very simple:
 
-  Follow the normal installation procedure, but make sure the new configuration sections is in place and updated.
-
-2. **TransferAgent** in mixed mode (*FTSMode* and *TaskMode*)
+ * **RegistrationAgent** and **RemovalAgent**
+   
+ Follow the normal installation procedure, but make sure the new configuration sections is in place and updated.
+ 
+ * **TransferAgent** in mixed mode (*FTSMode* and *TaskMode*)
 
   This is the default configuration that can be used i.e. in LHCb DIRAC prod system.
 
-  Make sure FTS agents and databases are installed and properly configured (*TransferDB*, *FTSMonitorAgent* and *FTSSubmitAgent*). 
-  Install **TransferAgent**. 
+  Make sure FTS agents and databases are installed and properly configured (*TransferDB*, *FTSMonitorAgent*,  
+  *FTSSubmitAgent* and *FTSCleanupAgent*). Install **TransferAgent**.
 
-3. **TransferAgent** in *TaskMode* only
+ * **TransferAgent** in *TaskMode* only
 
   This mode should be used in LHCb online version of DIRAC or for VOs without FTS service available.
 
   Install **TransferAgent**, disable *FTSMode* in its configuration section. 
+
+2. Upgrading exisiting DIRAC installation:
+
+ * stop **TransferAgent**, **ReplicationScheduler**, **RegistrationAgent** and **RemovalAgent** agents
+
+ * update configuration sections by replacing **TransferAgent**, **RemovalAgent** and **RegistrationAgent** 
+   and deleting **ReplicationScheduler** fragments 
+
+ * start new agents using *runsvctrl u* command
