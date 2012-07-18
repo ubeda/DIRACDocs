@@ -142,7 +142,7 @@ WorkingProcess life cycle
 The *ProcessPool* is creating workers on demand, checking if their is not exceeding required limits. 
 The pool worker life cycle is managed by *WorkingProcess* itself. 
 
-.. image:: ../../../_static/Systems/Core/ProcessPool_workingProcess.png
+.. image:: ../../../_static/Systems/Core/workingProcess.png
    :alt: WorkingProcess life cycle
    :align: center 
 
