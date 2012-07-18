@@ -158,7 +158,4 @@ In order to configure and test support for FTS transfers in your DIRAC installat
 
 Using this script, the request to the FTS server will be formulated following the information configured in DIRAC, and will be submitted form your client to the selected FTS server with your local credential. Make sure you are using a proxy that is authorized at your FTS server (usually only some specific users in the VO are allowed, contact the administrators of the site offering you this server in case of doubts).
 
-**Important Note** At this point your DIRAC installation is ready to handle asynchronous Transfer Requests using FTS instead of using the third party transfer logic provided by the TransferAgent. The current version of the TransferAgent does not allow execute it at the same time than the ReplicationScheduler agent (in the same setup), both agents will try to execute all transfer requests submitted to the system. A temporary solution is to install a dedicate setup for FTS transfers with just the components above and the ReplicationScheduler.
-
-
 .. include:: agents.rst 
