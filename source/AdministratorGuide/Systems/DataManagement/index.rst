@@ -117,12 +117,12 @@ In order to configure and test support for FTS transfers in your DIRAC installat
    Script.parseCommandLine()
    from DIRAC.DataManagementSystem.DB.TransferDB import TransferDB
    
-   sourceSE = 'SE-Name1'
-   destinationSE = 'SE-Name2'
+   sourceSite = 'ShortSite-Name1'         # LCG.CERN.ch -> CERN
+   destinationSite = 'ShortSite-Name2'
 
    transferDB = TransferDB()
 
-   res = transferDB.createChannel( sourceSE, destinationSE )
+   res = transferDB.createChannel( sourceSite, destinationSite )
    if not res['OK']:
      print res['Message']
      exit(-1)
