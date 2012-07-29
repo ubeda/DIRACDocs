@@ -3,8 +3,8 @@ ProcessPool
 -----------
 
 :author:  Krzysztof Daniel Ciba <Krzysztof.Ciba@NOSPAMgmail.com>
-:date:    Tue, 13th Mar 2012
-:version: first and final
+:date:    Tue, 8th Jul 2012
+:version: second and final
 
 The **ProcessPool** creates a pool of worker sub-processes to handle a queue of tasks
 much like the producers/consumers paradigm. Users just need to fill the queue
@@ -59,7 +59,7 @@ where parameters are:
   :param callable callback: callback function definition (default *None*)
   :param callable exceptionCallback: exception callback function definition (default *None*)
   :param bool usePoolCallbacks: execute pool callbacks, if defined (default *False*)  
-  :param int timeOut: time limit for execution (default *0* - no limit)
+  :param int timeOut: time limit for execution in seconds (default *0* means no limit)
   :param bool blocking: flag to block queue until task is en-queued
 
 The *callback*, *exceptionCallback*, *usePoolCallbacks*, *timeOut* and *blocking* parameters are all optional. 
@@ -84,7 +84,6 @@ has to call::
 
 To monitor if **ProcessPool** is able to execute a new task one should use **ProcessPool.hasFreeSlots()** and **ProcessPool.isFull()**, 
 but boolean values returned could be misleading, especially if en-queued tasks are big. 
-
 
 Callback functions
 ------------------
@@ -137,3 +136,25 @@ To use this procedure one has to execute::
 where *timeout* is a time period in seconds between terminating and killing of sub-processes. 
 The *ProcessPool* instance can be cleanly destroyed once this method is called.
  
+WorkingProcess life cycle
+-------------------------
+
+The *ProcessPool* is creating workers on demand, checking if their is not exceeding required limits. 
+The pool worker life cycle is managed by *WorkingProcess* itself. 
+
+.. image:: ../../../_static/Systems/Core/workingProcess.png
+   :alt: WorkingProcess life cycle
+   :align: center 
+
+Once created worker is spawing a watchdog thread checking on every 5 seconds PPID of worker. If parent process 
+executing *ProcessPool* instance is dead for some reason (an so the PPID is 1, as orphaned process is adopted by init process), 
+watchdog is sending SIGTERM and SIGKILL signals to the worker main thread in interval of 30 seconds, preventing too long adoption and 
+closing worker life cycle to save system resources.
+ 
+Just after spawning of a watchdog, the main worker thread starts also to query input task queue. After ten fruitless attempts 
+(when task queue is empty), it is commiting suicide emptying the *ProcessPool* worker's slot. 
+
+When input task queue is not empty and *ProcessTask* is successfully read, *WorkingProcess* is spawning a new thread in which 
+task processing is executed. This task thread is then joined and results are put to the results queue if they are available 
+and ready. If task thread is stuck and task timout is defined, *WorkingProcess* is stopping task thread forcefully returning 
+*S_ERROR( 'Timed out')* to the *ProcessPool* results queue.
