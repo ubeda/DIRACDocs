@@ -82,7 +82,7 @@ Job Output
 	import sys
 	dirac = Dirac()
 	jobid     = sys.argv[1]
-	print dirac.getOutput(jobid)
+	print dirac.getOutputSandbox(jobid)
 	
   And, executing the script::
 	
