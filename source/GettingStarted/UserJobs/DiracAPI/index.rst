@@ -23,7 +23,7 @@ Creating a DIRAC Job using API
   The API allows creating DIRAC jobs using the Job object, specifying job requirements.::
   
 	from DIRAC.Interfaces.API.Job import Job
-	from DIRAC.Interfaces.API.DIRAC import DIRAC
+	from DIRAC.Interfaces.API.Dirac import Dirac
 	
 	dirac = Dirac()
 	j = Job() 
