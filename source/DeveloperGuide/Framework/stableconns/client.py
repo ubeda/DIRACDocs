@@ -1,8 +1,12 @@
 import sys
 import time
+from DIRAC import S_OK, S_ERROR
+from DIRAC.Core.Base import Script
 from DIRAC.Core.DISET.MessageClient import MessageClient
 
-def sendPingMsg( self, msgClient, pingid = 0 ):
+Script.parseCommandLine()
+
+def sendPingMsg( msgClient, pingid = 0 ):
   """
   Send Ping message to the server
   """
@@ -39,7 +43,7 @@ if __name__ == "__main__":
   msgClient = MessageClient( "Framework/PingPong" )
   msgClient.subscribeToMessage( 'Pong', pongCB )
   msgClient.subscribeToDisconnect( disconnectedCB )
-  result = self.__msgClient.connect()
+  result = msgClient.connect()
   if not result[ 'OK' ]:
     print "CANNOT CONNECT: %s" % result[ 'Message' ]
     sys.exit(1)

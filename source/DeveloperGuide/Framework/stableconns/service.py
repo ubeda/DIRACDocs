@@ -1,4 +1,4 @@
-
+import types
 from DIRAC import S_OK, S_ERROR
 from DIRAC.Core.DISET.RequestHandler import RequestHandler
 
@@ -6,7 +6,7 @@ from DIRAC.Core.DISET.RequestHandler import RequestHandler
 class PingPongHandler( RequestHandler ):
 
   MSG_DEFINITIONS = { 'Ping' : { 'id' : ( types.IntType, types.LongType ) },
-                      'Pong' : { 'id' : ( types.IntType, types.LongType ) }
+                      'Pong' : { 'id' : ( types.IntType, types.LongType ) } }
 
   auth_conn_connected = [ 'all' ]
   def conn_connected( self, trid, identity, kwargs ):
@@ -36,7 +36,7 @@ class PingPongHandler( RequestHandler ):
     Callback for Ping message
     """
     pingid = msgObj.id
-    pongMsg = self.srv_msgCreate( "Pong" )
+    result = self.srv_msgCreate( "Pong" )
     if not result[ 'OK' ]:
       #Something went wrong :P
       return result
