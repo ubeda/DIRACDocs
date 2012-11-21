@@ -32,7 +32,8 @@ functional although a simple service::
     
     def initializeSimpleMessageHandler( serviceInfo ):
     
-      global currentMessage = "No Message"
+      global currentMessage, messageAuthor
+      currentMessage = "No Message"
       messageAuthor = "No Author" 
       return S_OK()
     
