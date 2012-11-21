@@ -1,0 +1,13 @@
+@import url( "nature.css" );
+/*@import url( "pyramid.css" );*/
+
+
+body {
+  font-family: "Nobile", sans-serif;
+  font-size: 1.1em;
+}
+
+div.related {
+  font-weight: bold;
+  background-color: #78B219;
+}
