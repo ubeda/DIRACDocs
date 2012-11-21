@@ -1,4 +1,4 @@
-.. image:: _static/DIRAC-logo-transp.png   
+.. image:: _static/DIRAC-logo.png
   :width: 300
   :target: http://diracgrid.org
 
