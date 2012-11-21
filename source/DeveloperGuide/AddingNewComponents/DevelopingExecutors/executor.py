@@ -15,7 +15,8 @@ class PingPongExecutor( ExecutorModule ):
 
   def processTask( self, taskid, taskData ):
     """
-    This is the function that actually does the work. It receives the task, does the processing and sends the modified task data back.
+    This is the function that actually does the work. It receives the task,
+     does the processing and sends the modified task data back.
     """
     taskData[ 'bouncesLeft' ] -= 1
     return S_OK( taskData )
