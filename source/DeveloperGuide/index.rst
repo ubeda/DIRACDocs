@@ -18,5 +18,6 @@ The DIRAC Developer Guide is describing the procedures and rules for developing 
    TestingEnvironment/index
    ReleaseProcedure/index
    Internals/index
+   REST/index
    
    
