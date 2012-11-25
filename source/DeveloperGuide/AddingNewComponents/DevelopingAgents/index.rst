@@ -2,7 +2,7 @@
 Developing Agents
 ======================================
 
-Service Handler
+Simplest Agent
 -------------------
 
 All the DIRAC Agents are built in the same framework where developers should provide
