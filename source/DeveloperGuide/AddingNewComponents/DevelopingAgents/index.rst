@@ -78,83 +78,69 @@ of the base RequestHandler class.
 The other useful method is getCSOption() which allows to extract options from the Service
 section in the Configuration Service.
 
-Now comes the definition of the '''execute''' method..
+Now comes the definition of the '''execute''' method.
 This method is executed evry time Agent runs. Place your code inside this method.
 Other methods can be defined in the same file and used via '''execute''' method
 
 The result must always be returned as an S_OK or S_ERROR structure.
 
-Default Service Configuration parameters
+Default Agent Configuration parameters
 ------------------------------------------
 
-The Service Handler is written. It should be placed to the Service directory of one
+The Agent is written. It should be placed to the Agent directory of one
 of the DIRAC System directories in the code repository, for example FrameworkSystem. 
 The default Service Configuration parameters should be added to the corresponding 
 System ConfigTemplate.cfg file. In our case the Service section in the ConfigTemplate.cfg 
 will look like the following::
 
-  Services
+  Agents
   {
-    SimpleMessage
+    SimplestAgent
     {
-      Port = 9188
-      MessageOfTheDay = The weather is fine today
-      Authorization
-      {
-        Default = all
-        sendMessage = ServiceAdministrator
-      }
+      LogLevel = INFO
+      LogBackends = stdout
+      PollingTime = 60
+      Message = still working...
     }
   }  
   
-Note that you should choose the port number on which the service will be listening which
-is not conflicting with other services. This is the default value which can be changed later
-in the Configuration Service. The Port parameter should be specified for all the services.
-The MessageOfTheDay is this service specific option.
+Polling time define execution time scheduling.
+The Message is this agent specific option.
 
-The Authorization section specifies access writes to all the Service interface methods.
-In our case by default the service is available for everybody. But the sendMessage interface
-method can only be called by a member of the DIRAC group which has ServiceAdministrator
-property.  
 
-Installing the Service
+Installing the Agent
 ------------------------
 
-Once the Service is ready it should be installed. The DIRAC Server installation is described
-in [[[[here]]]. If you are adding the Service to an already existing installation it is
+Once the Agent is ready it should be installed. The DIRAC Server installation is described
+in documentation. If you are adding the Agent to an already existing installation it is
 sufficient to execute the following in this DIRAC instance::
 
-  > dirac-install-service Framework SimpleMessage
+  > dirac-install-agent Framework SimplestAgent
   
 This command will do several things:
 
-  * It will create the SimpleMessage Service directory in the standard place and will set 
+  * It will create the SimpleAgent Agent directory in the standard place and will set 
     it up under the ''runit'' control - the standard DIRAC way of running permanent processes. 
-  * The SimpleMessage Service section will be added to the Configuration System. So, its
-    address and parameters will be available to clients.
+  * The SimplestAgent Agent section will be added to the Configuration System.
     
-The Service can be also installed using the SystemAdministrator CLI interface::
+The Agent can be also installed using the SystemAdministrator CLI interface::
 
-  > install service Framework SimpleMessage      
+  > install agent Framework SimplestAgent
   
-The SystemAdministrator interface can also be used to remotely control the Service, start or
-stop it, uninstall, get the Service status, etc.       
+The SystemAdministrator interface can also be used to remotely control the Agent, start or
+stop it, uninstall, get the Agent status, etc.       
 
-Calling the Service from a Client
+Checking the Agent output from log messages
 -----------------------------------
 
-Once the Service is installed and running it can be accessed from the clients in the way
-illustrated by the following code snippet::
+Login to dirac-admin-sysadmin-cli as administrator.
+Show log of SimplestAgent:
 
-  from DIRAC.Core.DISET.RPCClient import RPCClient
-  
-  simpleMessageService = RPCClient('Framework/SimpleMessage')
-  result = simpleMessageService.getMessage()
-  if not result['OK']:
-    print "Error while calling the service:", result['Message']
-  else:
-    for key,value in result['Value'].items():
-      print key,value
+  > show log Framework SimplestAgent
       
+An info message will appear in log:
+
+  Framewrok/SimplestAgent  INFO: message: still working...
+
 Note that the service is always returning the result in the form of S_OK/S_ERROR structure.        
  
