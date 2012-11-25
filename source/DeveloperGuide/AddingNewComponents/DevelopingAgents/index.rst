@@ -68,25 +68,21 @@ followed by the ''__RCSID__'' global module variable which is assigned the value
 
 Several import statements will be clear from the subsequent code.
 
-The Service name is SimpleMessage. The ''initializeSimpleMessageHandler'' method is
-called once when the Service is created. Here one can put creation and initialization
+The Agent name is SimplestAgent. The ''initialize'' method is
+called once when the Agent is created. Here one can put creation and initialization
 of the global variables if necessary.
 
-Now comes the definition of the SimpleMessageHandler class. One can define initialize()
-method with no arguments although this is not necessary. The details of the caller can
-be obtained using the "getRemoteCredentials()" method of the base RequestHandler class.
+One can define initialize() method with no arguments although this is not necessary.
+The details of the caller can be obtained using the "getRemoteCredentials()" method
+of the base RequestHandler class.
 The other useful method is getCSOption() which allows to extract options from the Service
 section in the Configuration Service.
 
-For each service interface method it is necessary to define *types_<method_name>* class 
-variable of the List type. Each element of the List is one or a list of possible types 
-of the method arguments in the same order as defined in the method definition. The types 
-are imported from the ''types'' standard python module.             
+Now comes the definition of the '''execute''' method..
+This method is executed evry time Agent runs. Place your code inside this method.
+Other methods can be defined in the same file and used via '''execute''' method
 
-The name of each method which will be accessible to the clients has *export_* prefix. Note that
-the clients will call the method without this prefix. Otherwise, it is an ordinary class method
-which takes the arguments provided by the client and returns the result to the client. The result
-must always be returned as an S_OK or S_ERROR structure.
+The result must always be returned as an S_OK or S_ERROR structure.
 
 Default Service Configuration parameters
 ------------------------------------------
