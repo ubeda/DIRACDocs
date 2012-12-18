@@ -5,7 +5,7 @@ DIRAC has been extended to provide the previously described language agnostic AP
 
 The *REST* interface enpoint is an *HTTPS* server provided in the *RESTDIRAC* module. This *HTTPS* server requires `Tornado <http://www.tornadoweb.org/>`_. If you don't have it installed just do::
 
-  pip install -U tornado>=2.4
+  pip install -U "tornado>=2.4"
 
 All requests to the *REST* API are *HTTP* requests. For more info about *REST* take a look `here <http://en.wikipedia.org/wiki/Representational_state_transfer>`_. From here on a basic understanding of the HTTP protocol is assumed.
 
