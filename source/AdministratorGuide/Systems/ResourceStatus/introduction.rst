@@ -40,9 +40,52 @@ You can find the details on the `RFC5`_.
 Element
 -------
 
---------
-Topology
---------
+An *Element* in the RSS world represents a Grid Element as described on the `RFC5`_. It can be any of the following:
+
+* Node
+* Resource
+* Site
+
+Elements are the information unit used on RSS. Everything is an Element, and all are treated equally, simplifying the design
+and reducing the complexity of the system. If all are treated equally, the reader may be wondering why three flavors instead
+of just an Element type. The answer for that question is simply to keep them separated. On the RSS they are treated equally,
+but in Real they have very different significance. Marking as unusable a Site or a CE on the RSS requires the same single and 
+unique operation. However, the consequences of marking as unusable a Site instead of one if its CEs by mistake are not negligible.
+So, you can also add "safety" as a secondary reason.   
+
+-----------
+ElementType
+-----------
+
+The Grid topology is not part of the RSS itself, but is worth mentioning the relations underneath to have a full picture. The Grid 
+is composed by a "un"certain number of Sites. Those sites are registered with their respective descriptions on the DIRAC CS as follows:
+
+::
+
+ /Resources/Sites
+                /CERN.ch
+                ...
+                /IN2P3.fr
+                        /Domains = EGI, LCG
+                        /ContactEmail = someone@somewhere
+                        /MoreDetails = blah, blah, blah
+                        /Computing
+                               /...
+                        /Storage
+                               /...              
+                /PIC.es
+                ... 
+
+Each Site can have any number of Resources, grouped into categories. In terms of RSS, those categories are *ElementTypes*. For the
+Resources Element, we have the following Element Types:
+
+* ComputingElement
+* StorageElement
+* ...
+
+And if we take a look to the ComputingElement Resources, we can see the pattern happening again.
+
+-> talk about queues
 
 -----
 State
