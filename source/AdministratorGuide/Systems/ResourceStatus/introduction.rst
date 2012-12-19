@@ -29,7 +29,7 @@ Ownership
 Parenthood
 ----------
 
-Resource() Helper
+Resources() Helper
 =================
 
 ---------------
@@ -40,9 +40,32 @@ Database schema
 Synchronizer
 ------------
 
+--------------
+Accessing data
+--------------
+
+Client
+======
+
+Server
+======
+
+Database
+========
+
 -----------
 Maintenance
 -----------
+
+TokenAgent
+==========
+
+DatabaseCleanerAgent
+====================
+
+SummarizeLogsAgent
+==================
+
 
 
 
