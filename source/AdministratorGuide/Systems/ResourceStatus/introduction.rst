@@ -85,7 +85,26 @@ Resources Element, we have the following Element Types:
 
 And if we take a look to the ComputingElement Resources, we can see the pattern happening again.
 
--> talk about queues
+::
+
+    .../Computing/some.cream.ce
+                         /CEType = CREAM
+                         /Host = some.cream.ce
+                         /Queues
+                                 /cream-sge-long
+                                           /Communities = VO1, VO2
+                                           /Domains = Grid1, Grid2
+                                           /MaxCPUTime = 
+                                           /SI00 = 
+                                           /MaxWaitingJobs =
+                                           /MaxTotalJobs =
+                                           /OutputURL =
+                                 ...
+                         ...
+
+Each CE Resource has any number of Nodes, in this case of the ElementType Queue.
+
+The list of ElementTypes per Element may vary depending on the CS/Resources section !
 
 -----
 State
