@@ -5,6 +5,9 @@ Resource Status System
 .. toctree::
    :maxdepth: 2
    
-   basics
+   introduction
+   configuration
+   usage
+   monitoring
 ..   baptism
 ..   design 
