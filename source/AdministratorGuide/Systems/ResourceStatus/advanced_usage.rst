@@ -1,6 +1,6 @@
-=====
-Usage
-=====
+==============
+Advanced Usage
+==============
 
 .. contents:: Table of contents
    :depth: 3

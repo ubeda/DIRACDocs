@@ -9,5 +9,7 @@ Resource Status System
    configuration
    usage
    monitoring
+   advanced_configuration
+   advanced_usage
 ..   baptism
 ..   design 
