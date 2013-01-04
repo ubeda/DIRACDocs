@@ -131,7 +131,7 @@ The SystemAdministrator interface can also be used to remotely control the Agent
 stop it, uninstall, get the Agent status, etc.       
 
 Checking the Agent output from log messages
------------------------------------
+------------------------------------------------
 
 Login to dirac-admin-sysadmin-cli as administrator.
 Show log of SimplestAgent:
