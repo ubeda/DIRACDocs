@@ -2,22 +2,23 @@
 Developing Commands
 ======================================
 
-Commands are one of the main interface for users. Commands are called "scripts" in DIRAC lingo. 
+Commands are one of the main interface tools for the users. Commands are also called *scripts* in DIRAC lingo. 
 
-Where to place them
-______________________
+Where to place scripts
+------------------------
 
-All scripts should live in the scripts directory of their parent system. For instance 
+All scripts should live in the *scripts* directory of their parent system. For instance, the command:: 
 
   dirac-wms-job-submit
 
-will live in 
+will live in::
 
   DIRAC/WorkloadManagementSystem/scripts/dirac-wms-job-submit.py
 
-When DIRAC is installed, all scripts will be placed in the scripts directory and stripped of the extension. This way users can see all the scripts in a single place and makes it easy to include all the scripts in the system PATH variable.
+When DIRAC is installed, all scripts will be placed in the scripts directory and stripped of the extension. 
+This way users can see all the scripts in a single place and it makes easy to include all the scripts in the 
+system PATH variable.
 
---------------
 Coding scripts
 --------------
 
