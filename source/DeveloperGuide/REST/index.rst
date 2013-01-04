@@ -1,20 +1,34 @@
 REST Interface
 ================
 
-DIRAC has been extended to provide the previously described language agnostic API.  This new API follows the *REST* style over *HTML* using *JSON* as the serialization format. *OAuth2* is used as the credentials delegation mechanism to the applications. All three technologies are widely used and have bindings already made for most of today's modern languages.  By providing this new API DIRAC can now be interfaced to any component written in most of today's modern languages.
+DIRAC has been extended to provide the previously described language agnostic API.  
+This new API follows the *REST* style over *HTML* using *JSON* as the serialization format. 
+*OAuth2* is used as the credentials delegation mechanism to the applications. All three 
+technologies are widely used and have bindings already made for most of today's modern languages.  
+By providing this new API DIRAC can now be interfaced to any component written in most of 
+today's modern languages.
 
-The *REST* interface enpoint is an *HTTPS* server provided in the *RESTDIRAC* module. This *HTTPS* server requires `Tornado <http://www.tornadoweb.org/>`_. If you don't have it installed just do::
+The *REST* interface enpoint is an *HTTPS* server provided in the *RESTDIRAC* module. This 
+*HTTPS* server requires `Tornado <http://www.tornadoweb.org/>`_. If you don't have it installed just do::
 
   pip install -U "tornado>=2.4"
 
-All requests to the *REST* API are *HTTP* requests. For more info about *REST* take a look `here <http://en.wikipedia.org/wiki/Representational_state_transfer>`_. From here on a basic understanding of the HTTP protocol is assumed.
+All requests to the *REST* API are *HTTP* requests. For more info about *REST* take a look 
+`here <http://en.wikipedia.org/wiki/Representational_state_transfer>`_. From here on a basic 
+understanding of the HTTP protocol is assumed.
 
 OAuth2 authentication
 ======================
 
-Whenever an application wants to use the API, DIRAC needs to know on behalf of which user the application is making the request. Users have to grant privileges to the application so DIRAC knows what to do with the request. Apps have to follow a `OAuth2 <http://oauth.net/2/>`_ flow to get a token that has user assigned privileges. There are two different flows to get a token depending on the app having access to the user certificate. Both flows are one or more *HTTP* queries to the *REST* server.
+Whenever an application wants to use the API, DIRAC needs to know on behalf of which user 
+the application is making the request. Users have to grant privileges to the application so 
+DIRAC knows what to do with the request. Apps have to follow a `OAuth2 <http://oauth.net/2/>`_ 
+flow to get a token that has user assigned privileges. There are two different flows to get a 
+token depending on the app having access to the user certificate. Both flows are one or more 
+*HTTP* queries to the *REST* server.
 
-* If the app has access to the user certificate: Make a *GET* request to */oauth2/auth* using the user certificate as the client
+* If the app has access to the user certificate: Make a *GET* request to */oauth2/auth* using 
+  the user certificate as the client
   certificate. That request has to include *grant_type=client_credentials* as *GET* parameter.
 * If the app does not have access to the user certificate (for instance a web portal): Has to:
 
@@ -25,7 +39,8 @@ Whenever an application wants to use the API, DIRAC needs to know on behalf of w
      * *redirect_uri* set to the URL where the user will be redirected after the request has been authorized. Optional.
      * *state* set to any value set by the app to maintain state between the request and the callback.
 
-  2. Once the user has authorized the request, it will be redirected to the *redirect_uri* defined either in the request or in the app
+  2. Once the user has authorized the request, it will be redirected to the *redirect_uri* defined either in the 
+     request or in the app
      registration in DIRAC. The user request will carry the following parameters:
 
      * *code* set to a temporal token
@@ -79,8 +94,9 @@ Job management
   Retrieve the job output sandbox
 
 **POST /jobs**
-  Submit a job. The API expects a manifest to be sent as a *JSON* object. Files can also be sent as a multipart request. If files
-  are sent, they will be added to the input sandbox and the manifest will be modified accordingly. An example of manifest can be::
+  Submit a job. The API expects a manifest to be sent as a *JSON* object. Files can also be sent as a multipart request. 
+  If files are sent, they will be added to the input sandbox and the manifest will be modified accordingly. An example 
+  of manifest can be::
 
     {
       Executable: "/bin/echo",
