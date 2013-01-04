@@ -78,7 +78,7 @@ Job management
   * *startJob*: Starting job for the query. By default is set to *0*.
   * Any job attribute can also be defined as a restriction in a HTTP list form. For instance::
     
-  Site=DIRAC.Site.com&Site=DIRAC.Site2.com&Status=Waiting
+     Site=DIRAC.Site.com&Site=DIRAC.Site2.com&Status=Waiting
 
 **GET /jobs/<jid>**
   Retrieve info about job with id=*jid*
