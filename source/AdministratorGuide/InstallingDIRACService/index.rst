@@ -167,7 +167,7 @@ be taken:
         #  Default name of system instances 
         InstanceName = Production
         #  Flag to skip download of CAs, on the first Server of your installation you need to get CAs
-        #Ê installed by some external means
+        #  installed by some external means
         SkipCADownload = yes
         #  Flag to use the server certificates
         UseServerCertificate = yes
