@@ -1,5 +1,5 @@
 Systems / Framework / <INSTANCE> / Service - Sub-subsection
-========================================================
+=============================================================
 
 All the services have common options to be configured for each one. Those options are
 presented in the following table:

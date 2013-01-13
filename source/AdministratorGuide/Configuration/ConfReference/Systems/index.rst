@@ -4,7 +4,7 @@ Systems configuration
 Each DIRAC system has its corresponding section in the Configuration namespace.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
    Accounting/index
    Configuration/index

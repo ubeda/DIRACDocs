@@ -1,5 +1,5 @@
 DataManagement System configuration
-==================================
+======================================
 
 In this subsection are described the databases, services and URLs related with the DataManagement system for each setup.
 
@@ -8,4 +8,5 @@ In this subsection are described the databases, services and URLs related with t
    
    Databases/index
    Services/index
+   Agents/index
    URLs/index

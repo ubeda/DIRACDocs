@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / JobWrapper - Sub-subsection
-====================================================================
+============================================================================
 
 The Job Wrapper Class is instantiated with arguments tailored for running
 a particular job. The JobWrapper starts a thread for execution of the job
