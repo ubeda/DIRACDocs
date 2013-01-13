@@ -184,7 +184,7 @@ contains all status information regarding that Elements family. The Status table
 However, if we need to keep track of the History of our Elements, the next two tables come into scene: <element>Log
 and <element>History. 
 
-.. image:: ../../../_static/Systems/RSS/ElementSchema.png  
+.. image:: ../../../_static/Systems/RSS/ElementSchemaDB.png  
    :alt: element schema
    :align: center
 
