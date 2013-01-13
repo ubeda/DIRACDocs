@@ -21,5 +21,6 @@ In the short term, most of this schema will be moved into [vo]/[setup] dependent
    InputDataPolicy/index
    JobDescription/index
    JobScheduling/index
+   Pilots/index
    Shifter/index
    VOs/index
