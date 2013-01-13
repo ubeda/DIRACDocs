@@ -30,6 +30,7 @@ presented in the following table:
 +-------------------------+----------------------------------------------+-----------------------------+
 
 DataStore services are:
+
 .. toctree::
    :maxdepth: 2
    
