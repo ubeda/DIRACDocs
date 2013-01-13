@@ -11,8 +11,5 @@ The procedure to add new configuration data and to update the existing settings 
    :maxdepth: 2
    
    ConfigurationStructure/index
-
-   ConfigurationReference/index
-   
+   ConfReference/index
    OperationsConfiguration/index
-   Registry/index

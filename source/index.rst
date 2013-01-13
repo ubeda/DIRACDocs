@@ -2,6 +2,13 @@
   :width: 300pt
   :target: http://diracgrid.org
 
+.. The following raw setting for the Guide enlarged title 
+
+.. raw:: html
+    
+   <style>  p.first { font-size:150%; }
+   </style>
+   
 =====================================
 DIRAC Documentation
 =====================================
@@ -29,19 +36,19 @@ Organizations such as LHC experiments. In more details the DIRAC WMS with Pilot 
 Documentation sources
 =====================
 
-+-----------------------------------------+----------------------------------------------------+
-|                                         |                                                    |
-| :doc:`UserGuide/index`                  | :doc:`DeveloperGuide/index`                        |
-|                                         |                                                    |
-| Everything users need to know           | Adding new functionality to DIRAC                  |
-|                                         |                                                    |
-+-----------------------------------------+----------------------------------------------------+
-|                                         |                                                    |
-| :doc:`AdministratorGuide/index`         | :doc:`CodeDocumentation/index`                     |
-|                                         |                                                    |
-| Administration of the DIRAC service     | Code reference                                     |
-|                                         |                                                    |
-+-----------------------------------------+----------------------------------------------------+
++-----------------------------------------+-----------------------------------------------------------+
+|                                         |                                                           |
+| :doc:`UserGuide/index`                  | :doc:`DeveloperGuide/index`                               |
+|                                         |                                                           |
+| Everything users need to know           | Adding new functionality to DIRAC                         |
+|                                         |                                                           |
++-----------------------------------------+-----------------------------------------------------------+
+|                                         |                                                           |
+| :doc:`AdministratorGuide/index`         | :doc:`CodeDocumentation/index`                            |
+|                                         |                                                           |
+| Administration of the DIRAC service     | Code reference                                            |
+|                                         |                                                           |
++-----------------------------------------+-----------------------------------------------------------+
 
 This documentation in also available in `PDF <../latex/DiracDocs.pdf>`_ version
 

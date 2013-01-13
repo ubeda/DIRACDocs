@@ -20,6 +20,6 @@ In the short term, most of this schema will be moved into [vo]/[setup] dependent
    Email/index
    InputDataPolicy/index
    JobDescription/index
-   Scheduling/index
+   JobScheduling/index
    Shifter/index
    VOs/index

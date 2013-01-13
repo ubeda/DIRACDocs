@@ -12,4 +12,6 @@ Each DIRAC system has its corresponding section in the Configuration namespace.
    WorkloadManagement/index
    RequestManagement/index
    Framework/index
+   StorageManagement/index
+   Transformation/index
    
