@@ -1,10 +1,13 @@
 .._data-management-system
 
-=======
-
 ======================
 Data Management System
 ======================
+
+.. toctree::
+   :maxdepth: 1
+   
+   agents
 
 .. contents:: Table of contents
    :depth: 4
