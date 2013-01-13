@@ -1,6 +1,7 @@
 .. raw:: html
 
-    <style> .subtitle {font-size:150%; line-height:2.0em; } 
+    <style> .subtitle { font-size:150%; line-height:2.0em; } 
+            p.first { background-color:lightgray; }
     </style>
 
 .. role:: subtitle
