@@ -160,4 +160,4 @@ Other commands:
     dirac-stager-monitor-request
     dirac-stager-stage-files
 
-
+    install_site.sh
