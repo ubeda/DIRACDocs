@@ -17,69 +17,56 @@ before jumping into the code development. Please, go through a GIT tutorial. The
 Sharing your development
 ------------------------------------- 
  
-Once you're familiar with how GIT works. You're ready to clone the DIRAC source repository. 
+Once you're familiar with the basics of how GIT works. You're ready to clone the DIRAC source repository. 
 DIRAC repository is hosted at https://github.com/DIRACGrid/DIRAC . From there you have two options:
 
  - Easy way: 
  
   1. Register at *github.com* and set up your account
-  2. On *github.com* fork the DIRAC repository by going to https://github.com/DIRACGrid/DIRAC and clicking the *Fork* button on the top right part of the page.
+  2. On *github.com* fork the DIRAC repository by going to https://github.com/DIRACGrid/DIRAC and clicking the *Fork* button on 
+     the top right part of the page.
   3. By forking a repository *github.com* will create a https://github.com/yourusername/DIRAC repository where you are the administrator.
-  4. Clone that repository in your work space
-  5. Start hacking DIRAC
+  4. Clone that repository in your local work space
+  5. Start working on the DIRAC code
   6. Push changes to your *github.com* repository
-  7. Issue a pull request to DIRAC by going to https://github.com/yourusername/DIRAC, switching to the branch you want DIRAC to pull changes from and clicking the pull request button. Please issue pull requests from new feature or fix branches. Do not issue pull requests from your master branch.
+  7. Issue a pull request to DIRAC by going to https://github.com/yourusername/DIRAC, switching to the branch you want DIRAC to 
+     pull changes from and clicking the pull request button. 
   
- - *Do-it-yourself* way:
- 
-  1. Clone DIRAC repository from https://github.com/DIRACGrid/DIRAC to a **bare** repository where you have write access and the rest of the world has read access. For naming purposes we'll call this repository your **public** repository. Public access can be via http or git. Remote access can be via ssh. For instance you can create this repository somewhere everyone has http access and you can access via ssh.
-  2. Clone your bare repository to your work space. We'll call this repository your **private** repository.
-  3. Start hacking DIRAC
-  4. Push your changes to your **public** repository
-  5. Send a pull request via mail stating from which URL branch and revision should the pull be done.
-  
- 
-The first approach requires registering on *github.com* but it is far easier to set up than the second approach. We recommend the first one.
-
 -------------------------------------------
 Setting up your development installation
 -------------------------------------------
 
-DIRAC developers tend to use eclipse for developing DIRAC. It is not mandatory but it is recommended. The following steps will try to guide you on setting up a development installation for DIRAC in eclipse. If you don't need/want eclipse just follow the next section and skip the rest.
+DIRAC developers tend to use eclipse for developing DIRAC. It is not mandatory but it is recommended. The following steps 
+will try to guide you on setting up a development installation for DIRAC in eclipse. If you don't need/want eclipse just 
+follow the next section and skip the rest.
 
 Checking out the source
 =========================
 
 First you need to check out all the sources you need to start working on DIRAC or on any extension. Go to a clean directory 
-(from now on I'll call that directory *devRoot*) and:
+( from now on we will call that directory *devRoot* ) and:
  
  1. Go to your *devRoot* directory
- 2. Check out DIRAC source code. DIRAC source is hosted on *github.com*. But depending on which option you went for in the 
-    previous *Before jumping into code* section you need to proceed differenty:
- 
-  - If you went for the *easy way* just clone your DIRAC repo (remember you are in a clean directory where you will set up 
-    the development environment)::
+ 2. Check out DIRAC source code. DIRAC source is hosted on *github.com*. So, you have to do::
       
       git clone git@github.com:yourusername/DIRAC.git 
      
-    will create a *devRoot/DIRAC* for you.
-  - If you want for the *Do-it-yourself* way, clone your public repo with::
-     
-      git clone yourgitpublicrepourl DIRAC
+    This will create a *devRoot/DIRAC* for you.
       
-  - If you don't intend to develop DIRAC and just need it for developing extensions do::
+    If you don't intend to develop DIRAC and just need it for developing extensions do::
      
       git clone https://github.com/DIRACGrid/DIRAC.git
  
- 3. That will create a *remote* in the git repository called *origin* that points to your source repository. In that repository
-    you will publish your code to be released. But all the releases will be done in the https://github.com/DIRACGrid/DIRAC repository. 
-    You need to define a remote for that repository to be able to pull newly released changes into your working repo. We will name that
-    repository *upstream*::
+ 3. This will create a *remote* pointer ( in git terms ) in the local git repository called *origin* that points to your source repository. 
+    In that repository you will publish your code to be released. But all the releases will be done in the 
+    https://github.com/DIRACGrid/DIRAC repository. 
+    You need to define a *remote* for that repository to be able to pull newly released changes into your working repo. 
+    We will name that repository *upstream*::
 
      git remote add upstream https://github.com/DIRACGrid/DIRAC.git  
      git fetch upstream                                          
   
- 4. If you need DIRACWeb do the same with the repo at https://github.com/DIRACGrid/DIRACWeb
+ 4. If you need DIRACWeb extension, for example, do the same with the repo at https://github.com/DIRACGrid/DIRACWeb
  5. If you need to check out any extension do so in the *devRoot* directory. For instance::
  
        svn co svn+ssh://svn.cern.ch/reps/lbdirac/LHCbDIRAC/trunk/LHCbDIRAC LHCbDIRAC
@@ -89,7 +76,7 @@ First you need to check out all the sources you need to start working on DIRAC o
  
        DIRAC/Core/scripts/dirac-deploy-scripts.py
 
- 8. Get the DIRAC External binaries by running::
+ 8. Get the DIRAC External binaries for you platform by running::
  
        scripts/dirac-install -X -t server -i 26
     
@@ -98,18 +85,22 @@ First you need to check out all the sources you need to start working on DIRAC o
  
        scripts/dirac-configure -S setupyouwanttorun -C configurationserverslist -n sitename -H
 
- 10. From now on, everytime you want to publish something to your public repository do::
+ 10. From now on, every time you want to publish something to your public repository do::
 
-       git push origin localbranch:remotebranch  #If you want to push a new branch
+       git push origin localbranch:remotebranch  
+       
+     if you want to push a new branch
   
-     or::
+     or just::
 
-       git push origin #For an already pushed branch
+       git push origin 
+       
+     for an already pushed branch
 
  11. To bring changes from the release repository do::
 
        git fetch upstream
-       git merge upstream/branchname
+       git rebase upstream/integration
  
 You're ready for DIRAC development !
 
