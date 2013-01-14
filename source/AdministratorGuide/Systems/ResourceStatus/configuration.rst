@@ -21,6 +21,8 @@ This section is all you need to get the RSS working. The parameters are the foll
              
 :State: < Active || InActive ( default if not specified ) > is the flag used on the ResourceStatus helper to switch between CS and RSS - during the transition from CS to RSS. If Active, RSS is used.
 :RecordLogs: < Active ( default if not specified ) || InActive > allows the ResourceStatusDB to log into the <element>Log tables.
+:Cache: < 300 ( default if not specified ) || <int> > [ seconds ] sets the lifetime for the cached information on RSSCache.
+:CacheHistory: < 24 ( default if not specified ) || <int> > [ hours ] sets the lifetime for the history recorded of RSSCache.
 :StatusTypes: if a ElementType has more than one StatusType ( aka StorageElement ), we have to specify them here, Otherwise, "all" is taken as StatusType.
 
 .. note :: To not interfere with previous RSSConfiguration it has been named RSSConfiguration2 on purpose.
