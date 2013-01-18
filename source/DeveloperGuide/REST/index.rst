@@ -27,10 +27,19 @@ flow to get a token that has user assigned privileges. There are two different f
 token depending on the app having access to the user certificate. Both flows are one or more 
 *HTTP* queries to the *REST* server.
 
-* If the app has access to the user certificate: Make a *GET* request to */oauth2/auth* using 
-  the user certificate as the client
-  certificate. That request has to include *grant_type=client_credentials* as *GET* parameter.
-* If the app does not have access to the user certificate (for instance a web portal): Has to:
+* If the app has access to the user certificatea it has to *GET* request to */oauth2/token* using the user certificate as the client certificate. That request has to include as *GET* parameters:
+
+  * *grant_type* set to *client_credentials*
+  * *group* set to the dirac group the token is being request for.
+
+    * To retrieve a list of valid groups for a certificate, make a *GET* request to */oauth2/groups* using the certificate.
+
+  * *setup* set to the dirac setup the token is being request for.
+
+    * To retrieve a list of valid setups for a certificate, make a *GET* request to */oauth2/setups* using the certificate.
+
+      
+* If the app does not have access to the user certificate (for instance a web portal) it has to:
 
   1. Redirect the user to */oauth2/auth* passing as *GET* parameters:
 
