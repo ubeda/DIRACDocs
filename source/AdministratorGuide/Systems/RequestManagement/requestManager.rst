@@ -30,9 +30,12 @@ For the proper request processing there should be only one central RequestManage
 service up and running - prefereably close to the hosts on which request processing 
 agents (DISETForwardingAgent, RequestCleaningAgent from RequestManagement, TransferAgent, 
 RegistrationAgent and RemovalAgent from DataManagement and so on) are running. 
+
 For the RequestProxies situation is quite oposite: they should be installed in the several different places 
-all over the world, preferably close to the biggest CEs or SEs used in the community. Take the LHCb VO as an example, where
-each of Tier1 is running its own RequestProxy.
+all over the world, preferably close to the biggest CEs or SEs used in the community. Take the LHCb VO as 
+an example, where each of Tier1 is running its own RequestProxy. Please also notice that you have to have at 
+least one RequesyProxy running somewhere for normal operation, preferably not on the node used by RequestManager 
+service. 
 
 Example configuration::
 
@@ -59,7 +62,7 @@ Example configuration::
         }
       }
       URLs {
-        ## the only one URL to RequestManagerHandler
+        ## the only instance of RequestManagerHandler
         RequestManager = dips://<central>:9143/RequestManagement/RequestManager
         ## comma separated list to all RequestProxyHandlers
         RequestProxyURLs = dips://<hostA>:9161/RequestManagement/RequestProxy, dips://<hostB>:9161/RequestManagement/RequestProxy
