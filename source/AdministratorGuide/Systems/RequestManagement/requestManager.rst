@@ -3,8 +3,8 @@ Request Manager and RequestProxies
 ----------------------------------
 
 :author:  Krzysztof Daniel Ciba <Krzysztof.Ciba@NOSPAMgmail.com>
-:date:    Tue, 18th Jan 2013
-:version: first and final
+:date:    Fri, 18th Jan 2013
+:version: first
 
 Overview
 --------
@@ -70,6 +70,27 @@ Example configuration::
  
 Don't forget to put correct FQDNs instead of <central>, <hostA>, <hostB> in above example!   
 
+
+Upgrading from DIRAC v6r5
+-------------------------
+
+The DIRAC releases prior to v6r6 were using different model for request forwarding: each CE 
+was able to run its own RequestManager (local), preferebly with the file backend (which BTW is obsolete now). 
+Requests created by jobs were put to the local RequestDB using local RequestManager URL. A separate locally running 
+ZuziaAgent [#]_ was picking them up and sending to the central RequestManager service.
+
+For upgrading from the old to the new forwarding model you should follow this procedure:
+
+* install and configure the RequestProxy service in all the places where ZuziaAgent is running, make sure 
+  the port used by this service (9161) is visible to the outside world
+* stop ZuziaAgent when no more requests are held in the local RequestDB
+* stop local RequestManager
+* update DIRAC configuration by adding RequestProxy FQDN to the RequestProxyURLs 
+  and removing ZuziaAgent and local RequestManager sections 
+  
+
+.. rubric:: Footnotes
  
+.. [#] Zuzia is a little Susan in Polish, the given name of a daugther of DIRAC team developer who had left the project a few years ago. 
 
 
