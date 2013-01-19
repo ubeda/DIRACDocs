@@ -11,7 +11,6 @@ The DIRAC Developer Guide is describing the procedures and rules for developing 
    DevelopmentEnvironment/index
    BranchingModel/index  
    AddingNewComponents/index
-   TestingEnvironment/index
    Framework/index
    Utilities/index
    CodingConvention/index
