@@ -70,7 +70,8 @@ Several import statements will be clear from the subsequent code.
 
 The Agent name is SimplestAgent. The ''initialize'' method is
 called once when the Agent is created. Here one can put creation and initialization
-of the global variables if necessary.
+of the global variables if necessary. **Please not that the __init__ method cannot be used 
+when developing an Agent. It is used to intialize the module before it can be used**
 
 One can define initialize() method with no arguments although this is not necessary.
 The details of the caller can be obtained using the "getRemoteCredentials()" method
