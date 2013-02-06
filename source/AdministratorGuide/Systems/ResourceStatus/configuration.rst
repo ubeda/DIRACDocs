@@ -5,7 +5,7 @@ RSS Configuration
 The basic configuration for the RSS is minimal, and must be placed under the Operations section,
 preferably on Defaults subsection. ::
 
-  /Operations/Defaults/RSSConfiguration2
+  /Operations/Defaults/ResourceStatus
                           /Config
                               State      = Active
                               RecordLogs = Active
