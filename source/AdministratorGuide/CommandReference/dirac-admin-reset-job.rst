@@ -12,28 +12,9 @@ Arguments::
 
   JobID:    DIRAC ID of the Job 
 
-  Reset a job or list of jobs in the WMS
-
-Usage::
-
-  dirac-admin-reset-job [option|cfgfile] ... JobID ...
-
-Arguments::
-
-  JobID:    DIRAC ID of the Job 
-
-  Reset a job or list of jobs in the WMS
-
-Usage::
-
-  dirac-admin-reset-job [option|cfgfile] ... JobID ...
-
-Arguments::
-
-  JobID:    DIRAC ID of the Job 
-
 Example::
 
   $ dirac-admin-reset-job 1848
   Reset Job 1848
+
 

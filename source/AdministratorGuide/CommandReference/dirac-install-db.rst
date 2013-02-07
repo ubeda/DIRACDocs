@@ -2,7 +2,7 @@
 dirac-install-db
 =======================
 
-2011-12-04 16:55:59 UTC Framework NOTICE: DIRAC Root Path = /afs/in2p3.fr/home/h/hamar/DIRAC-v6r0
+2013-02-06 12:30:30 UTC Framework NOTICE: DIRAC Root Path = /afs/in2p3.fr/home/h/hamar/DIRAC-v6r7
 
 Create a new DB on the local MySQL server
 
@@ -13,4 +13,5 @@ Usage::
 Arguments::
 
   DB: Name of the Database (mandatory) 
+
 

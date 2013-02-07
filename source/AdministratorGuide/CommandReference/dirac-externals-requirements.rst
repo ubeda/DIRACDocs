@@ -12,3 +12,4 @@ Options::
 
   -t:  --type=           : Installation type. 'server' by default. 
 
+

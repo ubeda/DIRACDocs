@@ -6,3 +6,4 @@ Usage::
 
   dirac-monitoring-get-components-status.py (<options>|<cfgFile>)* 
 
+

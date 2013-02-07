@@ -2,7 +2,7 @@
 dirac-install-service
 ============================
 
-2011-12-04 16:56:17 UTC Framework NOTICE: DIRAC Root Path = /afs/in2p3.fr/home/h/hamar/DIRAC-v6r0
+2013-02-06 13:06:05 UTC Framework NOTICE: DIRAC Root Path = /afs/in2p3.fr/home/h/hamar/DIRAC-v6r7
 
 Do the initial installation and configuration of a DIRAC service
 
@@ -21,4 +21,9 @@ Arguments::
 Options::
 
   -w   --overwrite       : Overwrite the configuration in the global CS 
+
+  -m:  --module=         : Python module name for the service code 
+
+  -p:  --parameter=      : Special service option  
+
 

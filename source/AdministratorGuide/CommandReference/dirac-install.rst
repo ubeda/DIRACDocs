@@ -2,7 +2,7 @@
 dirac-install
 ====================
 
-2011-12-04 16:55:57 UTC dirac-install [NOTICE]  Processing installation requirements
+2013-02-06 12:30:27 UTC dirac-install [NOTICE]  Processing installation requirements
 
 Usage::
 
@@ -34,6 +34,10 @@ Usage::
 
  X   externalsOnly        : Only install external binaries
 
+ M:  defaultsURL=         : Where to retrieve the global defaults from
+
+ T:  Timeout=             : Timeout for downloads (default = %s)
+
 Known options and default values from /defaults section of releases file
 
  Release = 
@@ -55,4 +59,7 @@ Known options and default values from /defaults section of releases file
  NoAutoBuild = False
 
  Debug = False
+
+ Timeout = 300
+
 

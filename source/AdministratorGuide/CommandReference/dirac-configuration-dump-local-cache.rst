@@ -14,7 +14,10 @@ Options::
 
   -f:  --file=           : Dump Configuration data into <file> 
 
+  -r   --raw             : Do not make any modification to the data 
+
 Example::
 
   $ dirac-configuration-dump-local-cache -f /tmp/dump-conf.txt
   
+

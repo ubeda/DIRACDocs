@@ -12,26 +12,6 @@ Arguments::
 
   Site:     Name of the Site 
 
-  Print Configuration information for a given Site
-
-Usage::
-
-  dirac-admin-site-info [option|cfgfile] ... Site ...
-
-Arguments::
-
-  Site:     Name of the Site 
-
-  Print Configuration information for a given Site
-
-Usage::
-
-  dirac-admin-site-info [option|cfgfile] ... Site ...
-
-Arguments::
-
-  Site:     Name of the Site 
-
 Example::
 
   $ dirac-admin-site-info LCG.IN2P3.fr
@@ -41,4 +21,5 @@ Example::
    'MoUTierLevel': '1',
    'Name': 'IN2P3-CC',
    'SE': 'IN2P3-disk, DIRAC-USER'}
+
 

@@ -12,27 +12,8 @@ Arguments::
 
   User:     User name 
 
-  Remove User from Configuration
-
-Usage::
-
-  dirac-admin-delete-user [option|cfgfile] ... User ...
-
-Arguments::
-
-  User:     User name 
-
-  Remove User from Configuration
-
-Usage::
-
-  dirac-admin-delete-user [option|cfgfile] ... User ...
-
-Arguments::
-
-  User:     User name 
-
 Example::
 
   $ dirac-admin-delete-user vhamar
+
 

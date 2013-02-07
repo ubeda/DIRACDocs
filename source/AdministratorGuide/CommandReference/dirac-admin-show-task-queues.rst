@@ -6,14 +6,6 @@ Usage::
 
   dirac-admin-show-task-queues.py (<options>|<cfgFile>)* 
 
-Usage::
-
-  dirac-admin-show-task-queues.py (<options>|<cfgFile>)* 
-
-Usage::
-
-  dirac-admin-show-task-queues.py (<options>|<cfgFile>)* 
-
 Example::
 
   $ dirac-admin-show-task-queues
@@ -25,3 +17,4 @@ Example::
        OwnerGroup: dirac_user
          Priority: 1.0
             Setup: Dirac-Production
+

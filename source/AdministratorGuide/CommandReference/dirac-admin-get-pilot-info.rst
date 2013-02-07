@@ -18,38 +18,6 @@ Options::
 
   -e   --extended        : Get extended printout 
 
-  Retrieve available info about the given pilot
-
-Usage::
-
-  dirac-admin-get-pilot-info [option|cfgfile] ... PilotID ...
-
-Arguments::
-
-  PilotID:  Grid ID of the pilot 
-
- 
-
-Options::
-
-  -e   --extended        : Get extended printout 
-
-  Retrieve available info about the given pilot
-
-Usage::
-
-  dirac-admin-get-pilot-info [option|cfgfile] ... PilotID ...
-
-Arguments::
-
-  PilotID:  Grid ID of the pilot 
-
- 
-
-Options::
-
-  -e   --extended        : Get extended printout 
-
 Example::
 
   $  dirac-admin-get-pilot-info https://marlb.in2p3.fr:9000/26KCLKBFtxXKHF4_ZrQjkw
@@ -70,3 +38,4 @@ Example::
                                                           'Status': 'Done',
                                                           'SubmissionTime': datetime.datetime(2011, 2, 21, 12, 27, 52),
                                                           'TaskQueueID': 399L}}
+

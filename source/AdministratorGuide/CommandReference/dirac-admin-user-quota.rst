@@ -7,6 +7,7 @@ Show storage quotas for specified users or for all registered users if nobody is
 Usage::
 
    dirac-admin-user-quota [user1 ...]
+
  
 
 Example::
@@ -20,3 +21,4 @@ Example::
   vhamar         |           None
   ------------------------------
  
+

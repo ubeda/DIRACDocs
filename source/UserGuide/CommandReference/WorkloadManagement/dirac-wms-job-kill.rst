@@ -16,3 +16,4 @@ Example::
 
   $ dirac-wms-job-kill 1918 
   Killed job 1918
+

@@ -6,7 +6,8 @@ Monitor the status of the given FTS request
 
 Usage::
 
-   dirac-dms-fts-monitor <lfn|fileOfLFN> sourceSE targetSE guid server
+   dirac-dms-fts-monitor <lfn|fileOfLFN> sourceSE targetSE server GUID
 
  
+
 

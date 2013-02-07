@@ -2,7 +2,7 @@
 dirac-install-agent
 ==========================
 
-2011-12-04 16:55:58 UTC Framework NOTICE: DIRAC Root Path = /afs/in2p3.fr/home/h/hamar/DIRAC-v6r0
+2013-02-06 12:30:28 UTC Framework NOTICE: DIRAC Root Path = /afs/in2p3.fr/home/h/hamar/DIRAC-v6r7
 
 Do the initial installation and configuration of a DIRAC agent
 
@@ -21,4 +21,9 @@ Arguments::
 Options::
 
   -w   --overwrite       : Overwrite the configuration in the global CS 
+
+  -m:  --module=         : Python module name for the agent code 
+
+  -p:  --parameter=      : Special agent option  
+
 

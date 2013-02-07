@@ -38,3 +38,4 @@ Example::
                  'timeout': 120}),
                'ping',
                ())}
+

@@ -20,3 +20,4 @@ Example::
   {'Failed': {},
    'Successful': {'/formation/user/v/vhamar/Example.txt': 'dips://dirac.in2p3.fr:9148/DataManagement/StorageElement   /formation/user/v/vhamar/Example.txt'}}
 
+

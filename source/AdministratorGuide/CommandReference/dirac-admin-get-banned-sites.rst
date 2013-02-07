@@ -6,16 +6,9 @@ Usage::
 
   dirac-admin-get-banned-sites.py (<options>|<cfgFile>)* 
 
-Usage::
-
-  dirac-admin-get-banned-sites.py (<options>|<cfgFile>)* 
-
-Usage::
-
-  dirac-admin-get-banned-sites.py (<options>|<cfgFile>)* 
-
 Example::
 
   $dirac-admin-get-banned-sites.py
   LCG.IN2P3.fr                      Site not present in logging table
+
 

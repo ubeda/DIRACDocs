@@ -46,3 +46,4 @@ Example::
   /formation/user/v/vhamar/1/1134: 0 files, 0 sub-directories
   22 matched files have been put in formation-user-v-vhamar.lfns
 
+

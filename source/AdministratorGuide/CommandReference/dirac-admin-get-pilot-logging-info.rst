@@ -12,26 +12,6 @@ Arguments::
 
   PilotID:  Grid ID of the pilot 
 
-  Retrieve logging info of a Grid pilot
-
-Usage::
-
-  dirac-admin-get-pilot-logging-info [option|cfgfile] ... PilotID ...
-
-Arguments::
-
-  PilotID:  Grid ID of the pilot 
-
-  Retrieve logging info of a Grid pilot
-
-Usage::
-
-  dirac-admin-get-pilot-logging-info [option|cfgfile] ... PilotID ...
-
-Arguments::
-
-  PilotID:  Grid ID of the pilot 
-
 Example::
 
   $ dirac-admin-get-pilot-logging-info https://marlb.in2p3.fr:9000/26KCLKBFtxXKHF4_ZrQjkw
@@ -54,4 +34,5 @@ Example::
   - Priority                   =    asynchronous
   - Seqcode                    =    UI=000000:NS=0000000001:WM=000000:BH=0000000000:JSS=000000:LM=000000:LRMS=000000:APP=000000:LBS=000000
   - Source                     =    NetworkServer
+
 

@@ -10,7 +10,7 @@ Usage::
 
 Arguments::
 
-  JobID:    DIRAC Job ID 
+  JobID:    DIRAC Job ID or a name of the file with JobID per line 
 
  
 
@@ -22,4 +22,5 @@ Example::
 
   $ dirac-wms-job-get-output 1
   Job output sandbox retrieved in 1/
+
 

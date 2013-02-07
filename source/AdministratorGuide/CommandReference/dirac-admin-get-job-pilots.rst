@@ -12,26 +12,6 @@ Arguments::
 
   JobID:    DIRAC ID of the Job 
 
-  Retrieve info about pilots that have matched a given Job
-
-Usage::
-
-  dirac-admin-get-job-pilots [option|cfgfile] ... JobID
-
-Arguments::
-
-  JobID:    DIRAC ID of the Job 
-
-  Retrieve info about pilots that have matched a given Job
-
-Usage::
-
-  dirac-admin-get-job-pilots [option|cfgfile] ... JobID
-
-Arguments::
-
-  JobID:    DIRAC ID of the Job 
-
 Example::
 
   $ dirac-admin-get-job-pilots 1848
@@ -53,4 +33,5 @@ Example::
                                                           'Status': 'Done',
                                                           'SubmissionTime': datetime.datetime(2011, 2, 21, 12, 27, 52),
                                                           'TaskQueueID': 399L}}
+
 

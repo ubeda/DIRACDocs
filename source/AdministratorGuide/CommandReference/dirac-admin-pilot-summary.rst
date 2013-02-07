@@ -6,14 +6,6 @@ Usage::
 
   dirac-admin-pilot-summary.py (<options>|<cfgFile>)* 
 
-Usage::
-
-  dirac-admin-pilot-summary.py (<options>|<cfgFile>)* 
-
-Usage::
-
-  dirac-admin-pilot-summary.py (<options>|<cfgFile>)* 
-
 Example::
 
   $ dirac-admin-pilot-summary
@@ -32,4 +24,5 @@ Example::
   ipnls2001.in2p3.fr          Done        87
   Total                       Aborted     89          Done        1423        Ready       0           Running     0           Scheduled   0              Submitted   0           Waiting     0
   lapp-ce01.in2p3.fr          Aborted     1           Done        111
+
 

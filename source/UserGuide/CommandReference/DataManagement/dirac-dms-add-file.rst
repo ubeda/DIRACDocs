@@ -16,7 +16,21 @@ Arguments::
 
   SE:       DIRAC Storage Element
 
-  GUID:     GUID to use in the registration (optional) 
+  GUID:     GUID to use in the registration (optional)
+
+ ++ OR ++
+
+Usage::
+
+  dirac-dms-add-file [option|cfgfile] ... LocalFile
+
+Arguments::
+
+  LocalFile: Path to local file containing all the above, i.e.:
+
+  lfn1 localfile1 SE [GUID1]
+
+  lfn2 localfile2 SE [GUID2] 
 
 Example::
 
@@ -24,4 +38,5 @@ Example::
   {'Failed': {},
    'Successful': {'/formationes/user/v/vhamar/Example.txt': {'put': 0.70791220664978027,
                                                              'register': 0.61061787605285645}}}
+
 

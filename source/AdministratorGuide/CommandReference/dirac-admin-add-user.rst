@@ -6,7 +6,7 @@ Add or Modify a User info in DIRAC
 
 Usage::
 
- dirac-admin-add-user [option|cfgfile] ... Property=<Value> ...
+dirac-admin-add-user [option|cfgfile] ... Property=<Value> ...
 
 Arguments::
 
@@ -23,4 +23,9 @@ Options::
   -M:  --UserMail:       : eMail of the user (Mandatory) 
 
   -G:  --UserGroup:      : Name of the Group for the User (Allow Multiple instances or None) 
+
+Example::
+
+  $ dirac-admin-add-user -N vhamar -D /O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=Vanessa Hamar -M hamar@cppm.in2p3.fr -G dirac_user
+  $
 

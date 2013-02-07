@@ -14,30 +14,6 @@ Options::
 
   -    --Site=           : Site for which protocols are to be checked (mandatory) 
 
-  Check the defined protocols for all SEs of a given site
-
-Usage::
-
-  dirac-admin-get-site-protocols [option|cfgfile] ... PilotID ... 
-
- 
-
-Options::
-
-  -    --Site=           : Site for which protocols are to be checked (mandatory) 
-
-  Check the defined protocols for all SEs of a given site
-
-Usage::
-
-  dirac-admin-get-site-protocols [option|cfgfile] ... PilotID ... 
-
- 
-
-Options::
-
-  -    --Site=           : Site for which protocols are to be checked (mandatory) 
-
 Example::
 
   $ dirac-admin-get-site-protocols --Site LCG.IN2P3.fr
@@ -47,4 +23,5 @@ Example::
   StorageElement               ProtocolsList
 
   IN2P3-disk                    file, root, rfio, gsiftp
+
 

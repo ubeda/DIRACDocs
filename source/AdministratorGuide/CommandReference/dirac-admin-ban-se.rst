@@ -14,54 +14,17 @@ Usage::
 
 Options::
 
-  -r   --BanRead         :       Ban only reading from the storage element 
+  -r   --BanRead         :      Ban only reading from the storage element 
 
   -w   --BanWrite        :      Ban writing to the storage element 
 
-  -k   --BanCheck        :     Ban check access to the storage element 
+  -k   --BanCheck        :      Ban check access to the storage element 
 
-  -S:  --Site=           :       Ban all SEs associate to site (note that if writing is allowed, check is always allowed) 
+  -m   --Mute            :      Do not send email 
 
-Ban one or more Storage Elements for usage
-
-Usage::
-
-   dirac-admin-ban-se SE1 [SE2 ...]
-
- 
-
- 
-
-Options::
-
-  -r   --BanRead         :       Ban only reading from the storage element 
-
-  -w   --BanWrite        :      Ban writing to the storage element 
-
-  -k   --BanCheck        :     Ban check access to the storage element 
-
-  -S:  --Site=           :       Ban all SEs associate to site (note that if writing is allowed, check is always allowed) 
-
-Ban one or more Storage Elements for usage
-
-Usage::
-
-   dirac-admin-ban-se SE1 [SE2 ...]
-
- 
-
- 
-
-Options::
-
-  -r   --BanRead         :       Ban only reading from the storage element 
-
-  -w   --BanWrite        :      Ban writing to the storage element 
-
-  -k   --BanCheck        :     Ban check access to the storage element 
-
-  -S:  --Site=           :       Ban all SEs associate to site (note that if writing is allowed, check is always allowed) 
+  -S:  --Site=           :      Ban all SEs associate to site (note that if writing is allowed, check is always allowed) 
 
 Example::
 
   $ dirac-admin-ban-se M3PEC-disk
+

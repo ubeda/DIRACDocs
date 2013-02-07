@@ -10,19 +10,4 @@ Usage::
 
  
 
-Enable usage of the File Catalog mirrors at given sites
-
-Usage::
-
-   dirac-admin-allow-catalog site1 [site2 ...]
-
- 
-
-Enable usage of the File Catalog mirrors at given sites
-
-Usage::
-
-   dirac-admin-allow-catalog site1 [site2 ...]
-
- 
 

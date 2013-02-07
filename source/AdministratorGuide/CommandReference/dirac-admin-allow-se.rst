@@ -14,55 +14,18 @@ Usage::
 
 Options::
 
-  -r   --AllowRead       :       Allow only reading from the storage element 
+  -r   --AllowRead       :      Allow only reading from the storage element 
 
   -w   --AllowWrite      :      Allow only writing to the storage element 
 
   -k   --AllowCheck      :      Allow only check access to the storage element 
 
-  -S:  --Site=           :         Allow all SEs associated to site 
+  -m   --Mute            :      Do not send email 
 
-Enable using one or more Storage Elements
-
-Usage::
-
-   dirac-admin-allow-se SE1 [SE2 ...]
-
- 
-
- 
-
-Options::
-
-  -r   --AllowRead       :       Allow only reading from the storage element 
-
-  -w   --AllowWrite      :      Allow only writing to the storage element 
-
-  -k   --AllowCheck      :      Allow only check access to the storage element 
-
-  -S:  --Site=           :         Allow all SEs associated to site 
-
-Enable using one or more Storage Elements
-
-Usage::
-
-   dirac-admin-allow-se SE1 [SE2 ...]
-
- 
-
- 
-
-Options::
-
-  -r   --AllowRead       :       Allow only reading from the storage element 
-
-  -w   --AllowWrite      :      Allow only writing to the storage element 
-
-  -k   --AllowCheck      :      Allow only check access to the storage element 
-
-  -S:  --Site=           :         Allow all SEs associated to site 
+  -S:  --Site=           :      Allow all SEs associated to site 
 
 Example::
 
   $ dirac-admin-allow-se M3PEC-disk
   $
+
