@@ -9,5 +9,3 @@ Code Documentation
    `Services calls exposed, per packages <Service/index.html>`_
 
    `Some Utilities <Utilities/index.html>`_
-
-   `Available Scripts <scripts/index.html>`_
