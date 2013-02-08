@@ -5,16 +5,17 @@
 
 '''
 
+# defined on DIRACDocs/source/Tools/fakeEnvironment
+import fakeEnvironment
+
 import DIRAC
 
 import os
+import pkgutil
 import sys
 import tempfile
-import urllib
-import zipfile
 
-# Get the code directly from GitHub
-DIRAC_URL = "https://github.com/DIRACGrid/DIRAC/archive/"
+DOCMODULES = [ 'API', 'Client', 'Service', 'Utilities' ]
 
 def getTmpDir():
   ''' Creates a temporary dir and adds it to sys.path so that we can import
@@ -29,27 +30,6 @@ def getTmpDir():
   sys.path.append( tmpDir )
 
   return tmpDir
-
-def getDIRAC( tmpDir, version = 'integration' ):
-  ''' Given a version of DIRAC, downloads it on tmpDir and unzips it. Last
-      step is to rename the extracted file from DIRAC-<version> to DIRAC.
-  '''
- 
-  gitHubUrl = '%s%s.zip' % ( DIRAC_URL, version )
-  diracZipPath = os.path.join( tmpDir, 'DIRACzip' )
-  
-  print 'downloading from %s to %s' % ( gitHubUrl, diracZipPath )
-  urllib.urlretrieve( gitHubUrl, diracZipPath )
-
-  print 'extracting files'
-  zip = zipfile.ZipFile( diracZipPath )
-  zip.extractall( tmpDir )
-
-  print 'renaming DIRAC directory'
-  diracPath = os.path.join( tmpDir, 'DIRAC' )
-  os.rename( '%s-%s' % ( diracPath, version ), diracPath )
-
-  print 'DIRAC is on %s' % diracPath
 
 #...............................................................................
 # Functions generating rst files
@@ -75,17 +55,89 @@ def getDIRACPackages():
   
   return packages
 
+def getPackageModules( package ):
+
+  diracPackage = __import__( 'DIRAC.%s' % package, globals(), locals(), [ '*' ] )
+
+  pkgpath = os.path.dirname( diracPackage.__file__ )
+  modules = [ name for _, name, _ in pkgutil.iter_modules([pkgpath]) ]
+  
+  modules.sort()
+  
+  print 'Found %s modules in %s' % ( ','.join( modules ), package )
+  
+  return modules
+
+def writeIndexHeader( indexFile, title ):
+
+  indexFile.write( '=' * len( title ) )
+  indexFile.write( '\n%s\n' % title )
+  indexFile.write( '=' * len( title ) )
+  indexFile.write( '\n\n.. toctree::' )
+  indexFile.write( '\n   :maxdepth: 2\n' )
+
 def writeCodeDocumentationIndexRST( codeDocumentationPath, diracPackages ):
   '''
   '''
     
   indexPath = os.path.join( codeDocumentationPath, 'index.rst' )
-  
-  with open( indexPath, 'a' ) as index:
-    
+  with open( indexPath, 'w' ) as index:
+    writeIndexHeader( index, 'Code Documentation' )    
     for diracPackage in diracPackages:
-      index.write( '\n\n%s\n' % moduleName )
+      index.write( '\n   %s/index.rst\n' % diracPackage )
 
+def writePackageDocumentation( tmpDir, codeDocumentationPath, diracPackage ):
+  
+  packageDir = os.path.join( codeDocumentationPath, diracPackage ) 
+  try:
+    os.mkdir( packageDir )
+  except OSError:
+    sys.exit( 'Cannot create %s' % packageDir )
+
+  modulePackages = getPackageModules( diracPackage )
+
+  indexPath = os.path.join( packageDir, 'index.rst' )
+  with open( indexPath, 'w' ) as index:
+    writeIndexHeader( index, diracPackage )
+    
+    for modulePackage in modulePackages:
+      if not modulePackage in DOCMODULES:
+        continue
+      index.write( '\n\n   %s/index.rst' % modulePackage )
+      packageModPath = os.path.join( packageDir, modulePackage )
+        
+      try:
+        os.mkdir( packageModPath )
+      except OSError:
+        sys.exit( 'Cannot create %s' % packageModPath )
+
+      packModPackages = getPackageModules( '%s.%s' % ( diracPackage, modulePackage ) )
+
+      packageModPathIndex = os.path.join( packageModPath, 'index.rst' )
+      with open( packageModPathIndex, 'w' ) as packModFile:
+        writeIndexHeader( packModFile, modulePackage )
+                    
+        for packModPackage in packModPackages:
+            
+          route = 'DIRAC/%s/%s/%s.py' % ( diracPackage, modulePackage, packModPackage )
+        
+          print route
+          route2 = tmpDir + '/../../' + route
+          print route2
+           
+          if not os.path.isfile( route2 ):
+            print 'PASS'
+            continue
+              
+          packModFile.write( '\n\n   %s' % packModPackage )
+          packModPackagePath = os.path.join( packageModPath, '%s.rst' % packModPackage )
+          f = open( packModPackagePath, 'w' )
+          f.write( '=' * len( packModPackage ) )
+          f.write( '\n%s\n' % packModPackage )
+          f.write( '=' * len( packModPackage ) )
+          f.write( '\n' )
+          f.write( '\n.. autoclass:: DIRAC.%s.%s.%s' % ( diracPackage, modulePackage, packModPackage ) )
+          f.close() 
 #...............................................................................
 # run
 
@@ -93,24 +145,32 @@ def run( diracVersion, tmpDir = None ):
 
   if tmpDir is None:
     tmpDir = getTmpDir()
-  getDIRAC( tmpDir, diracVersion )
+#  getDIRAC( tmpDir, diracVersion )
 
-  diracPackages = getDIRACPackages()
-
+  diracPackages         = getDIRACPackages()    
   codeDocumentationPath = getCodeDocumentationPath()
-
-
+  
+  writeCodeDocumentationIndexRST( codeDocumentationPath, diracPackages )
+  
+  for diracPackage in diracPackages:
+    writePackageDocumentation( tmpDir, codeDocumentationPath, diracPackage )
+  
 #...............................................................................
 # main
 
 if __name__ == "__main__":
 
-  if len( arguments ) > 1:
-    diracVersion = arguments[ 1 ]
-  else:
+  try:
+    tmpdir = sys.argv[ 1 ]
+  except IndexError:  
+    tmpdir = None
+
+  try:
+    diracVersion = sys.argv[ 2 ]
+  except IndexError:  
     diracVersion = 'integration'
   
-  run( diracVersion )
+  run( diracVersion, tmpdir )
   
 #...............................................................................  
 #EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF  

@@ -11,41 +11,19 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+import fakeEnvironment
+
 import datetime
 import os
 import sys
 import tempfile
 
-# Add Tools folder to the path, so that we can make use of the latest mock
-# to avoid having the externals installed
-toolsPath = os.path.join( os.path.dirname( os.path.abspath( __file__ ) ), 'Tools' )
-sys.path.insert( 0, toolsPath )
-
-# Also pre-apend DIRACDocs/source, so that the rst's can be compiled
-sys.path.insert( 0, os.getcwd() )
-
-try:
-  tmpDir = tempfile.mkdtemp()
-except IOError:
-  sys.exit( 'IOError creating tmp dir' )
-
-print 'Using %s as temporary directory' % tmpDir
-
-# We should get this from buildScriptsDOC
-sys.path.append( tmpDir )
 
 diracRelease = os.environ[ 'DIRACVERSION' ]
 print 'Got %s as DIRACVERSION' % diracRelease
 
-
-
 #...............................................................................
 # documentation builders
-
-# scripts
-import buildScriptsDOC
-# code
-import buildCodeDOC
 
 print '*' * 80
 print '*' * 80

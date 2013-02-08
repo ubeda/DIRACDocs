@@ -7,18 +7,47 @@
    
 '''
 
+import mock
+import sys
+
 #...............................................................................
 # mocks...
-import mock
 
+# GSI
 mockGSI                     = mock.Mock()
 mockGSI.__version__         = "1"
 mockGSI.version.__version__ = "1"
 
+# MySQLdb
+mockMySQLdb = mock.Mock()
+
+
 #...............................................................................
 # sys.modules hacked
 
-sys.modules[ 'GSI' ] = mockGSI
+sys.modules[ 'GSI' ]     = mockGSI
+sys.modules[ 'MySQLdb' ] = mockMySQLdb
+
+#FIXME: do we need all them ??
+
+sys.modules[ 'pylab' ]                           = mock.Mock()
+sys.modules[ 'pytz' ]                            = mock.Mock()
+sys.modules[ 'numpy' ]                           = mock.Mock()
+sys.modules[ 'numpy.random' ]                    = mock.Mock()
+sys.modules[ 'matplotlib' ]                      = mock.Mock()
+sys.modules[ 'matplotlib.ticker' ]               = mock.Mock()
+sys.modules[ 'matplotlib.figure' ]               = mock.Mock()
+sys.modules[ 'matplotlib.patches' ]              = mock.Mock()
+sys.modules[ 'matplotlib.dates' ]                = mock.Mock()
+sys.modules[ 'matplotlib.text' ]                 = mock.Mock()
+sys.modules[ 'matplotlib.axes' ]                 = mock.Mock()
+sys.modules[ 'matplotlib.pylab' ]                = mock.Mock()
+sys.modules[ 'cx_Oracle' ]                       = mock.Mock()
+sys.modules[ 'dateutil' ]                        = mock.Mock()
+sys.modules[ 'dateutil.relativedelta' ]          = mock.Mock()
+sys.modules[ 'matplotlib.backends' ]             = mock.Mock()
+sys.modules[ 'matplotlib.backends.backend_agg' ] = mock.Mock()
+
 
 #...............................................................................
 #EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF

@@ -7,7 +7,9 @@
 
 '''
 
-#import distutils
+# defined on DIRACDocs/source/Tools/fakeEnvironment
+import fakeEnvironment
+
 import getpass
 import glob
 import os
@@ -205,14 +207,10 @@ def overwriteCommandReference( commandRefPath ):
       generated.
   '''  
     
-  #whereAmI = os.path.realpath( __file__ )  
   whereAmI = os.path.dirname( os.path.abspath( __file__ ) )
   relativePathToWrite = '../source/AdministratorGuide/CommandReference'
   
   oldCommandRef = os.path.abspath( os.path.join( whereAmI, relativePathToWrite ) )
-  
-  # By unknowns reasons, did not work
-  # distutils.dir_util.copy_tree( commandRefPath, oldCommandRef )
   
   try:
     shutil.rmtree( oldCommandRef )
@@ -238,11 +236,12 @@ def run( tmpDir = None ):
   '''
   
   if tmpDir is None:
-    tmpDir         = getTmpDir()  
+    tmpDir = getTmpDir()
+    
   commandRefPath = generateCommandReference( tmpDir )
   scriptsDict    = prepareScripts( tmpDir )
   writeScriptsDocs( scriptsDict, commandRefPath )
-  print 'RSTs generated on %s' % tmpDir
+  print 'RSTs generated'
   
   overwriteCommandReference( commandRefPath )
   
@@ -253,11 +252,11 @@ def run( tmpDir = None ):
   
 if __name__ == "__main__" :
 
-  tmpDir = None
-
-  if len( arguments ) > 1:
-    tmpDir = arguments[ 1 ]
-    
+  try:
+    tmpDir = sys.argv[ 1 ]  
+  except IndexError:  
+    tmpDir = None
+  
   run( tmpDir )
   
 ################################################################################
