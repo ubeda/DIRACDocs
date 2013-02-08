@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ''' buildScriptsDocs
 
   Prototype to build scripts documentation from the scripts docstrings. As the
@@ -21,7 +22,11 @@ def getTmpDir():
   ''' Makes a python module on a temporary directory
   '''
 
-  tmpDir = tempfile.mkdtemp()
+  try:
+    tmpDir = tempfile.mkdtemp()
+  except IOError:
+    sys.exit( 'IOError creating tmp dir' )
+    
   initFile = os.path.join( tmpDir, '__init__.py' )
   try:
     open( initFile, 'w' ).close()
@@ -226,13 +231,14 @@ def overwriteCommandReference( commandRefPath ):
   print commandRefPath
   print oldCommandRef
   
-def run():
+def run( tmpDir = None ):
   ''' Generates a temp directory where to copy over all scripts renamed so
       that we can import them into python. Once that is done, we import them
       one by one, to get the docstring.
   '''
   
-  tmpDir         = getTmpDir()
+  if tmpDir is None:
+    tmpDir         = getTmpDir()  
   commandRefPath = generateCommandReference( tmpDir )
   scriptsDict    = prepareScripts( tmpDir )
   writeScriptsDocs( scriptsDict, commandRefPath )
@@ -241,11 +247,18 @@ def run():
   overwriteCommandReference( commandRefPath )
   
   print 'Command Reference overwritten'
+
+#...............................................................................
+# main
   
 if __name__ == "__main__" :
-  
-  run()
-  
 
+  tmpDir = None
+
+  if len( arguments ) > 1:
+    tmpDir = arguments[ 1 ]
+    
+  run( tmpDir )
+  
 ################################################################################
 #EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF

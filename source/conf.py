@@ -11,50 +11,92 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os, datetime
+import datetime
+import os
+import sys
+import tempfile
 
-sys.path.append(os.getcwd())
+# Add Tools folder to the path, so that we can make use of the latest mock
+# to avoid having the externals installed
+toolsPath = os.path.join( os.path.dirname( os.path.abspath( __file__ ) ), 'Tools' )
+sys.path.insert( 0, toolsPath )
 
-import fakeEnv
+# Also pre-apend DIRACDocs/source, so that the rst's can be compiled
+sys.path.insert( 0, os.getcwd() )
 
-sys.modules["DIRAC.Core.Base"] = fakeEnv
-sys.modules["DIRAC.Core.Base.Script"] = fakeEnv
-sys.modules["DIRAC.Core.Base.DB"] = fakeEnv
-sys.modules["DIRAC.Core.Base.AgentModule"] = fakeEnv
-sys.modules["DIRAC.Core.Base.API"] = fakeEnv
-sys.modules["DIRAC.Core.Base.Client"] = fakeEnv
-sys.modules["DIRAC.Core.Base.AgentReactor"] = fakeEnv
+try:
+  tmpDir = tempfile.mkdtemp()
+except IOError:
+  sys.exit( 'IOError creating tmp dir' )
 
-sys.modules["DIRAC.DataManagementSystem.DB.RequestDB"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.BarGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.Graph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.GraphData"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.GraphUtilities"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.Legend"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.LineGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.Palette"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.PieGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.PlotBase"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.Graphs.QualityMapGraph"] = fakeEnv
-sys.modules["DIRAC.Core.Utilities.OracleDB"] = fakeEnv
-sys.modules["RequestDB"] = fakeEnv
-sys.modules["pytz"] = fakeEnv
-sys.modules["numpy"] = fakeEnv
-sys.modules["numpy.random"] = fakeEnv
-sys.modules["matplotlib"] = fakeEnv
-sys.modules["matplotlib.ticker"] = fakeEnv
-sys.modules["matplotlib.figure"] = fakeEnv
-sys.modules["matplotlib.dates"] = fakeEnv
-sys.modules["dateutil"] = fakeEnv
-sys.modules["dateutil.relativedelta"] = fakeEnv
-sys.modules["matplotlib.backends"] = fakeEnv
-sys.modules["matplotlib.backends.backend_agg"] = fakeEnv
-sys.modules["MySQLdb"] = fakeEnv
-sys.modules["DIRAC.FrameworkSystem.Service.PlotCache"] = fakeEnv
-sys.modules["DIRAC.FrameworkSystem.Service.PlottingHandler"] = fakeEnv
+print 'Using %s as temporary directory' % tmpDir
 
+# We should get this from buildScriptsDOC
+sys.path.append( tmpDir )
 
+diracRelease = os.environ[ 'DIRACVERSION' ]
+print 'Got %s as DIRACVERSION' % diracRelease
+
+#...............................................................................
+# mocks...
+import mock
+
+mockGSI                     = mock.Mock()
+mockGSI.__version__         = "1"
+mockGSI.version.__version__ = "1"
+sys.modules[ 'GSI' ] = mockGSI
+
+#...............................................................................
+# documentation builders
+
+# scripts
+import buildScriptsDOC
+# code
+import buildCodeDOC
+
+print '*' * 80
+print '*' * 80
+print '*' * 80
+
+#sys.modules["DIRAC.Core.Base"] = fakeEnv
+#sys.modules["DIRAC.Core.Base.Script"] = fakeEnv
+#sys.modules["DIRAC.Core.Base.DB"] = fakeEnv
+#sys.modules["DIRAC.Core.Base.AgentModule"] = fakeEnv
+#sys.modules["DIRAC.Core.Base.API"] = fakeEnv
+#sys.modules["DIRAC.Core.Base.Client"] = fakeEnv
+#sys.modules["DIRAC.Core.Base.AgentReactor"] = fakeEnv
+#
+#sys.modules["DIRAC.DataManagementSystem.DB.RequestDB"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.BarGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.Graph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.GraphData"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.GraphUtilities"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.Legend"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.LineGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.Palette"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.PieGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.PlotBase"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.Graphs.QualityMapGraph"] = fakeEnv
+#sys.modules["DIRAC.Core.Utilities.OracleDB"] = fakeEnv
+#sys.modules["RequestDB"] = fakeEnv
+#sys.modules["pytz"] = fakeEnv
+#sys.modules["numpy"] = fakeEnv
+#sys.modules["numpy.random"] = fakeEnv
+#sys.modules["matplotlib"] = fakeEnv
+#sys.modules["matplotlib.ticker"] = fakeEnv
+#sys.modules["matplotlib.figure"] = fakeEnv
+#sys.modules["matplotlib.dates"] = fakeEnv
+#sys.modules["dateutil"] = fakeEnv
+#sys.modules["dateutil.relativedelta"] = fakeEnv
+#sys.modules["matplotlib.backends"] = fakeEnv
+#sys.modules["matplotlib.backends.backend_agg"] = fakeEnv
+#sys.modules["MySQLdb"] = fakeEnv
+#sys.modules["DIRAC.FrameworkSystem.Service.PlotCache"] = fakeEnv
+#sys.modules["DIRAC.FrameworkSystem.Service.PlottingHandler"] = fakeEnv
+
+#...............................................................................
+# configuration
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -90,7 +132,7 @@ copyright = u'%s, DIRAC Project' % datetime.datetime.utcnow().year
 # The short X.Y version.
 version = ''
 # The full version, including alpha/beta/rc tags.
-release = ''
+release = diracRelease
 
 # The language for content autogenerated by Sphinx. Refer to documentation
 # for a list of supported languages.
@@ -240,3 +282,6 @@ latex_documents = [
 
 # If false, no module index is generated.
 #latex_use_modindex = True
+
+#...............................................................................
+#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF
