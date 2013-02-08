@@ -37,14 +37,7 @@ sys.path.append( tmpDir )
 diracRelease = os.environ[ 'DIRACVERSION' ]
 print 'Got %s as DIRACVERSION' % diracRelease
 
-#...............................................................................
-# mocks...
-import mock
 
-mockGSI                     = mock.Mock()
-mockGSI.__version__         = "1"
-mockGSI.version.__version__ = "1"
-sys.modules[ 'GSI' ] = mockGSI
 
 #...............................................................................
 # documentation builders

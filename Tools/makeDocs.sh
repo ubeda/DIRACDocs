@@ -41,22 +41,27 @@ export PYTHONPATH=$PYTHONPATH:$tmpdir
 #-------------------------------------------------------------------------------
 # DIRACDocs
 
-DIRACDocs_GITHUB=https://github.com/DIRACGrid/DIRACDocs/archive/master.zip
+diracDocsVersion=buildClientsDOC
+
+DIRACDocs_GITHUB=https://github.com/ubeda/DIRACDocs/archive/$diracDocsVersion.zip
 # Let's download DIRACDocs
 echo Downloading DIRACDocs from $DIRACDocs_GITHUB 
 wget $DIRACDocs_GITHUB --no-check-certificate --directory-prefix $tmpdir -q
 
-unzip -q $tmpdir/master.zip -d $tmpdir
-mv $tmpdir/DIRACDocs-master $tmpdir/DIRACDocs
-rm $tmpdir/master.zip
+unzip -q $tmpdir/$diracDocsVersion.zip -d $tmpdir
+mv $tmpdir/DIRACDocs-$diracDocsVersion $tmpdir/DIRACDocs
+rm $tmpdir/$diracDocsVersion.zip
 
-echo DIRACDocs downloaded successfully to $tmpdir/DIRACDocs 
+echo DIRACDocs downloaded successfully to $tmpdir/DIRACDocs
 
 #-------------------------------------------------------------------------------
 # Generate scripts documentation
 
 scriptsDIR=$tmpdir/scripts
-mkdir $scriptsDIR 
+mkdir $scriptsDIR
+
+# We have to mock quite few things now...
+
 python $tmpdir/DIRACDocs/Tools/buildScriptsDOC.py scriptsDIR
 
 #DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
