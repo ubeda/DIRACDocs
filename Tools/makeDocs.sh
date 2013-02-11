@@ -87,7 +87,16 @@ python $tmpdir/DIRACDocs/Tools/buildCodeDOC.py $codeDIR
 
 ( make -C $tmpdir/DIRACDocs html ) & sleep 300 ; kill -9 $!; echo "killed make"
 
-echo $tmpdir
-
 #-------------------------------------------------------------------------------
+# copying over
+
+echo "Copying over from $tmpdir/DIRACDocs/build to $DIR/../build"
+
+#WhereAmI
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ 
+cp -r $tmpdir/DIRACDocs/build $DIR/../build
+
+echo 'Done'
+
 #EOF
