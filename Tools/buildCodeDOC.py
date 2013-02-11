@@ -83,9 +83,9 @@ def writeCodeDocumentationIndexRST( codeDocumentationPath, diracPackages ):
     
   indexPath = os.path.join( codeDocumentationPath, 'index.rst' )
   with open( indexPath, 'w' ) as index:
-    writeIndexHeader( index, 'Code Documentation' )    
+    writeIndexHeader( index, 'Code Documentation |release|' )    
     for diracPackage in diracPackages:
-      index.write( '\n   %s/index.rst\n' % diracPackage )
+      index.write( '\n   %s/index.rst\n' % diracPackage )  
 
 def writePackageDocumentation( tmpDir, codeDocumentationPath, diracPackage ):
   

@@ -14,6 +14,7 @@ The attributes of this agent are showed in the table below:
 | *MailFrom*            | E-mail address used to send the   | MailFrom = dirac@mardirac.in2p3.fr              |
 |                       | information to be updated         |                                                 |
 +-----------------------+-----------------------------------+-------------------------------------------------+
-| *LFCCheckEnabled* | Bolean, check users are properly defined in LFC | LFCCheckEnabled = True |
+| *LFCCheckEnabled*     | Bolean, check users are properly  | LFCCheckEnabled = True                          |
+|                       | defined in LFC                    |                                                 |
 +-----------------------+-----------------------------------+-------------------------------------------------+
 
