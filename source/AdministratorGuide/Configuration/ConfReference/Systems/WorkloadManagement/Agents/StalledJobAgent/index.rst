@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Agents / StalledJobAgent - Sub-subsection
-==================================================================================
+======================================================================================
 
 The StalledJobAgent hunts for stalled jobs in the Job database. Jobs in "running"state not receiving a 
 heart beat signal for more than stalledTime seconds will be assigned the "Stalled" state.

@@ -1,5 +1,5 @@
 Systems / Framework / <INSTANCE> / Agents / MyProxyRenewalAgent - Sub-subsection
-=============================================================================
+================================================================================
 
 Proxy Renewal agent is the key element of the Proxy Repository which maintains the user proxies alive. This Agent allows to run DIRAC with short proxies in the DIRAC proxy manager. It relies on the users uploading proxies for each relevant group to a MyProxy server. It needs to be revised to work with multiple groups. This agent is currently not functional.
 

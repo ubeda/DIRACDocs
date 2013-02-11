@@ -1,5 +1,5 @@
 Systems / Framework / <INSTANCE> / Agents / SystemLoggingDBCleaner - Sub-subsection
-================================================================================
+===================================================================================
 
 SystemLoggingDBCleaner erases records whose messageTime column contains a time older than 'RemoveDate' days,
 where 'RemoveDate' is an entry in the Configuration Service section of the agent.

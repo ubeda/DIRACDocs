@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Agents / JobCleaningAgent - Sub-subsection
-===================================================================================
+======================================================================================
 
 The Job Cleaning Agent controls removing jobs from the WMS in the end of their life cycle. The attributes are showed in the following table.
 

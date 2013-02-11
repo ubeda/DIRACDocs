@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Agents / MigthyOptimizer - Sub-subsection
-==================================================================================
+=====================================================================================
 
 SuperOptimizer
   - One optimizer to rule them all, one optimizer to find them, one optimizer to bring them all, and in the darkness 

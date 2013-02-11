@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Agents / InputDataAgent - Sub-subsection
-=================================================================================
+====================================================================================
 
 The Input Data Agent queries the file catalog for specified job input data and adds the relevant information to the 
 job optimizer parameters to be used during the scheduling decision.

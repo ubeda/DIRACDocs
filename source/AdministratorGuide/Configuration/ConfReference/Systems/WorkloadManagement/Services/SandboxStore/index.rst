@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Service / SandboxStore - Sub-subsection
-================================================================================
+===================================================================================
 
 SandboxHandler is the implementation of the Sandbox service in the DISET framework
 

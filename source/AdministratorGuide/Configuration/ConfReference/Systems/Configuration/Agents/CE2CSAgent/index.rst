@@ -1,5 +1,5 @@
 Systems / Configuration / <INSTANCE> / Agents /CE2CSAgent - Sub-subsection
-=======================================================================
+==========================================================================
 
 CE2CSAgent is the agent in charge of update sites parameters configuration for a specific VO.
 - Queries BDII for unknown CE.

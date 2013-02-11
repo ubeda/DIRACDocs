@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Agents / JobHistoryAgent - Sub-subsection
-==================================================================================
+=====================================================================================
 
  JobHistoryAgent sends periodically numbers of jobs in various states for various sites to the Monitoring system to 
  create historical plots.
