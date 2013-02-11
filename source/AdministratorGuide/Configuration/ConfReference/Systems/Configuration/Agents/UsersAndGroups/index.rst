@@ -1,5 +1,5 @@
 Systems / Configuration / <INSTANCE> / Agents /UsersAndGroups - Sub-subsection
-=======================================================================
+================================================================================
 
 Queries VOMRS servers and updates the users and groups as defined in the Registry/VOMS/Mapping section.
 

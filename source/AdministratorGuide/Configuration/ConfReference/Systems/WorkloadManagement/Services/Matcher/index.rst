@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Service / Matcher - Sub-subsection
-===========================================================================
+==============================================================================
 
 Matcher class. It matches Agent Site capabilities to job requirements.
 It also provides an XMLRPC interface to the Matcher

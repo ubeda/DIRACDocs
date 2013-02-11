@@ -1,5 +1,5 @@
 Systems / DataManagement / <INSTANCE> / Service / FileCatalog - Sub-subsection
-===========================================================================
+==============================================================================
 
 FileCatalogHandler is a simple Replica and Metadata Catalog service. Special options are required to
 configure this service, showed in the next table:

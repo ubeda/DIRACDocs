@@ -1,5 +1,5 @@
 Systems / Framework / <INSTANCE> / Service / SecurityLogging - Sub-subsection
-==========================================================================
+=============================================================================
 
 SecurityLogging service is used by all server to log all connections.
 

@@ -1,5 +1,5 @@
 Systems / Framework / <INSTANCE> / Service / Notification - Sub-subsection
-=======================================================================
+==========================================================================
 
 The Notification service provides a toolkit to contact people via email
 (eventually SMS etc.) to trigger some actions.

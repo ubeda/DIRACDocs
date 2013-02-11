@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ''' buildScriptsDocs
 
   Prototype to build scripts documentation from the scripts docstrings. As the
@@ -6,7 +7,9 @@
 
 '''
 
-#import distutils
+# defined on DIRACDocs/source/Tools/fakeEnvironment
+import fakeEnvironment
+
 import getpass
 import glob
 import os
@@ -21,7 +24,11 @@ def getTmpDir():
   ''' Makes a python module on a temporary directory
   '''
 
-  tmpDir = tempfile.mkdtemp()
+  try:
+    tmpDir = tempfile.mkdtemp()
+  except IOError:
+    sys.exit( 'IOError creating tmp dir' )
+    
   initFile = os.path.join( tmpDir, '__init__.py' )
   try:
     open( initFile, 'w' ).close()
@@ -200,14 +207,10 @@ def overwriteCommandReference( commandRefPath ):
       generated.
   '''  
     
-  #whereAmI = os.path.realpath( __file__ )  
   whereAmI = os.path.dirname( os.path.abspath( __file__ ) )
   relativePathToWrite = '../source/AdministratorGuide/CommandReference'
   
   oldCommandRef = os.path.abspath( os.path.join( whereAmI, relativePathToWrite ) )
-  
-  # By unknowns reasons, did not work
-  # distutils.dir_util.copy_tree( commandRefPath, oldCommandRef )
   
   try:
     shutil.rmtree( oldCommandRef )
@@ -226,26 +229,35 @@ def overwriteCommandReference( commandRefPath ):
   print commandRefPath
   print oldCommandRef
   
-def run():
+def run( tmpDir = None ):
   ''' Generates a temp directory where to copy over all scripts renamed so
       that we can import them into python. Once that is done, we import them
       one by one, to get the docstring.
   '''
   
-  tmpDir         = getTmpDir()
+  if tmpDir is None:
+    tmpDir = getTmpDir()
+    
   commandRefPath = generateCommandReference( tmpDir )
   scriptsDict    = prepareScripts( tmpDir )
   writeScriptsDocs( scriptsDict, commandRefPath )
-  print 'RSTs generated on %s' % tmpDir
+  print 'RSTs generated'
   
   overwriteCommandReference( commandRefPath )
   
   print 'Command Reference overwritten'
+
+#...............................................................................
+# main
   
 if __name__ == "__main__" :
-  
-  run()
-  
 
+  try:
+    tmpDir = sys.argv[ 1 ]  
+  except IndexError:  
+    tmpDir = None
+  
+  run( tmpDir )
+  
 ################################################################################
 #EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF#EOF

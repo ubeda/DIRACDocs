@@ -1,5 +1,5 @@
 Systems / WorkloadManagement / <INSTANCE> / Service / JobStateUpdate - Sub-subsection
-==================================================================================
+=====================================================================================
 
 JobStateUpdateHandler is the implementation of the Job State updating service in the DISET framework
 
