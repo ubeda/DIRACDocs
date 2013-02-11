@@ -31,11 +31,9 @@ then
   echo Downloading DIRAC from $DIRAC_GITHUB$DIRACVERSION.zip 
   wget $DIRAC_GITHUB$DIRACVERSION.zip --no-check-certificate --directory-prefix $tmpdir -q
 
-  #unzip -q $tmpdir/$DIRACVERSION.zip -d $tmpdir
-  unzip -q $tmpdir/DIRAC-*.zip -d $tmpdir
+  unzip -q $tmpdir/$DIRACVERSION -d $tmpdir
   mv $tmpdir/DIRAC-* $tmpdir/DIRAC
-  #rm $tmpdir/$DIRACVERSION.zip
-  rm $tmpdir/DIRAC-*.zip
+  rm $tmpdir/$DIRACVERSION*
   echo DIRAC downloaded successfully to $tmpdir/DIRAC
 else  
   cp -r ~/git/DIRAC $tmpdir/DIRAC
@@ -59,9 +57,9 @@ then
   echo Downloading DIRACDocs from $DIRACDocs_GITHUB 
   wget $DIRACDocs_GITHUB --no-check-certificate --directory-prefix $tmpdir -q
 
-  unzip -q $tmpdir/$diracDocsVersion.zip -d $tmpdir
+  unzip -q $tmpdir/$diracDocsVersion -d $tmpdir
   mv $tmpdir/DIRACDocs-$diracDocsVersion $tmpdir/DIRACDocs
-  rm $tmpdir/$diracDocsVersion.zip
+  rm $tmpdir/$diracDocsVersion*
   echo DIRACDocs downloaded successfully to $tmpdir/DIRACDocs
 else
   cp -r ~/git/DIRACDocs $tmpdir/DIRACDocs
@@ -85,7 +83,9 @@ python $tmpdir/DIRACDocs/Tools/buildCodeDOC.py $codeDIR
 #-------------------------------------------------------------------------------
 # Make html web pages from rst's
 
-make -C $tmpdir/DIRACDocs html
+# This command hangs, so we kill it after 5 minutes
+
+( make -C $tmpdir/DIRACDocs html ) & sleep 300 ; kill -9 $!; echo "killed make"
 
 echo $tmpdir
 
