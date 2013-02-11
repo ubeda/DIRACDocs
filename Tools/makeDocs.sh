@@ -31,9 +31,11 @@ then
   echo Downloading DIRAC from $DIRAC_GITHUB$DIRACVERSION.zip 
   wget $DIRAC_GITHUB$DIRACVERSION.zip --no-check-certificate --directory-prefix $tmpdir -q
 
-  unzip -q $tmpdir/$DIRACVERSION.zip -d $tmpdir
+  #unzip -q $tmpdir/$DIRACVERSION.zip -d $tmpdir
+  unzip -q $tmpdir/DIRAC-*.zip -d $tmpdir
   mv $tmpdir/DIRAC-* $tmpdir/DIRAC
-  rm $tmpdir/$DIRACVERSION.zip
+  #rm $tmpdir/$DIRACVERSION.zip
+  rm $tmpdir/DIRAC-*.zip
   echo DIRAC downloaded successfully to $tmpdir/DIRAC
 else  
   cp -r ~/git/DIRAC $tmpdir/DIRAC
@@ -50,7 +52,7 @@ if [ -z "$LOCALDEBUG" ]
 then
 
   repo=DIRACGrid
-  diracDocsVersion=buildClientsDOC
+  diracDocsVersion=master
 
   DIRACDocs_GITHUB=https://github.com/$repo/DIRACDocs/archive/$diracDocsVersion.zip
   # Let's download DIRACDocs
