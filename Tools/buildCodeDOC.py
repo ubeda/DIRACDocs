@@ -51,8 +51,6 @@ def getDIRACPackages():
   
   packages.sort()
   
-  print 'Found %s packages' % ','.join( packages )
-  
   return packages
 
 def getPackageModules( package ):
@@ -63,8 +61,6 @@ def getPackageModules( package ):
   modules = [ name for _, name, _ in pkgutil.iter_modules([pkgpath]) ]
   
   modules.sort()
-  
-  print 'Found %s modules in %s' % ( ','.join( modules ), package )
   
   return modules
 
@@ -118,15 +114,19 @@ def writePackageDocumentation( tmpDir, codeDocumentationPath, diracPackage ):
         writeIndexHeader( packModFile, modulePackage )
                     
         for packModPackage in packModPackages:
+          
+          if 'lfc_dfc_copy' in packModPackage:
+            continue 
+          if 'TransformationCLI' in packModPackage:
+            continue
             
           route = 'DIRAC/%s/%s/%s.py' % ( diracPackage, modulePackage, packModPackage )
         
-          print route
           route2 = tmpDir + '/../../' + route
-          print route2
            
           if not os.path.isfile( route2 ):
-            print 'PASS'
+            print route2
+            print 'Was a dir... skipping !'
             continue
               
           packModFile.write( '\n\n   %s' % packModPackage )
@@ -136,7 +136,8 @@ def writePackageDocumentation( tmpDir, codeDocumentationPath, diracPackage ):
           f.write( '\n%s\n' % packModPackage )
           f.write( '=' * len( packModPackage ) )
           f.write( '\n' )
-          f.write( '\n.. autoclass:: DIRAC.%s.%s.%s' % ( diracPackage, modulePackage, packModPackage ) )
+          f.write( '\n.. automodule:: DIRAC.%s.%s.%s' % ( diracPackage, modulePackage, packModPackage ) )
+          f.write( '\n   :members:' )
           f.close() 
 #...............................................................................
 # run
@@ -145,7 +146,6 @@ def run( diracVersion, tmpDir = None ):
 
   if tmpDir is None:
     tmpDir = getTmpDir()
-#  getDIRAC( tmpDir, diracVersion )
 
   diracPackages         = getDIRACPackages()    
   codeDocumentationPath = getCodeDocumentationPath()

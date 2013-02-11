@@ -12,7 +12,7 @@ then
   DIRACVERSION=integration
 else
   DIRACVERSION=$1
-fi
+fi  
 
 #DIRACVERSION is used by conf.py to declare the sphynx variable |release| 
 export DIRACVERSION=$DIRACVERSION
@@ -24,18 +24,21 @@ echo Temporary directory: $tmpdir
 #-------------------------------------------------------------------------------
 # DIRAC
 
-#DIRAC_GITHUB=https://github.com/DIRACGrid/DIRAC/archive/
-## Let's download DIRAC
-#echo Downloading DIRAC from $DIRAC_GITHUB$DIRACVERSION.zip 
-#wget $DIRAC_GITHUB$DIRACVERSION.zip --no-check-certificate --directory-prefix $tmpdir -q
-#
-#unzip -q $tmpdir/$DIRACVERSION.zip -d $tmpdir
-#mv $tmpdir/DIRAC-* $tmpdir/DIRAC
-#rm $tmpdir/$DIRACVERSION.zip
+if [ -z "$LOCALDEBUG" ]
+then
+  DIRAC_GITHUB=https://github.com/DIRACGrid/DIRAC/archive/
+  # Let's download DIRAC
+  echo Downloading DIRAC from $DIRAC_GITHUB$DIRACVERSION.zip 
+  wget $DIRAC_GITHUB$DIRACVERSION.zip --no-check-certificate --directory-prefix $tmpdir -q
 
-cp -r ~/git/DIRAC $tmpdir/DIRAC
-
-echo DIRAC downloaded successfully to $tmpdir/DIRAC 
+  unzip -q $tmpdir/$DIRACVERSION.zip -d $tmpdir
+  mv $tmpdir/DIRAC-* $tmpdir/DIRAC
+  rm $tmpdir/$DIRACVERSION.zip
+  echo DIRAC downloaded successfully to $tmpdir/DIRAC
+else  
+  cp -r ~/git/DIRAC $tmpdir/DIRAC
+  echo DIRAC copied successfully to $tmpdir/DIRAC
+fi
 
 # Export tmpdir on PYTHONPATH so that we can import DIRAC
 export PYTHONPATH=$PYTHONPATH:$tmpdir
@@ -43,20 +46,24 @@ export PYTHONPATH=$PYTHONPATH:$tmpdir
 #-------------------------------------------------------------------------------
 # DIRACDocs
 
-#diracDocsVersion=buildClientsDOC
-#
-#DIRACDocs_GITHUB=https://github.com/ubeda/DIRACDocs/archive/$diracDocsVersion.zip
-## Let's download DIRACDocs
-#echo Downloading DIRACDocs from $DIRACDocs_GITHUB 
-#wget $DIRACDocs_GITHUB --no-check-certificate --directory-prefix $tmpdir -q
-#
-#unzip -q $tmpdir/$diracDocsVersion.zip -d $tmpdir
-#mv $tmpdir/DIRACDocs-$diracDocsVersion $tmpdir/DIRACDocs
-#rm $tmpdir/$diracDocsVersion.zip
+if [ -z "$LOCALDEBUG" ]
+then
 
-cp -r ~/git/DIRACDocs $tmpdir/DIRACDocs
+  diracDocsVersion=buildClientsDOC
 
-echo DIRACDocs downloaded successfully to $tmpdir/DIRACDocs
+  DIRACDocs_GITHUB=https://github.com/ubeda/DIRACDocs/archive/$diracDocsVersion.zip
+  # Let's download DIRACDocs
+  echo Downloading DIRACDocs from $DIRACDocs_GITHUB 
+  wget $DIRACDocs_GITHUB --no-check-certificate --directory-prefix $tmpdir -q
+
+  unzip -q $tmpdir/$diracDocsVersion.zip -d $tmpdir
+  mv $tmpdir/DIRACDocs-$diracDocsVersion $tmpdir/DIRACDocs
+  rm $tmpdir/$diracDocsVersion.zip
+  echo DIRACDocs downloaded successfully to $tmpdir/DIRACDocs
+else
+  cp -r ~/git/DIRACDocs $tmpdir/DIRACDocs
+  echo DIRACDocs copied successfully to $tmpdir/DIRACDocs
+fi
 
 # Export tmpdir on PYTHONPATH so that we can import fakeEnvironment
 export PYTHONPATH=$PYTHONPATH:$tmpdir/DIRACDocs/Tools
@@ -77,7 +84,7 @@ python $tmpdir/DIRACDocs/Tools/buildCodeDOC.py $codeDIR
 
 make -C $tmpdir/DIRACDocs html
 
-firefox $tmpdir/DIRACDocs/build/html/index.html &
+echo $tmpdir
 
 #-------------------------------------------------------------------------------
 #EOF
