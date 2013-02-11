@@ -18,53 +18,12 @@ import os
 import sys
 import tempfile
 
-
-diracRelease = os.environ[ 'DIRACVERSION' ]
-print 'Got %s as DIRACVERSION' % diracRelease
-
-#...............................................................................
-# documentation builders
-
-print '*' * 80
-print '*' * 80
-print '*' * 80
-
-#sys.modules["DIRAC.Core.Base"] = fakeEnv
-#sys.modules["DIRAC.Core.Base.Script"] = fakeEnv
-#sys.modules["DIRAC.Core.Base.DB"] = fakeEnv
-#sys.modules["DIRAC.Core.Base.AgentModule"] = fakeEnv
-#sys.modules["DIRAC.Core.Base.API"] = fakeEnv
-#sys.modules["DIRAC.Core.Base.Client"] = fakeEnv
-#sys.modules["DIRAC.Core.Base.AgentReactor"] = fakeEnv
-#
-#sys.modules["DIRAC.DataManagementSystem.DB.RequestDB"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.BarGraph"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.Graph"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.GraphData"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.GraphUtilities"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.Legend"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.LineGraph"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.Palette"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.PieGraph"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.PlotBase"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.Graphs.QualityMapGraph"] = fakeEnv
-#sys.modules["DIRAC.Core.Utilities.OracleDB"] = fakeEnv
-#sys.modules["RequestDB"] = fakeEnv
-#sys.modules["pytz"] = fakeEnv
-#sys.modules["numpy"] = fakeEnv
-#sys.modules["numpy.random"] = fakeEnv
-#sys.modules["matplotlib"] = fakeEnv
-#sys.modules["matplotlib.ticker"] = fakeEnv
-#sys.modules["matplotlib.figure"] = fakeEnv
-#sys.modules["matplotlib.dates"] = fakeEnv
-#sys.modules["dateutil"] = fakeEnv
-#sys.modules["dateutil.relativedelta"] = fakeEnv
-#sys.modules["matplotlib.backends"] = fakeEnv
-#sys.modules["matplotlib.backends.backend_agg"] = fakeEnv
-#sys.modules["MySQLdb"] = fakeEnv
-#sys.modules["DIRAC.FrameworkSystem.Service.PlotCache"] = fakeEnv
-#sys.modules["DIRAC.FrameworkSystem.Service.PlottingHandler"] = fakeEnv
+try:
+  diracRelease = os.environ[ 'DIRACVERSION' ]
+except KeyError:
+  diracRelease = 'integration'
+  
+print 'conf.py: %s as DIRACVERSION' % diracRelease
 
 #...............................................................................
 # configuration
