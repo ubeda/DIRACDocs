@@ -42,6 +42,11 @@ def getCodeDocumentationPath():
   codeDocumentationPath = os.path.abspath( os.path.join( whereAmI, 
                                                          relativePathToWrite ) )
 
+  try:
+    os.mkdir( codeDocumentationPath )
+  except OSError:
+    sys.exit( 'Cannot create %s' % codeDocumentationPath )
+
   return codeDocumentationPath  
 
 def getDIRACPackages():
