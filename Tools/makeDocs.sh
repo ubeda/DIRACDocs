@@ -49,9 +49,10 @@ export PYTHONPATH=$PYTHONPATH:$tmpdir
 if [ -z "$LOCALDEBUG" ]
 then
 
+  repo=DIRACGrid
   diracDocsVersion=buildClientsDOC
 
-  DIRACDocs_GITHUB=https://github.com/ubeda/DIRACDocs/archive/$diracDocsVersion.zip
+  DIRACDocs_GITHUB=https://github.com/$repo/DIRACDocs/archive/$diracDocsVersion.zip
   # Let's download DIRACDocs
   echo Downloading DIRACDocs from $DIRACDocs_GITHUB 
   wget $DIRACDocs_GITHUB --no-check-certificate --directory-prefix $tmpdir -q
