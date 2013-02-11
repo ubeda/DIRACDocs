@@ -7,5 +7,5 @@ ProxyManager is the implementation of the ProxyManagement service in the DISET f
 +-----------------+------------------------------------------+----------------------------+
 | **Name**        | **Description**                          | **Example**                |
 +-----------------+------------------------------------------+----------------------------+
-| *UseMyProxy* | Use myproxy server | UseMyProxy = False |
+| *UseMyProxy*    | Use myproxy server                       | UseMyProxy = False         |
 +-----------------+------------------------------------------+----------------------------+
