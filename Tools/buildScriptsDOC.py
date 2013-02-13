@@ -109,42 +109,58 @@ def writeScriptsDocs( scriptsDict, commandRefPath ):
   getpass.getpass = shutUp
   
   # Create index.rst, just the header, we will append lines afterwards
-  indexPath = createIndexRST( commandRefPath )
+  adminPath,userPath = createIndexRST( commandRefPath )
   
   # Sort module names to have a nicer presentation
   modules = scriptsDict.keys()
   modules.sort()
   
+  scriptPaths = { 'admin' : [], 'user' : [] }
+  
   #for module, newScriptNames in scriptsDict.iteritems():
   for module in modules:
     
     # Create module header on the index.rst 
-    createModuleRST( indexPath, module )
+    createModuleRST( adminPath, module )
+    createModuleRST( userPath, module )
     
     for newScriptName in scriptsDict[ module ]:
       
+      isAdmin = 'admin' in newScriptName
+      
       # Before anything crashes, let's write the script rst file. If we can import
       # it, we will populate if afterwards.
+      if isAdmin:
+        indexPath = adminPath
+      else:
+        indexPath = userPath
+          
       scriptPath = createScriptRST( indexPath, newScriptName )
-            
+
+      if isAdmin:
+        scriptPaths[ 'admin' ].append( scriptPath )
+      else:
+        scriptPaths[ 'user' ].append( scriptPath )  
+           
       # This is ugly, but otherwise Script piles up the arguments
       reload( Script )
       Script.parseCommandLine = killMe
+
+      docToWrite = ''
       
       try:
-        script = __import__( newScriptName )
-        #print 'ok: %s' % newScriptName
+        script     = __import__( newScriptName )
+        docToWrite = script.__doc__
       except SystemExit:
-        print 'exited: %s' % newScriptName
-        continue  
+        print 'exited: %s' % newScriptName 
       except NameError:
         print 'killMe: %s' % newScriptName
-        continue
       except:
         print 'other: %s' % newScriptName
-        continue
+
+      writeScriptRST( scriptPath, docToWrite )
   
-      writeScriptRST( scriptPath, script.__doc__ )
+  return scriptPaths    
   
 #...............................................................................
 # Functions generating rst files
@@ -153,14 +169,19 @@ def createIndexRST( commandRefPath ):
   ''' Creates a new index.rst file, which will keep links to all scripts 
   '''  
   
-  indexPath = os.path.join( commandRefPath, 'index.rst' )
+  adminPath = os.path.join( commandRefPath, 'admin.rst' )
+  userPath  = os.path.join( commandRefPath, 'user.rst' )
   
-  with open( indexPath, 'w' ) as index:    
-    index.write( '=' * 20 )
-    index.write( '\nCommand reference\n' )
-    index.write( '=' * 20 )
+  def writeHeader( indexPath ):
+    with open( indexPath, 'w' ) as index:    
+      index.write( '=' * 40 )
+      index.write( '\nCommand reference (|release|)\n' )
+      index.write( '=' * 40 )
+  
+  writeHeader( adminPath )
+  writeHeader( userPath )  
     
-  return indexPath
+  return adminPath, userPath
  
 def createModuleRST( indexPath, moduleName ):
   ''' Adds the toctree and module name for a given module to index.rst
@@ -194,40 +215,67 @@ def writeScriptRST( scriptPath, docString ):
   '''
   
   # Some of the scripts do not have docstring !
-  if docString:
-    with open( scriptPath, 'a' ) as script:
-      script.write( docString )
-  else:
-    print 'NO DOCSTRING: %s' % scriptPath
+  if not docString:
+    docString = 'NO DOCSTRING'
+    print 'NO DOCSTRING: %s' % scriptPath  
+  with open( scriptPath, 'a' ) as script:
+    script.write( docString ) 
   
 #...............................................................................
 
-def overwriteCommandReference( commandRefPath ):
+def overwriteCommandReference( commandRefPath, scriptPaths ):
   ''' Overwrites the default CommandReference with the latest CommandReference
       generated.
   '''  
     
   whereAmI = os.path.dirname( os.path.abspath( __file__ ) )
-  relativePathToWrite = '../source/AdministratorGuide/CommandReference'
+  _relativePathAdmin = '../source/AdministratorGuide/CommandReference'
+  _relativePathUser  = '../source/UserGuide/CommandReference'
   
-  oldCommandRef = os.path.abspath( os.path.join( whereAmI, relativePathToWrite ) )
+  newAdminPath = os.path.abspath( os.path.join( whereAmI, _relativePathAdmin ) )
+  newUserPath  = os.path.abspath( os.path.join( whereAmI, _relativePathUser ) )
   
-  try:
-    shutil.rmtree( oldCommandRef )
-  except OSError:
-    sys.exit( 'OSError removing %s' % oldCommandRef )  
-  except shutil.Error:
-    sys.exit( 'shutil.Error removing %s' % oldCommandRef )
+  def cleanPrevious( newPath ):
+    
+    try:
+      shutil.rmtree( newPath )
+    except OSError:
+      sys.exit( 'OSError removing %s' % newPath )  
+    except shutil.Error:
+      sys.exit( 'shutil.Error removing %s' % newPath )
   
-  try:       
-    shutil.copytree( commandRefPath, oldCommandRef )       
-  except OSError:
-    sys.exit( 'OSError copying %s to %s' % ( commandRefPath, oldCommandRef ) )  
-  except shutil.Error:
-    sys.exit( 'shutil.Error copying %s to %s' % ( commandRefPath, oldCommandRef ) )
+  cleanPrevious( newAdminPath )
+  cleanPrevious( newUserPath )
   
-  print commandRefPath
-  print oldCommandRef
+  def copyNew( newPath, scriptPaths, indexName ):
+    
+    try:
+      os.mkdir( newPath )
+    except OSError:
+      sys.exit( 'Error creating %s' % newPath )
+    for scriptPath in scriptPaths[ indexName ]:
+      try:
+        shutil.copy( scriptPath, newPath )  
+      except shutil.Error:
+        sys.exit( 'shutil.Error copying %s' % newPath )
+
+  copyNew( newAdminPath, scriptPaths, 'admin' )
+  copyNew( newUserPath,  scriptPaths, 'user' ) 
+  
+  def copyIndex( newPath, commandRefPath, indexName ):
+
+    indexPath    = os.path.abspath( os.path.join( commandRefPath, '%s.rst' % indexName ) )
+    newIndexPath = os.path.abspath( os.path.join( newPath, 'index.rst' ) )    
+    try:
+      shutil.copy( indexPath, newIndexPath )  
+    except shutil.Error:
+      sys.exit( 'shutil.Errir copying %s' % indexPath )
+    
+  copyIndex( newAdminPath, commandRefPath, 'admin' )
+  copyIndex( newUserPath, commandRefPath, 'user' )    
+    
+#...............................................................................
+# run
   
 def run( tmpDir = None ):
   ''' Generates a temp directory where to copy over all scripts renamed so
@@ -240,12 +288,13 @@ def run( tmpDir = None ):
     
   commandRefPath = generateCommandReference( tmpDir )
   scriptsDict    = prepareScripts( tmpDir )
-  writeScriptsDocs( scriptsDict, commandRefPath )
+  scriptPaths    = writeScriptsDocs( scriptsDict, commandRefPath )
+  
   print 'RSTs generated'
   
-  overwriteCommandReference( commandRefPath )
+  overwriteCommandReference( commandRefPath, scriptPaths )
   
-  print 'Command Reference overwritten'
+  print 'Done'
 
 #...............................................................................
 # main
