@@ -5,6 +5,7 @@
 
 *.py[co]
 build
+build.bak
 
 
 #vim crap
