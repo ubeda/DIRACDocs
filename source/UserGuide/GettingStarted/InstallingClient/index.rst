@@ -9,7 +9,7 @@ The DIRAC client installation procedure consists of several steps.
 Install script
 ---------------
 
-Download the *dirac-install* script from_::
+Download the *dirac-install* script from::
 
   wget -np -O dirac-install https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/dirac-install.py --no-check-certificate
   chmod +x dirac-install
