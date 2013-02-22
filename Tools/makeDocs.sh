@@ -18,7 +18,7 @@ fi
 export DIRACVERSION=$DIRACVERSION
 
 # Create a temporary directory where to place all code
-tmpdir=`mktemp -d`
+tmpdir=`mktemp -d /tmp/DIRACDocsXXXXXX`
 echo Temporary directory: $tmpdir
 
 #-------------------------------------------------------------------------------
