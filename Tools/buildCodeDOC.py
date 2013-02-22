@@ -69,13 +69,13 @@ def getPackageModules( package ):
   
   return modules
 
-def writeIndexHeader( indexFile, title ):
+def writeIndexHeader( indexFile, title, depth=2 ):
 
   indexFile.write( '=' * len( title ) )
   indexFile.write( '\n%s\n' % title )
   indexFile.write( '=' * len( title ) )
   indexFile.write( '\n\n.. toctree::' )
-  indexFile.write( '\n   :maxdepth: 2\n' )
+  indexFile.write( '\n   :maxdepth: %d\n' % depth )
 
 def writeCodeDocumentationIndexRST( codeDocumentationPath, diracPackages ):
   '''
@@ -83,9 +83,15 @@ def writeCodeDocumentationIndexRST( codeDocumentationPath, diracPackages ):
     
   indexPath = os.path.join( codeDocumentationPath, 'index.rst' )
   with open( indexPath, 'w' ) as index:
-    writeIndexHeader( index, 'Code Documentation (|release|)' )    
+    index.write( 'Code Documentation (|release|)\n' )
+    index.write( '------------------------------\n' )
+    writeIndexHeader( index, 'Systems', 1 )    
     for diracPackage in diracPackages:
-      index.write( '\n   %s/index.rst\n' % diracPackage )  
+      if "System" in diracPackage:
+        index.write( '\n   %s/index.rst\n' % diracPackage )
+    writeIndexHeader( index, 'Other', 1 )    
+    for diracPackage in ['Interfaces','Core']:
+      index.write( '\n   %s/index.rst\n' % diracPackage )      
 
 def writePackageDocumentation( tmpDir, codeDocumentationPath, diracPackage ):
   
@@ -99,7 +105,12 @@ def writePackageDocumentation( tmpDir, codeDocumentationPath, diracPackage ):
 
   indexPath = os.path.join( packageDir, 'index.rst' )
   with open( indexPath, 'w' ) as index:
-    writeIndexHeader( index, diracPackage )
+    titlePackage = diracPackage
+    if diracPackage == "Core":
+      titlePackage = "Utilities"
+    elif diracPackage == "Interfaces":
+      titlePackage = "API"  
+    writeIndexHeader( index, titlePackage )
     
     for modulePackage in modulePackages:
       if not modulePackage in DOCMODULES:
