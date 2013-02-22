@@ -8,8 +8,8 @@
 #-------------------------------------------------------------------------------
 if [ -z $1 ]
 then
-  echo no given DIRAC version, setting integration
-  DIRACVERSION=integration
+  echo Using local contents for documentation 
+  LOCALDEBUG=true
 else
   DIRACVERSION=$1
 fi  
@@ -29,14 +29,16 @@ then
   DIRAC_GITHUB=https://github.com/DIRACGrid/DIRAC/archive/
   # Let's download DIRAC
   echo Downloading DIRAC from $DIRAC_GITHUB$DIRACVERSION.zip 
-  wget $DIRAC_GITHUB$DIRACVERSION.zip --no-check-certificate --directory-prefix $tmpdir -q
+  # wget $DIRAC_GITHUB$DIRACVERSION.zip --no-check-certificate --directory-prefix $tmpdir -q
+  echo "curl --insecure -L $DIRAC_GITHUB$DIRACVERSION.zip -s  > $tmpdir/$DIRACVERSION.zip"
+  curl --insecure -L $DIRAC_GITHUB$DIRACVERSION.zip -s  > $tmpdir/$DIRACVERSION.zip
 
-  unzip -q $tmpdir/$DIRACVERSION -d $tmpdir
+  unzip -q $tmpdir/$DIRACVERSION.zip -d $tmpdir
   mv $tmpdir/DIRAC-* $tmpdir/DIRAC
   rm $tmpdir/$DIRACVERSION*
   echo DIRAC downloaded successfully to $tmpdir/DIRAC
 else  
-  cp -r ~/git/DIRAC $tmpdir/DIRAC
+  cp -r ../../DIRAC $tmpdir/DIRAC
   echo DIRAC copied successfully to $tmpdir/DIRAC
 fi
 
@@ -55,14 +57,16 @@ then
   DIRACDocs_GITHUB=https://github.com/$repo/DIRACDocs/archive/$diracDocsVersion.zip
   # Let's download DIRACDocs
   echo Downloading DIRACDocs from $DIRACDocs_GITHUB 
-  wget $DIRACDocs_GITHUB --no-check-certificate --directory-prefix $tmpdir -q
+  # wget $DIRACDocs_GITHUB --no-check-certificate --directory-prefix $tmpdir -q
+  echo "curl --insecure -L $DIRACDocs_GITHUB -s  > $tmpdir/$diracDocsVersion.zip"
+  curl --insecure -L $DIRACDocs_GITHUB -s  > $tmpdir/$diracDocsVersion.zip
 
-  unzip -q $tmpdir/$diracDocsVersion -d $tmpdir
+  unzip -q $tmpdir/$diracDocsVersion.zip -d $tmpdir
   mv $tmpdir/DIRACDocs-$diracDocsVersion $tmpdir/DIRACDocs
   rm $tmpdir/$diracDocsVersion*
   echo DIRACDocs downloaded successfully to $tmpdir/DIRACDocs
 else
-  cp -r ~/git/DIRACDocs $tmpdir/DIRACDocs
+  cp -r ../../DIRACDocs $tmpdir/DIRACDocs
   echo DIRACDocs copied successfully to $tmpdir/DIRACDocs
 fi
 
@@ -70,7 +74,7 @@ fi
 export PYTHONPATH=$PYTHONPATH:$tmpdir/DIRACDocs/Tools
 
 #-------------------------------------------------------------------------------
-# Generate scripts documentation
+# Generate scripts and code documentation
 
 scriptsDIR=$tmpdir/build/scripts
 mkdir -p $scriptsDIR
@@ -84,8 +88,9 @@ python $tmpdir/DIRACDocs/Tools/buildCodeDOC.py $codeDIR
 # Make html web pages from rst's
 
 # This command hangs, so we kill it after 5 minutes
+#( make -C $tmpdir/DIRACDocs html ) & sleep 300 ; kill -9 $!; echo "killed make"
 
-( make -C $tmpdir/DIRACDocs html ) & sleep 300 ; kill -9 $!; echo "killed make"
+make -C $tmpdir/DIRACDocs html
 
 #-------------------------------------------------------------------------------
 # copying over
@@ -95,7 +100,20 @@ echo "Copying over from $tmpdir/DIRACDocs/build to $DIR/../build"
 #WhereAmI
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
  
+if [ -d $DIR/../build.bak ]
+then
+  rm -rf $DIR/../build.bak
+fi 
+if [ -d $DIR/../build ] 
+then
+  echo Backing up the previous build directory
+  mv $DIR/../build $DIR/../build.bak 
+fi 
+ 
 cp -r $tmpdir/DIRACDocs/build $DIR/../build
+
+echo Removing temporary directory $tmpdir 
+rm -rf $tmpdir
 
 echo 'Done'
 
