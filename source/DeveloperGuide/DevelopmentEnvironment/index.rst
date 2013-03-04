@@ -69,7 +69,7 @@ First you need to check out all the sources you need to start working on DIRAC o
  4. If you need DIRACWeb extension, for example, do the same with the repo at https://github.com/DIRACGrid/DIRACWeb
  5. If you need to check out any extension do so in the *devRoot* directory. For instance::
  
-       svn co svn+ssh://svn.cern.ch/reps/lbdirac/LHCbDIRAC/trunk/LHCbDIRAC LHCbDIRAC
+       svn co svn+ssh://svn.cern.ch/reps/dirac/LHCbDIRAC/trunk/LHCbDIRAC LHCbDIRAC
  
  6. Repeat step 4 for each extension you need
  7. Deploy DIRAC scripts by running::
