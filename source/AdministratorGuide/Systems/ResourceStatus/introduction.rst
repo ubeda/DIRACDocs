@@ -134,7 +134,7 @@ StatusType
 
 It may happen that an Element requires more than one Status. A very clear example are the
 StorageElement Resources, which require several Statuses in order to specify the different
-data accesses ( Read, Write, etc ... ).
+data accesses ( ReadAccess, WriteAccess, etc ... ).
 
 By default, every Element has only one StatusType - "all". However, this can be modified on
 the CS to have as many as needed. Please, take a look to :doc:`configuration` for further
