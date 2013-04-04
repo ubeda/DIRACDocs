@@ -14,6 +14,7 @@ preferably on Defaults subsection. ::
                                   default = all
                                   StorageElement = ReadAccess,WriteAccess,CheckAccess,RemoveAccess   
 
+.. _config section :
 --------------
 Config section
 --------------

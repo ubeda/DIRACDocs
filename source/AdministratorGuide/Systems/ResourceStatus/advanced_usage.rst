@@ -9,7 +9,4 @@ Advanced Usage
 scripts
 -------
 
------------------
-interactive shell
------------------
-
+Will come soon.
