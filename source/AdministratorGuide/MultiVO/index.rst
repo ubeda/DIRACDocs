@@ -37,7 +37,7 @@ DIRAC server installation
 -------------------------
 
 First step is to install DIRAC. Procedure is the same for a single VO installation, but avoiding VirtualOrganization parameter in configuration file:
-
+::
    ...
    #  VO name (not mandatory, useful if DIRAC will be used for a VO)
    #VirtualOrganization = superbvo.org
