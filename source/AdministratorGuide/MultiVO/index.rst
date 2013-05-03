@@ -58,7 +58,7 @@ Registry
 --------
 
 Add superb_user group
-
+::
    Registry
    {
      DefaultGroup = superb_user, user
@@ -66,7 +66,7 @@ Add superb_user group
 
 Registry/VO
 -----------
-
+::
    Registry
    {
      VO
@@ -97,7 +97,7 @@ Registry/VO
 
 Registry/Groups
 ---------------
-
+::
    Registry
    {
      Groups
