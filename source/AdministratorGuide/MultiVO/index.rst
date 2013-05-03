@@ -28,9 +28,9 @@ In this tutorial
  - foreach VO a <vo_name>_user group is configured to allow normal user operations
  - foreach VO a Pool_<vo_name> submit pool is configured
 
-Limits of this guide:
-This guide must be considered as a step-by-step tutorial, not intended as documentation for DIRAC's multi-VO capabilities.
-Please, feel free to send me via email any suggestion to improve this chapter.
+Limits of this guide
+ - This guide must be considered as a step-by-step tutorial, not intended as documentation for DIRAC's multi-VO capabilities.
+ - Please, feel free to send me via email any suggestion to improve this chapter.
 
 -------------------------
 DIRAC server installation
