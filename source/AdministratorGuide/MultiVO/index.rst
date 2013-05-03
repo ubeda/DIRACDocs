@@ -101,6 +101,7 @@ Registry/VO
 Registry/Groups
 ---------------
 ::
+
    Registry
    {
      Groups
@@ -122,6 +123,7 @@ Registry/Groups
 
 Registry/VOMS
 -------------
+::
 
    Registry
    {
@@ -158,9 +160,11 @@ Registry/VOMS
 DIRAC search for VOMS data in /usr/etc/vomses folder.
 Foreach VO create a file with the same name of VO and fill it in this way for every VOMS server.
 (Take data from http://operations-portal.egi.eu/vo)
+::
 
    "<VO name>" "<VOMS server>" "<vomses port>" "<DN>" "<VO name>" "<https port>"
 
+::
 
    [managai@dirac vomses]$ cat /usr/etc/vomses/superbvo.org 
    "superbvo.org" "voms2.cnaf.infn.it" "15009" "/C=IT/O=INFN/OU=Host/L=CNAF/CN=voms2.cnaf.infn.it" "superbvo.org" "8443"
@@ -171,6 +175,7 @@ Systems/Configuration - CE2CSAgent
 ----------------------------------
 
 CE2CSAgent retrieve CE info from BDII. Foreach VO should be an instance of CE2CSAgent
+::
 
    Systems
    {
@@ -194,6 +199,7 @@ CE2CSAgent retrieve CE info from BDII. Foreach VO should be an instance of CE2CS
 
 Operations - Shifter
 --------------------
+::
 
    Operations
    {
@@ -224,6 +230,7 @@ Operations/JobDescription
 -------------------------
 
 Add new Pool to SubmitPools
+::
 
    Operations
    {
@@ -240,6 +247,7 @@ Resources/FileCatalog
 ---------------------
 
 Configure DIRAC File Catalog (DFC)
+::
 
    Resources
    {
@@ -256,6 +264,7 @@ Configure DIRAC File Catalog (DFC)
 
 Resources/StorageElements/ProductionSandboxSE
 ---------------------------------------------
+::
 
    Resources
    {
@@ -281,11 +290,13 @@ WorkloadManagement - PilotStatusAgent
 -------------------------------------
 
 Option value could be different, it depends on UI installed on server
+::
 
    Systems/WorkloadManagement/<setup>/Agents/PilotStatusAgent/GridEnv = /etc/profile.d/grid-env
 
 Systems/WorkloadManagement - TaskQueueDirector
 ----------------------------------------------
+::
 
    Systems
    {
@@ -345,6 +356,7 @@ Configuring another VO (e.g. pamela)
 
 Registry
 --------
+::
 
    Registry
    {
@@ -355,6 +367,7 @@ Registry/VO
 -----------
 
 add pamela
+::
 
    Registry
    {
@@ -388,6 +401,7 @@ Registry/Groups
 ---------------
 
 add pamela_user
+::
 
    Registry
    {
@@ -412,6 +426,7 @@ Registry/VOMS
 -------------
 
 add pamela parameters...
+::
 
    Registry
    {
@@ -444,6 +459,7 @@ add pamela parameters...
 
 Systems/Configuration - CE2CSAgent
 ----------------------------------
+::
 
    Systems
    {
@@ -475,13 +491,14 @@ Systems/Configuration - CE2CSAgent
    }
 
 as dirac_admin group memeber, enter dirac-admin-sysadmin-cli
-
+::
 
    (dirac.ba.infn.it)> install agent Configuration CE2CSAgent_pamela -m CE2CSAgent -p VirtualOrganization=pamela
    agent Configuration_CE2CSAgent_pamela is installed, runit status: Run
 
 Operations - adding pamela section
 ----------------------------------
+::
 
    Operations
    {
@@ -547,6 +564,7 @@ Operations - adding pamela section
 
 Systems/WorkloadManagement - TaskQueueDirector
 ----------------------------------------------
+::
 
    Systems
    {
