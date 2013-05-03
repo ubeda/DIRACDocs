@@ -21,12 +21,12 @@ Before to start with this tutorial ...
 --------------------------------------
 
 In this tutorial
-* Server hostname is: dirac.ba.infn.it
-* first VO configured is: superbvo.org
-* second VO configured is: pamela
-* adding more VOs can be done following instructions for the second one
-* foreach VO a <vo_name>_user group is configured to allow normal user operations
-* foreach VO a Pool_<vo_name> submit pool is configured
+ - Server hostname is: dirac.ba.infn.it
+ - first VO configured is: superbvo.org
+ - second VO configured is: pamela
+ - adding more VOs can be done following instructions for the second one
+ - foreach VO a <vo_name>_user group is configured to allow normal user operations
+ - foreach VO a Pool_<vo_name> submit pool is configured
 
 Limits of this guide:
 This guide must be considered as a step-by-step tutorial, not intended as documentation for DIRAC's multi-VO capabilities.
