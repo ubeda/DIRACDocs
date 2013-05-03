@@ -38,6 +38,7 @@ DIRAC server installation
 
 First step is to install DIRAC. Procedure is the same for a single VO installation, but avoiding VirtualOrganization parameter in configuration file:
 ::
+
    ...
    #  VO name (not mandatory, useful if DIRAC will be used for a VO)
    #VirtualOrganization = superbvo.org
@@ -59,6 +60,7 @@ Registry
 
 Add superb_user group
 ::
+
    Registry
    {
      DefaultGroup = superb_user, user
@@ -67,6 +69,7 @@ Add superb_user group
 Registry/VO
 -----------
 ::
+
    Registry
    {
      VO
