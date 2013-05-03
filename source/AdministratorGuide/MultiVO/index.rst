@@ -38,10 +38,10 @@ DIRAC server installation
 
 First step is to install DIRAC. Procedure is the same for a single VO installation, but avoiding VirtualOrganization parameter in configuration file:
 
-    ...
-    #  VO name (not mandatory, useful if DIRAC will be used for a VO)
-	  #VirtualOrganization = superbvo.org
-    ...
+   ...
+   #  VO name (not mandatory, useful if DIRAC will be used for a VO)
+   #VirtualOrganization = superbvo.org
+   ...
 
 
 -------------------------
@@ -59,95 +59,95 @@ Registry
 
 Add superb_user group
 
- Registry
- {
-   DefaultGroup = superb_user, user
- }
+   Registry
+   {
+     DefaultGroup = superb_user, user
+   }
 
 Registry/VO
 -----------
 
- Registry
- {
-   VO
+   Registry
    {
-     superbvo.org
+     VO
      {
-       SubmitPools = Pool_superbvo.org
-       VOAdmin = bsanteramo
-       VOMSName = superbvo.org
-       VOMSServers
+       superbvo.org
        {
-         voms2.cnaf.infn.it
+         SubmitPools = Pool_superbvo.org
+         VOAdmin = bsanteramo
+         VOMSName = superbvo.org
+         VOMSServers
          {
-           DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms2.cnaf.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15009
-         }
-         voms-02.pd.infn.it
-         {
-           DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15009
+           voms2.cnaf.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms2.cnaf.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15009
+           }
+           voms-02.pd.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15009
+           }
          }
        }
      }
    }
- }
 
 Registry/Groups
 ---------------
 
- Registry
- {
-   Groups
+   Registry
    {
-     superb_user
+     Groups
      {
-       Users = bsanteramo
-       Properties = NormalUser
-       VOMSRole = /superbvo.org
-       VOMSVO = superbvo.org
-       VO = superbvo.org
-       SubmitPool = Pool_superbvo.org
-       AutoAddVOMS = True
-       AutoUploadProxy = True
-       AutoUploadPilotProxy = True
+       superb_user
+       {
+         Users = bsanteramo
+         Properties = NormalUser
+         VOMSRole = /superbvo.org
+         VOMSVO = superbvo.org
+         VO = superbvo.org
+         SubmitPool = Pool_superbvo.org
+         AutoAddVOMS = True
+         AutoUploadProxy = True
+         AutoUploadPilotProxy = True
+       }
      }
    }
- }
 
 Registry/VOMS
 -------------
 
- Registry
- {
-   VOMS
+   Registry
    {
-     Mapping
+     VOMS
      {
-       superb_user = /superbvo.org
-     }
-     Servers
-     {
-       superbvo.org
+       Mapping
        {
-         voms2.cnaf.infn.it
+         superb_user = /superbvo.org
+       }
+       Servers
+       {
+         superbvo.org
          {
-           DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms2.cnaf.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15009
-         }
-         voms-02.pd.infn.it
-         {
-           DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15009
+           voms2.cnaf.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms2.cnaf.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15009
+           }
+           voms-02.pd.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15009
+           }
          }
        }
      }
    }
- }
 
 /usr/etc/vomses
 ---------------
@@ -156,177 +156,177 @@ DIRAC search for VOMS data in /usr/etc/vomses folder.
 Foreach VO create a file with the same name of VO and fill it in this way for every VOMS server.
 (Take data from http://operations-portal.egi.eu/vo)
 
- "<VO name>" "<VOMS server>" "<vomses port>" "<DN>" "<VO name>" "<https port>"
+   "<VO name>" "<VOMS server>" "<vomses port>" "<DN>" "<VO name>" "<https port>"
 
-::
- [managai@dirac vomses]$ cat /usr/etc/vomses/superbvo.org 
- "superbvo.org" "voms2.cnaf.infn.it" "15009" "/C=IT/O=INFN/OU=Host/L=CNAF/CN=voms2.cnaf.infn.it" "superbvo.org" "8443"
- "superbvo.org" "voms-02.pd.infn.it" "15009" "/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it" "superbvo.org" "8443"
-::
+
+   [managai@dirac vomses]$ cat /usr/etc/vomses/superbvo.org 
+   "superbvo.org" "voms2.cnaf.infn.it" "15009" "/C=IT/O=INFN/OU=Host/L=CNAF/CN=voms2.cnaf.infn.it" "superbvo.org" "8443"
+   "superbvo.org" "voms-02.pd.infn.it" "15009" "/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it" "superbvo.org" "8443"
+
 
 Systems/Configuration - CE2CSAgent
 ----------------------------------
 
 CE2CSAgent retrieve CE info from BDII. Foreach VO should be an instance of CE2CSAgent
 
- Systems
- {
-   Configuration
+   Systems
    {
-     Production
+     Configuration
      {
-       Agents
+       Production
        {
-         CE2CSAgent
+         Agents
          {
-           BannedCSs = 
-           MailTo = 
-           MailFrom = 
-           VirtualOrganization = superbvo.org
+           CE2CSAgent
+           {
+             BannedCSs = 
+             MailTo = 
+             MailFrom = 
+             VirtualOrganization = superbvo.org
+           }
          }
        }
      }
    }
- }
 
 Operations - Shifter
 --------------------
 
- Operations
- {
-   SuperB-Production
+   Operations
    {
-     Shifter
+     SuperB-Production
      {
-       SAMManager
+       Shifter
        {
-         User = bsanteramo
-         Group = superb_user
-       }
-       ProductionManager
-       {
-         User = bsanteramo
-         Group = superb_user
-       }
-       DataManager
-       {
-         User = bsanteramo
-         Group = superb_user
+         SAMManager
+         {
+           User = bsanteramo
+           Group = superb_user
+         }
+         ProductionManager
+         {
+           User = bsanteramo
+           Group = superb_user
+         }
+         DataManager
+         {
+           User = bsanteramo
+           Group = superb_user
+         }
        }
      }
    }
- }
 
 Operations/JobDescription
 -------------------------
 
 Add new Pool to SubmitPools
 
- Operations
- {
-   JobDescription
+   Operations
    {
-     AllowedJobTypes = MPI
-     AllowedJobTypes += User
-     AllowedJobTypes += Test
-     SubmitPools = Pool_superbvo.org
+     JobDescription
+     {
+       AllowedJobTypes = MPI
+       AllowedJobTypes += User
+       AllowedJobTypes += Test
+       SubmitPools = Pool_superbvo.org
+     }
    }
- }
 
 Resources/FileCatalog
 ---------------------
 
 Configure DIRAC File Catalog (DFC)
 
- Resources
- {
-   FileCatalogs
+   Resources
    {
-     FileCatalog
+     FileCatalogs
      {
-       AccessType = Read-Write
-       Status = Active
-       Master = True
+       FileCatalog
+       {
+         AccessType = Read-Write
+         Status = Active
+         Master = True
+       }
      }
    }
- }
 
 Resources/StorageElements/ProductionSandboxSE
 ---------------------------------------------
 
- Resources
- {
-   StorageElements
+   Resources
    {
-     ProductionSandboxSE
+     StorageElements
      {
-       BackendType = DISET
-       AccessProtocol.1
+       ProductionSandboxSE
        {
-         Host = dirac.ba.infn.it
-         Port = 9196
-         ProtocolName = DIP
-         Protocol = dips
-         Path = /WorkloadManagement/SandboxStore
-         Access = remote
+         BackendType = DISET
+         AccessProtocol.1
+         {
+           Host = dirac.ba.infn.it
+           Port = 9196
+           ProtocolName = DIP
+           Protocol = dips
+           Path = /WorkloadManagement/SandboxStore
+           Access = remote
+         }
        }
      }
    }
- }
 
 WorkloadManagement - PilotStatusAgent
 -------------------------------------
 
 Option value could be different, it depends on UI installed on server
 
- Systems/WorkloadManagement/<setup>/Agents/PilotStatusAgent/GridEnv = /etc/profile.d/grid-env
+   Systems/WorkloadManagement/<setup>/Agents/PilotStatusAgent/GridEnv = /etc/profile.d/grid-env
 
 Systems/WorkloadManagement - TaskQueueDirector
 ----------------------------------------------
 
- Systems
- {
-   WorkloadManagement
+   Systems
    {
-     Production
+     WorkloadManagement
      {
-       Agents
+       Production
        {
-         TaskQueueDirector
+         Agents
          {
-           DIRACVersion = v6r7p25
-           Status = Active
-           ListMatchDelay = 10
-           extraPilotFraction = 1.0
-           extraPilots = 2
-           pilotsPerIteration = 100
-           maxThreadsInPool = 8
-           PollingTime = 30
-           MaxCycles = 500
-           SubmitPools = Pool_superbvo.org
-           AllowedSubmitPools = Pool_superbvo.org
-           Pool_superbvo.org
+           TaskQueueDirector
            {
-             GridMiddleware = gLite
-             ResourceBrokers = wms-multi.grid.cnaf.infn.it
-             Failing = 
-             PrivatePilotFraction = 1.0
-             MaxJobsInFillMode = 5
-             Rank = ( other.GlueCEStateWaitingJobs == 0 ? ( other.GlueCEStateFreeCPUs * 10 / other.GlueCEInfoTotalCPUs + other.GlueCEInfoTotalCPUs / 500 ) : -other.GlueCEStateWaitingJobs * 4 / (other.GlueCEStateRunningJobs + 1 ) - 1 )
-             GenericPilotDN = /C=IT/O=INFN/OU=Personal Certificate/L=Bari/CN=Bruno Santeramo
-             GenericPilotGroup = superb_user
-             GridEnv = /etc/profile.d/grid-env
-             VirtualOrganization = superbvo.org
-           }
-           DIRAC
-           {
-             GridMiddleware = DIRAC
+             DIRACVersion = v6r7p25
+             Status = Active
+             ListMatchDelay = 10
+             extraPilotFraction = 1.0
+             extraPilots = 2
+             pilotsPerIteration = 100
+             maxThreadsInPool = 8
+             PollingTime = 30
+             MaxCycles = 500
+             SubmitPools = Pool_superbvo.org
+             AllowedSubmitPools = Pool_superbvo.org
+             Pool_superbvo.org
+             {
+               GridMiddleware = gLite
+               ResourceBrokers = wms-multi.grid.cnaf.infn.it
+               Failing = 
+               PrivatePilotFraction = 1.0
+               MaxJobsInFillMode = 5
+               Rank = ( other.GlueCEStateWaitingJobs == 0 ? ( other.GlueCEStateFreeCPUs * 10 / other.GlueCEInfoTotalCPUs + other.GlueCEInfoTotalCPUs / 500 ) : -other.GlueCEStateWaitingJobs * 4 / (other.GlueCEStateRunningJobs + 1 ) - 1 )
+               GenericPilotDN = /C=IT/O=INFN/OU=Personal Certificate/L=Bari/CN=Bruno Santeramo
+               GenericPilotGroup = superb_user
+               GridEnv = /etc/profile.d/grid-env
+               VirtualOrganization = superbvo.org
+             }
+             DIRAC
+             {
+               GridMiddleware = DIRAC
+             }
            }
          }
        }
      }
    }
- }
 
 DONE
 ----
@@ -343,182 +343,150 @@ Configuring another VO (e.g. pamela)
 Registry
 --------
 
- Registry
- {
-   DefaultGroup = pamela_user, superb_user, user
- }
+   Registry
+   {
+     DefaultGroup = pamela_user, superb_user, user
+   }
 
 Registry/VO
 -----------
 
 add pamela
 
- Registry
- {
-   VO
+   Registry
    {
-     pamela
+     VO
      {
-       SubmitPools = Pool_pamela
-       VOAdmin = bsanteramo
-       VOMSName = pamela
-       VOMSServers
+       pamela
        {
-         voms.cnaf.infn.it
+         SubmitPools = Pool_pamela
+         VOAdmin = bsanteramo
+         VOMSName = pamela
+         VOMSServers
          {
-           DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15013
-         }
-         voms-01.pd.infn.it
-         {
-           DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15013
+           voms.cnaf.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15013
+           }
+           voms-01.pd.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15013
+           }
          }
        }
      }
    }
- }
 
 Registry/Groups
 ---------------
 
 add pamela_user
 
- Registry
- {
-   Groups
+   Registry
    {
-     pamela_user
+     Groups
      {
-       Users = bsanteramo
-       Properties = NormalUser
-       VOMSRole = /pamela
-       VOMSVO = pamela
-       VO = pamela
-       SubmitPool = Pool_pamela
-       AutoAddVOMS = True
-       AutoUploadProxy = True
-       AutoUploadPilotProxy = True
+       pamela_user
+       {
+         Users = bsanteramo
+         Properties = NormalUser
+         VOMSRole = /pamela
+         VOMSVO = pamela
+         VO = pamela
+         SubmitPool = Pool_pamela
+         AutoAddVOMS = True
+         AutoUploadProxy = True
+         AutoUploadPilotProxy = True
+       }
      }
    }
- }
 
 Registry/VOMS
 -------------
 
 add pamela parameters...
 
- Registry
- {
-   VOMS
+   Registry
    {
-     Mapping
+     VOMS
      {
-       pamela_user = /pamela
-     }
-     Servers
-     {
-       pamela
+       Mapping
        {
-         voms.cnaf.infn.it
+         pamela_user = /pamela
+       }
+       Servers
+       {
+         pamela
          {
-           DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15013
-         }
-         voms-01.pd.infn.it
-         {
-           DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it
-           CA = /C=IT/O=INFN/CN=INFN CA
-           Port = 15013
+           voms.cnaf.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15013
+           }
+           voms-01.pd.infn.it
+           {
+             DN = /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it
+             CA = /C=IT/O=INFN/CN=INFN CA
+             Port = 15013
+           }
          }
        }
      }
    }
- }
 
 Systems/Configuration - CE2CSAgent
 ----------------------------------
 
- Systems
- {
-   Configuration
+   Systems
    {
-     Production
+     Configuration
      {
-       Agents
+       Production
        {
-         CE2CSAgent
+         Agents
          {
-           PollingTime = 86400
-           Status = Active
-           MaxCycles = 500
-           LogLevel = INFO
-           BannedCSs = 
-           MailTo = 
-           MailFrom = 
-           VirtualOrganization = superbvo.org
-         }
-         CE2CSAgentPamela
-         {
-           Module = CE2CSAgent
-           VirtualOrganization = pamela
+           CE2CSAgent
+           {
+             PollingTime = 86400
+             Status = Active
+             MaxCycles = 500
+             LogLevel = INFO
+             BannedCSs = 
+             MailTo = 
+             MailFrom = 
+             VirtualOrganization = superbvo.org
+           }
+           CE2CSAgent_pamela
+           {
+             Module = CE2CSAgent
+             VirtualOrganization = pamela
+           }
          }
        }
      }
    }
- }
 
 as dirac_admin group memeber, enter dirac-admin-sysadmin-cli
 
-::
- (dirac.ba.infn.it)> install agent Configuration CE2CSAgent_pamela -m CE2CSAgent -p VirtualOrganization=pamela
- agent Configuration_CE2CSAgent_pamela is installed, runit status: Run
-::
+
+   (dirac.ba.infn.it)> install agent Configuration CE2CSAgent_pamela -m CE2CSAgent -p VirtualOrganization=pamela
+   agent Configuration_CE2CSAgent_pamela is installed, runit status: Run
 
 Operations - adding pamela section
 ----------------------------------
 
- Operations
- {
-   EMail
+   Operations
    {
-     Production = bruno.santeramo@ba.infn.it
-     Logging = bruno.santeramo@ba.infn.it
-   }
-   SuperB-Production
-   {
-     Shifter
+     EMail
      {
-       SAMManager
-       {
-         User = bsanteramo
-         Group = superb_user
-       }
-       ProductionManager
-       {
-         User = bsanteramo
-         Group = superb_user
-       }
-       DataManager
-       {
-         User = bsanteramo
-         Group = superb_user
-       }
+       Production = bruno.santeramo@ba.infn.it
+       Logging = bruno.santeramo@ba.infn.it
      }
-   }
-   JobDescription
-   {
-     AllowedJobTypes = MPI
-     AllowedJobTypes += User
-     AllowedJobTypes += Test
-     SubmitPools = Pool_superbvo.org
-     SubmitPools += Pool_pamela
-   }
-   pamela
-   {
      SuperB-Production
      {
        Shifter
@@ -526,81 +494,112 @@ Operations - adding pamela section
          SAMManager
          {
            User = bsanteramo
-           Group = pamela_user
+           Group = superb_user
          }
          ProductionManager
          {
            User = bsanteramo
-           Group = pamela_user
+           Group = superb_user
          }
          DataManager
          {
            User = bsanteramo
-           Group = pamela_user
+           Group = superb_user
+         }
+       }
+     }
+     JobDescription
+     {
+       AllowedJobTypes = MPI
+       AllowedJobTypes += User
+       AllowedJobTypes += Test
+       SubmitPools = Pool_superbvo.org
+       SubmitPools += Pool_pamela
+     }
+     pamela
+     {
+       SuperB-Production
+       {
+         Shifter
+         {
+           SAMManager
+           {
+             User = bsanteramo
+             Group = pamela_user
+           }
+           ProductionManager
+           {
+             User = bsanteramo
+             Group = pamela_user
+           }
+           DataManager
+           {
+             User = bsanteramo
+             Group = pamela_user
+           }
          }
        }
      }
    }
- }
 
 Systems/WorkloadManagement - TaskQueueDirector
 ----------------------------------------------
 
- Systems
- {
-   WorkloadManagement
+   Systems
    {
-     Production
+     WorkloadManagement
      {
-       Agents
+       Production
        {
-         TaskQueueDirector
+         Agents
          {
-           DIRACVersion = v6r7p25
-           Status = Active
-           ListMatchDelay = 10
-           extraPilotFraction = 1.0
-           extraPilots = 2
-           pilotsPerIteration = 100
-           maxThreadsInPool = 8
-           PollingTime = 30
-           MaxCycles = 500
-           SubmitPools = Pool_superbvo.org
-           SubmitPools += Pool_pamela
-           AllowedSubmitPools = Pool_superbvo.org
-           AllowedSubmitPools += Pool_pamela
-           Pool_superbvo.org
+           TaskQueueDirector
            {
-             GridMiddleware = gLite
-             ResourceBrokers = wms-multi.grid.cnaf.infn.it
-             Failing = 
-             PrivatePilotFraction = 1.0
-             MaxJobsInFillMode = 5
-             Rank = ( other.GlueCEStateWaitingJobs == 0 ? ( other.GlueCEStateFreeCPUs * 10 / other.GlueCEInfoTotalCPUs + other.GlueCEInfoTotalCPUs / 500 ) : -other.GlueCEStateWaitingJobs * 4 / (other.GlueCEStateRunningJobs + 1 ) - 1 )
-             GenericPilotDN = /C=IT/O=INFN/OU=Personal Certificate/L=Bari/CN=Bruno Santeramo
-             GenericPilotGroup = superb_user
-             GridEnv = /etc/profile.d/grid-env
-             VirtualOrganization = superbvo.org
-           }
-           Pool_pamela
-           {
-             GridMiddleware = gLite
-             ResourceBrokers = wms-multi.grid.cnaf.infn.it
-             Failing = 
-             PrivatePilotFraction = 1.0
-             MaxJobsInFillMode = 5
-             Rank = ( other.GlueCEStateWaitingJobs == 0 ? ( other.GlueCEStateFreeCPUs * 10 / other.GlueCEInfoTotalCPUs + other.GlueCEInfoTotalCPUs / 500 ) : -other.GlueCEStateWaitingJobs * 4 / (other.GlueCEStateRunningJobs + 1 ) - 1 )
-             GenericPilotDN = /C=IT/O=INFN/OU=Personal Certificate/L=Bari/CN=Bruno Santeramo
-             GenericPilotGroup = pamela_user
-             GridEnv = /etc/profile.d/grid-env
-             VirtualOrganization = pamela
-           }
-           DIRAC
-           {
-             GridMiddleware = DIRAC
+             DIRACVersion = v6r7p25
+             Status = Active
+             ListMatchDelay = 10
+             extraPilotFraction = 1.0
+             extraPilots = 2
+             pilotsPerIteration = 100
+             maxThreadsInPool = 8
+             PollingTime = 30
+             MaxCycles = 500
+             SubmitPools = Pool_superbvo.org
+             SubmitPools += Pool_pamela
+             AllowedSubmitPools = Pool_superbvo.org
+             AllowedSubmitPools += Pool_pamela
+             Pool_superbvo.org
+             {
+               GridMiddleware = gLite
+               ResourceBrokers = wms-multi.grid.cnaf.infn.it
+               Failing = 
+               PrivatePilotFraction = 1.0
+               MaxJobsInFillMode = 5
+               Rank = ( other.GlueCEStateWaitingJobs == 0 ? ( other.GlueCEStateFreeCPUs * 10 / other.GlueCEInfoTotalCPUs + other.GlueCEInfoTotalCPUs / 500 ) : -other.GlueCEStateWaitingJobs * 4 / (other.GlueCEStateRunningJobs + 1 ) - 1 )
+               GenericPilotDN = /C=IT/O=INFN/OU=Personal Certificate/L=Bari/CN=Bruno Santeramo
+               GenericPilotGroup = superb_user
+               GridEnv = /etc/profile.d/grid-env
+               VirtualOrganization = superbvo.org
+             }
+             Pool_pamela
+             {
+               GridMiddleware = gLite
+               ResourceBrokers = wms-multi.grid.cnaf.infn.it
+               Failing = 
+               PrivatePilotFraction = 1.0
+               MaxJobsInFillMode = 5
+               Rank = ( other.GlueCEStateWaitingJobs == 0 ? ( other.GlueCEStateFreeCPUs * 10 / other.GlueCEInfoTotalCPUs + other.GlueCEInfoTotalCPUs / 500 ) : -other.GlueCEStateWaitingJobs * 4 / (other.GlueCEStateRunningJobs + 1 ) - 1 )
+               GenericPilotDN = /C=IT/O=INFN/OU=Personal Certificate/L=Bari/CN=Bruno Santeramo
+               GenericPilotGroup = pamela_user
+               GridEnv = /etc/profile.d/grid-env
+               VirtualOrganization = pamela
+             }
+             DIRAC
+             {
+               GridMiddleware = DIRAC
+             }
            }
          }
        }
      }
    }
- }
