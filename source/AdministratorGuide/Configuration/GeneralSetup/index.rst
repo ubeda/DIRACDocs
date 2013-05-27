@@ -36,7 +36,7 @@ The *Configuration* subsection defines several options to discover and use the c
     
     ValueType: list
     
-  *Configuration*/**Master**
+  *Configuration*/**MasterServer**
     the URL of the Master Configuration Server. This server is used for updating the Configuration Service.
     
     ValueType: string
