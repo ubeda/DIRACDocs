@@ -9,19 +9,19 @@ New Request management System
 Installation
 ------------
 
-Login to host, install ReqDB::
+1. Login to host, install ReqDB::
 
 dirac-install-db ReqDB
 
-Install ReqManagerHandler service::
+2. Install ReqManagerHandler service::
 
 dirac-install-service RequestManagement/ReqManager
 
-Install CleanReqDBAgent::
+3. Install CleanReqDBAgent::
 
 dirac-install-agent RequestManagement/CleanReqDBAgent
 
-Install RequestExecutingAgent::
+4. Install RequestExecutingAgent::
 
 dirac-install-agent RequestManagement/RequestExecutingAgent
 
@@ -29,11 +29,11 @@ If one RequestExecutingAgent is not enough (and this is a working horse replacin
 put in place a few of those.
 
 
-If VO is using FTS system, install FTSDB::
+1. If VO is using FTS system, install FTSDB::
 
 dirac-install-db DataManagement/FTSDB
 
-Configure FTS sites using command dirac-dms-add-ftssite (not included in v6r9-pre1!!!)::
+2. Configure FTS sites using command dirac-dms-add-ftssite (not included in v6r9-pre1!!!)::
 
 dirac-dms-add-ftssite SITENAME FTSSERVERURL
 
@@ -47,24 +47,23 @@ dirac-dms-add-ftssite NIKHEF.nl https://fts.grid.sara.nl:8443/glite-data-transfe
 dirac-dms-add-ftssite GRIDKA.de https://fts-fzk.gridka.de:8443/glite-data-transfer-fts/services/FileTransfer
 dirac-dms-add-ftssite IN2P3.fr https://cclcgftsprod.in2p3.fr:8443/glite-data-transfer-fts/services/FileTransfer
 
-Install FTSManagerHandler::
+3. Install FTSManagerHandler::
 
 dirac-install-service DataManagement/FTSManager
 
-Install CleanFTSDBAgent::
+4. Install CleanFTSDBAgent::
 
 dirac-install-agent DataManagement/CleanFTSDBAgent
 
-Install MonitorFTSAgent::
+5. Install MonitorFTSAgent::
 
 dirac-install-agent DataManagemnt/MonitorFTSAgent
 
-Install SubmitFTSAgent::
+6. Install SubmitFTSAgent::
 
 dirac-install-agent DataManagement/SubmitFTSAgent
 
-
-Once all requests from old version of system are processed, shutdown and remove agents:: 
+7. Once all requests from old version of system are processed, shutdown and remove agents:: 
 
 RequestManagement/DISETForwardingAgent
 RequestManagement/RequestCleaningAgent
