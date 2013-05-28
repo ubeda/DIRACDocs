@@ -31,7 +31,7 @@ put in place a few of those.
 
 1. If VO is using FTS system, install FTSDB::
 
-  dirac-install-db DataManagement/FTSDB
+  dirac-install-db FTSDB
 
 2. Configure FTS sites using command dirac-dms-add-ftssite (not included in v6r9-pre1!!!)::
 
