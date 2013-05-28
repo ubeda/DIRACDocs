@@ -33,7 +33,13 @@ put in place a few of those.
 
   dirac-install-db FTSDB
 
-2. Configure FTS sites using command dirac-dms-add-ftssite (not included in v6r9-pre1!!!)::
+
+2. Install FTSManagerHandler::
+
+  dirac-install-service DataManagement/FTSManager
+
+
+3. Configure FTS sites using command dirac-dms-add-ftssite (not included in v6r9-pre1!!!)::
 
   dirac-dms-add-ftssite SITENAME FTSSERVERURL
 
@@ -46,10 +52,6 @@ In case of LHCb VO::
   dirac-dms-add-ftssite NIKHEF.nl https://fts.grid.sara.nl:8443/glite-data-transfer-fts/services/FileTransfe
   dirac-dms-add-ftssite GRIDKA.de https://fts-fzk.gridka.de:8443/glite-data-transfer-fts/services/FileTransfer
   dirac-dms-add-ftssite IN2P3.fr https://cclcgftsprod.in2p3.fr:8443/glite-data-transfer-fts/services/FileTransfer
-
-3. Install FTSManagerHandler::
-
-  dirac-install-service DataManagement/FTSManager
 
 4. Install CleanFTSDBAgent::
 
