@@ -59,7 +59,7 @@ In case of LHCb VO::
 
 5. Install MonitorFTSAgent::
 
-  dirac-install-agent DataManagemnt/MonitorFTSAgent
+  dirac-install-agent DataManagement/MonitorFTSAgent
 
 6. Install SubmitFTSAgent::
 
@@ -78,8 +78,8 @@ and services::
   RequestManagement/RequestManager
   DataManagement/TransferDBMonitor
 
-and db::
+and dbs::
 
   RequestManagement/RequestDB
-
+  DataManagement/TransferDB
 
