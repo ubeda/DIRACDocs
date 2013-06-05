@@ -68,6 +68,10 @@ In case of LHCb VO::
 
   dirac-install-agent DataManagement/FTSAgent
 
+
+Again, as in case of RequestExecutingAgent, if one instance is not enough, you can easily clone it to several instances. 
+
+
 7. Once all requests from old version of system are processed, shutdown and remove agents:: 
 
   RequestManagement/DISETForwardingAgent
