@@ -17,11 +17,19 @@ Installation
 
   dirac-install-service RequestManagement/ReqManager
 
-3. Install CleanReqDBAgent::
+3. Install at least one ReqProxy service::
+
+  dirac-install-service RequestManagement/ReqProxy
+
+and modify CS by adding:
+
+  Systems/RequestManagement/<Configuration>/URLs/ReqProxyURLs = <ReqProxy FQDN1>, <ReqProxy FQDN1>   
+
+4. Install CleanReqDBAgent::
 
   dirac-install-agent RequestManagement/CleanReqDBAgent
 
-4. Install RequestExecutingAgent::
+5. Install RequestExecutingAgent::
 
   dirac-install-agent RequestManagement/RequestExecutingAgent
 
@@ -33,11 +41,10 @@ put in place a few of those.
 
   dirac-install-db FTSDB
 
+2. Stop DataManagement/TransferDBMonitor service and install FTSManagerHandler::
 
-2. Install FTSManagerHandler::
-
+  runsvctrl d runit/DataManagement/TransferDBMonitor
   dirac-install-service DataManagement/FTSManager
-
 
 3. Configure FTS sites using command dirac-dms-add-ftssite (not included in v6r9-pre1!!!)::
 
@@ -57,13 +64,9 @@ In case of LHCb VO::
 
   dirac-install-agent DataManagement/CleanFTSDBAgent
 
-5. Install MonitorFTSAgent::
+5. Install FTSAgent::
 
-  dirac-install-agent DataManagement/MonitorFTSAgent
-
-6. Install SubmitFTSAgent::
-
-  dirac-install-agent DataManagement/SubmitFTSAgent
+  dirac-install-agent DataManagement/FTSAgent
 
 7. Once all requests from old version of system are processed, shutdown and remove agents:: 
 
@@ -76,6 +79,7 @@ In case of LHCb VO::
 and services::
 
   RequestManagement/RequestManager
+  RequestManagement/RequestProxy
   DataManagement/TransferDBMonitor
 
 and dbs::
