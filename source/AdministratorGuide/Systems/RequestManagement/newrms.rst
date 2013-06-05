@@ -53,6 +53,7 @@ put in place a few of those.
 In case of LHCb VO::
 
   dirac-dms-add-ftssite CERN.ch https://fts22-t0-export.cern.ch:8443/glite-data-transfer-fts/services/FileTransfer
+  dirac-dms-add-ftssite CNAF.it https://fts.cr.cnaf.infn.it:8443/glite-data-transfer-fts/services/FileTransfer
   dirac-dms-add-ftssite PIC.es https://fts.pic.es:8443/glite-data-transfer-fts/services/FileTransfer
   dirac-dms-add-ftssite RAL.uk https://lcgfts.gridpp.rl.ac.uk:8443/glite-data-transfer-fts/services/FileTransfer
   dirac-dms-add-ftssite SARA.nl https://fts.grid.sara.nl:8443/glite-data-transfer-fts/services/FileTransfer
